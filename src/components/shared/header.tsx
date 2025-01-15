@@ -4,12 +4,11 @@ import {
   TooltipTrigger
 } from "../ui/tooltip";
 
-import { CircleDollarSignIcon, SearchIcon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
-import { Input } from "../ui/input";
 import { Separator } from "../ui/separator";
 import { ChangeTheme } from "./change-theme";
+import { CommandSearch } from "./command-search";
 import { Notifications } from "./notifications";
 
 export function Header() {
@@ -33,18 +32,13 @@ export function Header() {
   return (
     <header className="bg-background sticky top-0 shrink-0 flex h-[70px] items-center gap-2 border-b border-border px-6 overflow-hidden">
       <div className="w-full flex items-center gap-6">
-        <div className="relative max-w-64 w-full">
-          <SearchIcon className="absolute top-2.5 left-2.5 size-4 text-muted-foreground" />
-          <Input className="pl-9" placeholder="Pesquisar" maxLength={60} />
-        </div>
+        <CommandSearch />
 
-        <Badge className="flex items-center gap-1.5 bg-success text-foreground hover:bg-emerald-400 dark:text-background">
-          <CircleDollarSignIcon className="size-4" />
+        <Badge className="bg-success text-foreground hover:bg-emerald-400 dark:text-background">
           Free trial
         </Badge>
 
         <Separator orientation="vertical" className="h-6" />
-        
         <span className="text-sm">{formatDate()}</span>
       </div>
 

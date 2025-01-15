@@ -31,7 +31,7 @@ export function Logout() {
                 type="button"
                 size="icon"
                 variant="destructive"
-                className="bg-background text-destructive border border-border hover:text-background"
+                className="bg-background text-foreground border border-border hover:text-foreground hover:border-none"
               >
                 <LogOutIcon className="size-5" />
               </Button>
@@ -58,7 +58,7 @@ export function Logout() {
           </AlertDialog>
         </TooltipTrigger>
 
-        <TooltipContent side="right">
+        <TooltipContent side="right" className="bg-destructive dark:bg-destructive dark:text-foreground">
           <p>Encerrar sessão</p>
         </TooltipContent>
       </Tooltip>
