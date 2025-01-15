@@ -1,11 +1,11 @@
 import { PageHeader } from "@/components/shared/page-header";
 
-export default function DashboardPage() {
+export default function UploadsPage() {
   return (
     <>
       <PageHeader
-        title="Dashboard"
-        description="Gerencie todos os dados da sua operação de forma eficiente."
+        title="Importações de arquivos"
+        description="Faça upload de arquivos para adicionar a sua base de dados no sistema."
       />
 
       <div className="grid auto-rows-min gap-6 md:grid-cols-5">

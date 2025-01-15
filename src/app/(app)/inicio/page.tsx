@@ -1,11 +1,11 @@
 import { PageHeader } from "@/components/shared/page-header";
 
-export default function DashboardPage() {
+export default function HomePage() {
   return (
     <>
       <PageHeader
-        title="Dashboard"
-        description="Gerencie todos os dados da sua operação de forma eficiente."
+        title="Bem vindo de volta"
+        description="Utilize nossos serviços para prospectar novos leads na sua operação."
       />
 
       <div className="grid auto-rows-min gap-6 md:grid-cols-5">

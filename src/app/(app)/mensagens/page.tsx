@@ -1,11 +1,11 @@
 import { PageHeader } from "@/components/shared/page-header";
 
-export default function DashboardPage() {
+export default function MessagesPage() {
   return (
     <>
       <PageHeader
-        title="Dashboard"
-        description="Gerencie todos os dados da sua operação de forma eficiente."
+        title="Mensagens e interações"
+        description="Visualize e filtre todos os disparos enviados dentro da nossa plataforma."
       />
 
       <div className="grid auto-rows-min gap-6 md:grid-cols-5">

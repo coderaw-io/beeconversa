@@ -1,11 +1,11 @@
 import { PageHeader } from "@/components/shared/page-header";
 
-export default function DashboardPage() {
+export default function AccountPage() {
   return (
     <>
       <PageHeader
-        title="Dashboard"
-        description="Gerencie todos os dados da sua operação de forma eficiente."
+        title="Minha conta"
+        description="Por aqui você visualiza e gerencia todos os seus dados dentro da plataforma."
       />
 
       <div className="grid auto-rows-min gap-6 md:grid-cols-5">
