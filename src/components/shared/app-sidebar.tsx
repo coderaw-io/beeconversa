@@ -1,7 +1,5 @@
 "use client"
 
-import iconImg from '@/assets/images/icon-black.png'
-import Image from 'next/image'
 import Link from "next/link"
 
 import {
@@ -21,20 +19,15 @@ import {
 } from 'lucide-react'
 
 import { Button } from '../ui/button'
+import { Icon } from './icon'
 
 export function AppSidebar() {
   return (
-    <Sidebar className="w-[70px] border-r border-foreground" collapsible="none">
-      <div className='min-h-screen border-b border-foreground'>
-        <SidebarHeader className="h-[70px] border-b border-foreground">
+    <Sidebar className="w-[70px] border-r border-border" collapsible="none">
+      <div className='min-h-screen border-b border-border'>
+        <SidebarHeader className="h-[70px] border-b border-border">
           <div className="flex h-[70px] w-full items-center justify-center">
-            <Image
-              src={iconImg}
-              width={420}
-              height={400}
-              className='w-10 rounded-[0.75rem]'
-              alt="logo"
-            />
+            <Icon />
           </div>
         </SidebarHeader>
 
@@ -78,7 +71,7 @@ export function AppSidebar() {
           </nav>
         </SidebarContent>
 
-        <SidebarFooter className='mt-auto border-t border-foreground py-6 gap-6'>
+        <SidebarFooter className='mt-auto border-t border-border py-6 gap-6'>
           <Link
             href="#"
             className="flex items-center justify-center"
@@ -92,7 +85,12 @@ export function AppSidebar() {
             href="#"
             className="flex items-center justify-center"
           >
-            <Button type="button" size="icon" variant="outline" className="text-destructive">
+            <Button
+              type="button"
+              size="icon"
+              variant="destructive"
+              className="bg-background text-destructive border border-border hover:text-background"
+            >
               <LogOutIcon className="size-5" />
             </Button>
           </Link>
@@ -101,4 +99,3 @@ export function AppSidebar() {
     </Sidebar>
   )
 }
-

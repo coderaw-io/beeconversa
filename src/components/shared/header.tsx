@@ -1,8 +1,9 @@
-import { BellDotIcon, MoonIcon } from "lucide-react";
+import { BellDotIcon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
+import { ChangeTheme } from "./change-theme";
 
 export function Header() {
   const capitalizeFirstLetter = (value: string) => {
@@ -23,7 +24,7 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 flex h-[70px] shrink-0 items-center gap-2 border-b border-foreground bg-background px-6">
+    <header className="sticky top-0 flex h-[70px] shrink-0 items-center gap-2 border-b border-border bg-background px-6">
       <div className="w-full flex items-center gap-3">
         <Badge className="bg-success text-foreground hover:bg-emerald-400">
           Free trial
@@ -33,19 +34,13 @@ export function Header() {
       </div>
 
       <div className="w-full flex justify-end items-center space-x-6">
-        <Button
-          type="button"
-          variant="outline"
-          size="icon"
-        > 
-          <MoonIcon className="size-6" />
-        </Button>
+        <ChangeTheme />
 
         <Button
           type="button"
           variant="outline"
           size="icon"
-        > 
+        >
           <BellDotIcon className="size-6" />
         </Button>
 

@@ -1,3 +1,4 @@
+import { ThemeProvider } from "@/components/shared/theme-provider";
 import "./globals.css";
 
 import type { Metadata } from "next";
@@ -23,7 +24,14 @@ export default function RootLayout({
       <body
         className={`${hostGrotesk.className} antialiased`}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
