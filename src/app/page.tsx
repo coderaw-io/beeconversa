@@ -2,12 +2,13 @@ import { Button } from "@/components/ui/button";
 
 import logoImg from "@/assets/images/logo-black.png";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center space-y-6 overflow-hidden">
       <div className="pt-6">
-        <Image 
+        <Image
           src={logoImg}
           width={240}
           height={40}
@@ -23,7 +24,9 @@ export default function Home() {
       </p>
 
       <div className="w-full flex justify-center items-center">
-        <Button className="px-8 py-3.5 w-52 text-base">Vamos começar?</Button>
+        <Link href="/dashboard">
+          <Button className="px-8 py-3.5 w-52 text-base">Vamos começar?</Button>
+        </Link>
       </div>
     </div>
   );
