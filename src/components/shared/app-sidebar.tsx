@@ -14,7 +14,6 @@ import {
   CloudUploadIcon,
   HomeIcon,
   LayoutDashboardIcon,
-  LogOutIcon,
   MessageSquareIcon,
   RocketIcon,
   Settings2Icon
@@ -29,6 +28,7 @@ import {
 
 import { Button } from '../ui/button';
 import { Icon } from './icon';
+import { Logout } from "./logout";
 
 const links = [
   { href: "#", icon: HomeIcon, tooltip: "Início" },
@@ -86,26 +86,7 @@ export function AppSidebar() {
               </Tooltip>
             </Link>
 
-            <Link
-              href="#"
-              className="flex items-center justify-center"
-            >
-              <Tooltip >
-                <TooltipTrigger>
-                  <Button
-                    type="button"
-                    size="icon"
-                    variant="destructive"
-                    className="bg-background text-destructive border border-border hover:text-background"
-                  >
-                    <LogOutIcon className="size-5" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent side="right">
-                  <p>Encerrar sessão</p>
-                </TooltipContent>
-              </Tooltip>
-            </Link>
+            <Logout />
           </SidebarFooter>
         </div>
       </Sidebar>
