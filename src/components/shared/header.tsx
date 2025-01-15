@@ -41,7 +41,9 @@ export function Header() {
         <Badge className="bg-success text-foreground hover:bg-emerald-400 dark:text-background">
           Free trial
         </Badge>
-        <Separator orientation="vertical" className="mr-2 h-6" />
+
+        <Separator orientation="vertical" className="h-6" />
+        
         <span className="text-sm">{formatDate()}</span>
       </div>
 
@@ -72,10 +74,17 @@ export function Header() {
 
         <Separator orientation="vertical" className="mr-2 h-6" />
 
-        <Avatar className="size-9">
-          <AvatarImage src="https://i.ibb.co/5MV0D9t/linux.jpg" alt="@linux" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
+        <div className="flex items-center space-x-4 pr-4">
+          <Avatar className="size-9">
+            <AvatarImage src="https://i.ibb.co/5MV0D9t/linux.jpg" alt="@linux" />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+
+          <div className="w-full flex flex-col">
+            <p className="text-sm truncate">Linux Torvald's</p>
+            <span className="text-xs">linux@email.com</span>
+          </div>
+        </div>
       </div>
     </header>
   )
