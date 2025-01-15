@@ -4,10 +4,11 @@ import {
   TooltipTrigger
 } from "../ui/tooltip";
 
-import { BellRingIcon } from "lucide-react";
+import { BellRingIcon, SearchIcon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 import { Separator } from "../ui/separator";
 import { ChangeTheme } from "./change-theme";
 
@@ -30,13 +31,18 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 flex h-[70px] shrink-0 items-center gap-2 border-b border-border bg-background px-6">
+    <header className="bg-background sticky top-0 flex h-[70px] shrink-0 items-center gap-2 border-b border-border px-6">
       <div className="w-full flex items-center gap-3">
-        <Badge className="bg-success text-foreground hover:bg-emerald-400">
+        <div className="relative max-w-64 w-full">
+          <SearchIcon className="absolute top-2.5 left-2.5 size-4 text-muted-foreground" />
+          <Input className="pl-9" placeholder="Pesquisar" />
+        </div>
+
+        <Badge className="bg-success text-foreground hover:bg-emerald-400 dark:text-background">
           Free trial
         </Badge>
         <Separator orientation="vertical" className="mr-2 h-6" />
-        {formatDate()}
+        <span className="text-sm">{formatDate()}</span>
       </div>
 
       <div className="w-full flex justify-end items-center space-x-6">

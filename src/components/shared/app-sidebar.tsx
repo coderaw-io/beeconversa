@@ -42,7 +42,7 @@ const links = [
 export function AppSidebar() {
   return (
     <TooltipProvider>
-      <Sidebar className="w-[70px] border-r border-border" collapsible="none">
+      <Sidebar className="bg-background w-[70px] border-r border-border" collapsible="none">
         <div className='min-h-screen border-b border-border'>
           <SidebarHeader className="h-[70px] border-b border-border">
             <div className="flex h-[70px] w-full items-center justify-center">
@@ -90,7 +90,7 @@ export function AppSidebar() {
               href="#"
               className="flex items-center justify-center"
             >
-              <Tooltip>
+              <Tooltip >
                 <TooltipTrigger>
                   <Button
                     type="button"
