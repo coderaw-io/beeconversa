@@ -42,8 +42,11 @@ const links = [
 export function AppSidebar() {
   return (
     <TooltipProvider>
-      <Sidebar className="bg-background w-[70px] border-r border-border" collapsible="none">
-        <div className='min-h-screen border-b border-border'>
+      <Sidebar
+        className="sticky top-0 shrink-0 min-h-screen bg-background w-[70px] border-r border-border"
+        collapsible="none"
+      >
+        <div className='h-screen border-b border-border'>
           <SidebarHeader className="h-[70px] border-b border-border">
             <div className="flex h-[70px] w-full items-center justify-center">
               <Icon />
@@ -69,7 +72,7 @@ export function AppSidebar() {
             </nav>
           </SidebarContent>
 
-          <SidebarFooter className='mt-auto border-t border-border py-6 gap-6'>
+          <SidebarFooter className='mt-auto border-t border-border py-6 px-4 gap-6'>
             <Link
               href="#"
               className="flex items-center justify-center"

@@ -1,25 +1,18 @@
-import {
-  SidebarInset,
-  SidebarProvider
-} from "@/components/ui/sidebar";
-
-import { AppSidebar } from "@/components/shared/app-sidebar";
-import { Header } from "@/components/shared/header";
+import { PageHeader } from "@/components/shared/page-header";
 
 export default function DashboardPage() {
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <SidebarInset>
-        <Header />
-        <div className="flex flex-1 flex-col gap-6 p-6">
-          <div className="grid auto-rows-min gap-6 md:grid-cols-5">
-            {Array.from({ length: 10 }).map((_, i) => (
-              <div key={i} className="aspect-square rounded-xl bg-accent" />
-            ))}
-          </div>
-        </div>
-      </SidebarInset>
-    </SidebarProvider>
+    <>
+      <PageHeader
+        title="Dashboard"
+        description="Gerencie todos os dados da sua operação de forma eficiente."
+      />
+
+      <div className="grid auto-rows-min gap-6 md:grid-cols-5">
+        {Array.from({ length: 40 }).map((_, i) => (
+          <div key={i} className="aspect-square rounded-xl bg-accent" />
+        ))}
+      </div>
+    </>
   )
 }

@@ -31,11 +31,11 @@ export function Header() {
   };
 
   return (
-    <header className="bg-background sticky top-0 flex h-[70px] shrink-0 items-center gap-2 border-b border-border px-6">
+    <header className="bg-background sticky top-0 shrink-0 flex h-[70px] items-center gap-2 border-b border-border px-6 overflow-hidden">
       <div className="w-full flex items-center gap-6">
         <div className="relative max-w-64 w-full">
           <SearchIcon className="absolute top-2.5 left-2.5 size-4 text-muted-foreground" />
-          <Input className="pl-9" placeholder="Pesquisar" />
+          <Input className="pl-9" placeholder="Pesquisar" maxLength={60} />
         </div>
 
         <Badge className="bg-success text-foreground hover:bg-emerald-400 dark:text-background">
