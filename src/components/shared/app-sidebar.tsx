@@ -26,20 +26,23 @@ import {
   TooltipTrigger
 } from "../ui/tooltip";
 
+import { usePathname } from "next/navigation";
 import { Button } from '../ui/button';
 import { Icon } from './icon';
 import { Logout } from "./logout";
 
 const links = [
-  { href: "#", icon: HomeIcon, tooltip: "Início" },
-  { href: "#", icon: LayoutDashboardIcon, tooltip: "Dashboard" },
-  { href: "#", icon: CloudUploadIcon, tooltip: "Importações" },
-  { href: "#", icon: RocketIcon, tooltip: "Campanhas" },
-  { href: "#", icon: MessageSquareIcon, tooltip: "Mensagens" },
-  { href: "#", icon: ChartNoAxesColumnIcon, tooltip: "Métricas" },
+  { href: "/inicio", icon: HomeIcon, tooltip: "Início" },
+  { href: "/dashboard", icon: LayoutDashboardIcon, tooltip: "Dashboard" },
+  { href: "/uploads", icon: CloudUploadIcon, tooltip: "Uploads" },
+  { href: "/campanhas", icon: RocketIcon, tooltip: "Campanhas" },
+  { href: "/mensagens", icon: MessageSquareIcon, tooltip: "Mensagens" },
+  { href: "/metricas", icon: ChartNoAxesColumnIcon, tooltip: "Métricas" },
 ];
 
 export function AppSidebar() {
+  const pathname = usePathname();
+
   return (
     <TooltipProvider>
       <Sidebar
@@ -55,32 +58,46 @@ export function AppSidebar() {
 
           <SidebarContent className='py-6'>
             <nav className="flex flex-col gap-6 p-4">
-              {links.map(({ href, icon: Icon, tooltip }) => (
-                <Link key={tooltip} href={href} className="flex items-center justify-center">
-                  <Tooltip>
-                    <TooltipTrigger>
-                      <Button type="button" size="icon" variant="outline">
-                        <Icon className="size-6" />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent side="right">
-                      <p>{tooltip}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </Link>
-              ))}
+              {links.map(({ href, icon: Icon, tooltip }) => {
+                const isActive = pathname === href;
+                return (
+                  <Link key={tooltip} href={href} className="flex items-center justify-center">
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Button
+                          type="button"
+                          size="icon"
+                          variant="outline"
+                          className={isActive ? "bg-primary dark:bg-yellow-400 border-none" : ""}
+                        >
+                          <Icon
+                            className={`size-6 ${isActive ? "text-foreground dark:text-background" : ""}`}
+                          />
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent side="right">
+                        <p>{tooltip}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </Link>
+                );
+              })}
             </nav>
           </SidebarContent>
 
           <SidebarFooter className='mt-auto border-t border-border py-6 px-4 gap-6'>
             <Link
-              href="#"
+              href="/settings"
               className="flex items-center justify-center"
             >
               <Tooltip>
                 <TooltipTrigger>
-                  <Button type="button" size="icon" variant="outline">
-                    <Settings2Icon className="size-5" />
+                  <Button
+                    type="button"
+                    size="icon"
+                    variant={pathname === "/settings" ? "default" : "outline"}
+                  >
+                    <Settings2Icon className={`size-5 ${pathname === "/settings" ? "text-primary-foreground" : ""}`} />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">

@@ -4,7 +4,7 @@ import {
   TooltipTrigger
 } from "../ui/tooltip";
 
-import { BellRingIcon, SearchIcon } from "lucide-react";
+import { BellRingIcon, CircleDollarSignIcon, SearchIcon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
@@ -38,7 +38,8 @@ export function Header() {
           <Input className="pl-9" placeholder="Pesquisar" maxLength={60} />
         </div>
 
-        <Badge className="bg-success text-foreground hover:bg-emerald-400 dark:text-background">
+        <Badge className="flex items-center gap-1.5 bg-success text-foreground hover:bg-emerald-400 dark:text-background">
+          <CircleDollarSignIcon className="size-4" />
           Free trial
         </Badge>
 
