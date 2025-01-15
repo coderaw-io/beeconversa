@@ -1,4 +1,10 @@
-import { BellDotIcon } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger
+} from "../ui/tooltip";
+
+import { BellRingIcon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
@@ -29,20 +35,36 @@ export function Header() {
         <Badge className="bg-success text-foreground hover:bg-emerald-400">
           Free trial
         </Badge>
-        <Separator orientation="vertical" className="mr-2 h-4" />
+        <Separator orientation="vertical" className="mr-2 h-6" />
         {formatDate()}
       </div>
 
       <div className="w-full flex justify-end items-center space-x-6">
-        <ChangeTheme />
+        <Tooltip>
+          <TooltipTrigger>
+            <ChangeTheme />
+          </TooltipTrigger>
+          <TooltipContent side="bottom">
+            <p>Alterar tema</p>
+          </TooltipContent>
+        </Tooltip>
 
-        <Button
-          type="button"
-          variant="outline"
-          size="icon"
-        >
-          <BellDotIcon className="size-6" />
-        </Button>
+        <Tooltip>
+          <TooltipTrigger>
+            <Button
+              type="button"
+              variant="outline"
+              size="icon"
+            >
+              <BellRingIcon className="size-6" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="bottom">
+            <p>Notificações</p>
+          </TooltipContent>
+        </Tooltip>
+
+        <Separator orientation="vertical" className="mr-2 h-6" />
 
         <Avatar className="size-9">
           <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
