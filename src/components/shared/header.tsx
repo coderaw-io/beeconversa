@@ -34,7 +34,7 @@ export function Header() {
       <div className="w-full flex items-center gap-6">
         <CommandSearch />
 
-        <Badge className="bg-success text-foreground hover:bg-emerald-400 dark:text-background">
+        <Badge className="bg-success text-foreground tracking-wider hover:bg-emerald-400 dark:text-background">
           Free trial
         </Badge>
 

@@ -4,8 +4,8 @@ export default function MetricsPage() {
   return (
     <>
       <PageHeader
-        title="Métricas e logs"
-        description="Gerencie os logs, status e métricas referente a todos os seus disparos."
+        title="Métricas e histórico"
+        description="Gerencie o histórico, status e métricas referente a todos os seus envios no app."
       />
 
       <div className="grid auto-rows-min gap-6 md:grid-cols-5">

@@ -11,7 +11,7 @@ export function Icon() {
 
   return (
     <Image
-      src={theme === "light" ? iconLightImg : iconDarkImg}
+      src={theme === "light" ? iconDarkImg : iconLightImg}
       width={420}
       height={400}
       className="w-10 rounded-[0.75rem]"
