@@ -32,7 +32,7 @@ export function Header() {
 
   return (
     <header className="bg-background sticky top-0 flex h-[70px] shrink-0 items-center gap-2 border-b border-border px-6">
-      <div className="w-full flex items-center gap-3">
+      <div className="w-full flex items-center gap-6">
         <div className="relative max-w-64 w-full">
           <SearchIcon className="absolute top-2.5 left-2.5 size-4 text-muted-foreground" />
           <Input className="pl-9" placeholder="Pesquisar" />
@@ -45,7 +45,7 @@ export function Header() {
         <span className="text-sm">{formatDate()}</span>
       </div>
 
-      <div className="w-full flex justify-end items-center space-x-6">
+      <div className="flex justify-end items-center space-x-6 xl:w-full">
         <Tooltip>
           <TooltipTrigger>
             <ChangeTheme />
@@ -73,7 +73,7 @@ export function Header() {
         <Separator orientation="vertical" className="mr-2 h-6" />
 
         <Avatar className="size-9">
-          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+          <AvatarImage src="https://i.ibb.co/5MV0D9t/linux.jpg" alt="@linux" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </div>

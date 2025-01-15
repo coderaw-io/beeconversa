@@ -1,8 +1,8 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { MoonIcon, SunIcon } from 'lucide-react'
-import { useTheme } from "next-themes"
+import { Button } from "@/components/ui/button";
+import { MoonIcon, SunIcon } from 'lucide-react';
+import { useTheme } from "next-themes";
 
 interface ChangeThemeProps {
   className?: string;
@@ -10,10 +10,7 @@ interface ChangeThemeProps {
 
 export function ChangeTheme({ className }: ChangeThemeProps) {
   const { theme, setTheme } = useTheme();
-
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  }
+  const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
 
   return (
     <Button
