@@ -10,6 +10,8 @@ export default {
   theme: {
   	extend: {
   		colors: {
+				"success": "#5e8e",
+				"link": "#5e85ed",
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
