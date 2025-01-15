@@ -87,7 +87,7 @@ export function AppSidebar() {
 
           <SidebarFooter className='mt-auto border-t border-border py-6 px-4 gap-6'>
             <Link
-              href="/settings"
+              href="/minha-conta"
               className="flex items-center justify-center"
             >
               <Tooltip>
@@ -95,9 +95,12 @@ export function AppSidebar() {
                   <Button
                     type="button"
                     size="icon"
-                    variant={pathname === "/settings" ? "default" : "outline"}
+                    variant="outline"
+                    className={pathname === "/minha-conta" ? "bg-primary dark:bg-yellow-400 border-none" : ""}
                   >
-                    <Settings2Icon className={`size-5 ${pathname === "/settings" ? "text-primary-foreground" : ""}`} />
+                    <Settings2Icon
+                      className={`size-5 ${pathname === "/minha-conta" ? "text-foreground dark:text-background" : ""}`}
+                    />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent side="right">
