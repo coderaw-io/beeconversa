@@ -4,13 +4,13 @@ import {
   TooltipTrigger
 } from "../ui/tooltip";
 
-import { BellRingIcon, CircleDollarSignIcon, SearchIcon } from "lucide-react";
+import { CircleDollarSignIcon, SearchIcon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
-import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Separator } from "../ui/separator";
 import { ChangeTheme } from "./change-theme";
+import { Notifications } from "./notifications";
 
 export function Header() {
   const capitalizeFirstLetter = (value: string) => {
@@ -58,21 +58,7 @@ export function Header() {
           </TooltipContent>
         </Tooltip>
 
-        <Tooltip>
-          <TooltipTrigger>
-            <Button
-              type="button"
-              variant="outline"
-              size="icon"
-            >
-              <BellRingIcon className="size-6" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent side="bottom">
-            <p>Notificações</p>
-          </TooltipContent>
-        </Tooltip>
-
+        <Notifications />
         <Separator orientation="vertical" className="mr-2 h-6" />
 
         <div className="flex items-center space-x-4 pr-4">
