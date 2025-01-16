@@ -26,7 +26,7 @@ export function CommandSearch() {
   ]
 
   return (
-    <div className="max-w-64 w-full">
+    <div className="hidden sm:flex max-w-64 w-full">
       <Button
         type="button"
         variant="outline"

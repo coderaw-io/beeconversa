@@ -63,7 +63,7 @@ export function AppSidebar() {
                 return (
                   <Link key={tooltip} href={href} className="flex items-center justify-center">
                     <Tooltip>
-                      <TooltipTrigger>
+                       <TooltipTrigger>
                         <Button
                           type="button"
                           size="icon"

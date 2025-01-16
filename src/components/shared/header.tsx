@@ -10,6 +10,8 @@ import { Separator } from "../ui/separator";
 import { ChangeTheme } from "./change-theme";
 import { CommandSearch } from "./command-search";
 import { Notifications } from "./notifications";
+import { Button } from "../ui/button";
+import { SparklesIcon } from "lucide-react";
 
 export function Header() {
   const capitalizeFirstLetter = (value: string) => {
@@ -31,18 +33,29 @@ export function Header() {
 
   return (
     <header className="bg-background sticky top-0 shrink-0 flex h-[70px] items-center gap-2 border-b border-border px-6 overflow-hidden">
-      <div className="w-full flex items-center gap-6">
+      <div className="hidden md:flex items-center gap-6 w-full">
         <CommandSearch />
 
-        <Badge className="bg-success text-foreground tracking-wider hover:bg-emerald-400 dark:text-background">
+        <Badge className="hidden lg:flex bg-success text-foreground tracking-wider hover:bg-emerald-400 dark:text-background">
           Free trial
         </Badge>
 
-        <Separator orientation="vertical" className="h-6" />
-        <span className="text-sm">{formatDate()}</span>
+        <Separator orientation="vertical" className="hidden lg:flex h-6" />
+        <span className="hidden lg:flex text-sm">{formatDate()}</span>
       </div>
 
-      <div className="flex justify-end items-center space-x-6 xl:w-full">
+      <div className="flex items-center space-x-6 lg:justify-end xl:w-full">
+        <Button
+          type="button"
+          size="sm"
+          className="hidden xl:flex items-center gap-2"
+        >
+          <SparklesIcon className="size-4" />
+          Chat com IA
+        </Button>
+
+        <Notifications />
+
         <Tooltip>
           <TooltipTrigger>
             <ChangeTheme />
@@ -52,7 +65,6 @@ export function Header() {
           </TooltipContent>
         </Tooltip>
 
-        <Notifications />
         <Separator orientation="vertical" className="mr-2 h-6" />
 
         <div className="flex items-center space-x-4 pr-4">

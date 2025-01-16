@@ -75,12 +75,12 @@ export function Notifications() {
       <Popover>
         <Tooltip>
           <TooltipTrigger>
-            <PopoverTrigger asChild className="hidden sm:flex">
+            <PopoverTrigger asChild>
               <Button
                 type="button"
                 variant="outline"
                 size="icon"
-                className="relative"
+                className="relative -z-10"
               >
                 <BellRingIcon className="size-6" />
                 {notifications.some(n => !n.isRead) && (
