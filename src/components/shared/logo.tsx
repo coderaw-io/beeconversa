@@ -1,7 +1,7 @@
 "use client"
 
-import logoDarkImg from "@/assets/images/logo-black.png";
-import logoLightImg from "@/assets/images/logo-white.png";
+import logoDarkImg from "@/assets/images/logo-dark.png";
+import logoLightImg from "@/assets/images/logo-light.png";
 import Image from "next/image";
 
 import { useTheme } from "next-themes";
@@ -12,7 +12,7 @@ export function Logo() {
   return (
     <Image
       src={theme === "light" ? logoDarkImg : logoLightImg}
-      width={240}
+      width={280}
       height={40}
       alt="Logo da botcolmeia"
     />

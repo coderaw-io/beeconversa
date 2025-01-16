@@ -1,15 +1,10 @@
 import Link from "next/link";
 
-import { Logo } from "@/components/shared/logo";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center space-y-6 overflow-hidden">
-      <div className="pt-6">
-        <Logo />
-      </div>
-
       <h1 className="text-6xl font-bol">
         Seja bem vindo
       </h1>
