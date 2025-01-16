@@ -11,7 +11,7 @@ export function FileList() {
         <Button variant="outline">Arquivos Remotos</Button>
 
         <div className="relative ml-auto max-w-sm w-full">
-          <SearchIcon className="absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
+          <SearchIcon className="absolute left-2.5 top-3 size-4 text-muted-foreground" />
           <Input
             placeholder="Filtrar pelo nome do arquivo"
             className="pl-10 h-10"

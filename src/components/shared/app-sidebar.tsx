@@ -14,7 +14,9 @@ import {
   CloudUploadIcon,
   HomeIcon,
   LayoutDashboardIcon,
-  MessageSquareIcon,
+  MailsIcon,
+  MessageCircleIcon,
+  MessagesSquareIcon,
   RocketIcon,
   Settings2Icon
 } from 'lucide-react';
@@ -36,7 +38,9 @@ const links = [
   { href: "/dashboard", icon: LayoutDashboardIcon, tooltip: "Dashboard" },
   { href: "/uploads", icon: CloudUploadIcon, tooltip: "Uploads" },
   { href: "/campanhas", icon: RocketIcon, tooltip: "Campanhas" },
-  { href: "/mensagens", icon: MessageSquareIcon, tooltip: "Mensagens" },
+  { href: "/whatsapp", icon: MessageCircleIcon, tooltip: "Whatsapp" },
+  { href: "/emails", icon: MailsIcon, tooltip: "E-mails" },
+  { href: "/mensagens", icon: MessagesSquareIcon, tooltip: "Mensagens" },
   { href: "/metricas", icon: ChartNoAxesColumnIcon, tooltip: "Métricas" },
 ];
 
