@@ -56,7 +56,7 @@ export function CommandSearch() {
                       type="button"
                       variant="ghost"
                       size="icon"
-                      className="size-8 hover:text-destructive"
+                      className="size-8"
                     >
                       <LinkIcon className="size-3" />
                     </Button>
