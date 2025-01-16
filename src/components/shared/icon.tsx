@@ -15,7 +15,7 @@ export function Icon() {
       width={420}
       height={400}
       className="w-10 rounded-[0.75rem]"
-      alt="logo"
+      alt="Ícone da botcolmeia"
     />
   )
 }
