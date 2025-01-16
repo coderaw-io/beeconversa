@@ -49,14 +49,14 @@ export function AppSidebar() {
         className="sticky top-0 shrink-0 min-h-screen bg-background w-[70px] border-r border-border"
         collapsible="none"
       >
-        <div className='h-screen border-b border-border'>
+        <div className='h-full'>
           <SidebarHeader className="h-[70px] border-b border-border">
             <div className="flex h-[70px] w-full items-center justify-center">
               <Icon />
             </div>
           </SidebarHeader>
 
-          <SidebarContent className='py-6'>
+          <SidebarContent className='h-full py-6'>
             <nav className="flex flex-col gap-6 p-4">
               {links.map(({ href, icon: Icon, tooltip }) => {
                 const isActive = pathname === href;
@@ -85,7 +85,7 @@ export function AppSidebar() {
             </nav>
           </SidebarContent>
 
-          <SidebarFooter className='mt-auto border-t border-border py-6 px-4 gap-6'>
+          <SidebarFooter className='h-full mt-auto border-t border-border py-6 px-4 gap-6'>
             <Link
               href="/minha-conta"
               className="flex items-center justify-center"
