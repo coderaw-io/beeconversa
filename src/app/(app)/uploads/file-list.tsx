@@ -12,7 +12,11 @@ export function FileList() {
 
         <div className="relative ml-auto max-w-sm w-full">
           <SearchIcon className="absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
-          <Input placeholder="Filtrar pelo nome do arquivo" className="pl-8" maxLength={60} />
+          <Input
+            placeholder="Filtrar pelo nome do arquivo"
+            className="pl-8 h-10"
+            maxLength={60}
+          />
         </div>
       </div>
 
@@ -50,7 +54,7 @@ export function FileList() {
               <td className="p-4 text-muted-foreground">
                 200 KB
               </td>
-              
+
               <td className="p-4 text-muted-foreground">
                 Linux Torvald's
               </td>
