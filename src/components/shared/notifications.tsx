@@ -80,7 +80,7 @@ export function Notifications() {
                 type="button"
                 variant="outline"
                 size="icon"
-                className="relative -z-10"
+                className="relative"
               >
                 <BellRingIcon className="size-6" />
                 {notifications.some(n => !n.isRead) && (
