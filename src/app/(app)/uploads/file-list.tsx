@@ -14,7 +14,7 @@ export function FileList() {
           <SearchIcon className="absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
           <Input
             placeholder="Filtrar pelo nome do arquivo"
-            className="pl-8 h-10"
+            className="pl-10 h-10"
             maxLength={60}
           />
         </div>
