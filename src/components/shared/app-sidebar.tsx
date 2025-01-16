@@ -14,11 +14,13 @@ import {
   CloudUploadIcon,
   HomeIcon,
   LayoutDashboardIcon,
+  LifeBuoyIcon,
   MailsIcon,
   MessageCircleIcon,
   MessagesSquareIcon,
   RocketIcon,
-  Settings2Icon
+  Settings2Icon,
+  UsersIcon
 } from 'lucide-react';
 
 import {
@@ -37,6 +39,7 @@ const links = [
   { href: "/inicio", icon: HomeIcon, tooltip: "Início" },
   { href: "/dashboard", icon: LayoutDashboardIcon, tooltip: "Dashboard" },
   { href: "/uploads", icon: CloudUploadIcon, tooltip: "Uploads" },
+  { href: "/contatos", icon: UsersIcon, tooltip: "Contatos" },
   { href: "/campanhas", icon: RocketIcon, tooltip: "Campanhas" },
   { href: "/whatsapp", icon: MessageCircleIcon, tooltip: "Whatsapp" },
   { href: "/emails", icon: MailsIcon, tooltip: "E-mails" },
@@ -90,6 +93,29 @@ export function AppSidebar() {
           </SidebarContent>
 
           <SidebarFooter className='h-full mt-auto border-t border-border py-6 px-4 gap-6'>
+            <Link
+              href="/suporte"
+              className="flex items-center justify-center"
+            >
+              <Tooltip>
+                <TooltipTrigger>
+                  <Button
+                    type="button"
+                    size="icon"
+                    variant="outline"
+                    className={pathname === "/suporte" ? "bg-primary dark:bg-yellow-400 border-none" : ""}
+                  >
+                    <LifeBuoyIcon
+                      className={`size-5 ${pathname === "/suporte" ? "text-foreground dark:text-background" : ""}`}
+                    />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="right">
+                  <p>Suporte</p>
+                </TooltipContent>
+              </Tooltip>
+            </Link>
+
             <Link
               href="/minha-conta"
               className="flex items-center justify-center"
