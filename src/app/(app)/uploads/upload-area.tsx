@@ -2,7 +2,7 @@ import { UploadIcon } from "lucide-react";
 
 export function UploadArea() {
   return (
-    <div className="border-2 border-dashed rounded-[0.75rem] p-12 text-center">
+    <div className="bg-zinc-100/95 border-2 border-dashed rounded-[0.75rem] p-12 text-center dark:bg-zinc-900 dark:border-zinc-500">
       <div className="flex flex-col items-center gap-2">
         <UploadIcon className="w-8 h-8 text-muted-foreground" />
 
