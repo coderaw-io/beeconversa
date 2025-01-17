@@ -4,7 +4,7 @@ export default function SupportPage() {
   return (
     <>
       <PageHeader
-        title="Contate o nosso suporte"
+        title="Suporte online"
         description="Problemas com a nossa plataforma? Fale com o nosso time de suporte."
       />
 
