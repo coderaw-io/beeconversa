@@ -4,14 +4,14 @@ import {
   TooltipTrigger
 } from "../ui/tooltip";
 
+import { SparklesIcon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { ChangeTheme } from "./change-theme";
 import { CommandSearch } from "./command-search";
 import { Notifications } from "./notifications";
-import { Button } from "../ui/button";
-import { SparklesIcon } from "lucide-react";
 
 export function Header() {
   const capitalizeFirstLetter = (value: string) => {
@@ -32,7 +32,7 @@ export function Header() {
   };
 
   return (
-    <header className="bg-background sticky top-0 shrink-0 flex h-[70px] items-center gap-2 border-b border-border px-6 overflow-hidden">
+    <header className="bg-background sticky top-0 shrink-0 z-10 flex h-[70px] items-center gap-2 border-b border-border px-6 overflow-hidden">
       <div className="hidden md:flex items-center gap-6 w-full">
         <CommandSearch />
 

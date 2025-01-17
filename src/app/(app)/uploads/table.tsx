@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { EditIcon, TrashIcon } from "lucide-react";
+import { UploadsPagination } from "./pagination";
 
 const uploadsData = [
   {
@@ -87,6 +88,8 @@ export function UploadsTable() {
           </tbody>
         </table>
       </div>
+      
+      <UploadsPagination />
     </div>
   )
 }

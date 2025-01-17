@@ -26,8 +26,8 @@ export function UploadsContent() {
       <div className="space-y-6">
         <Card className="flex flex-col space-y-2 p-0">
           <CardHeader className="pt-6 pb-3 px-6">
-            <CardTitle>Filtros de busca</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-xl">Filtros de busca</CardTitle>
+            <CardDescription className="text-base">
               Utilize os filtros disponíveis para realizar uma pesquisa mais acertiva.
             </CardDescription>
           </CardHeader>
