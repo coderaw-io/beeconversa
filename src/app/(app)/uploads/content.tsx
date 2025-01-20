@@ -75,6 +75,7 @@ export function UploadsContent() {
                       <Input
                         className="w-full"
                         placeholder="Informe o arquivo que deseja filtrar"
+                        maxLength={60}
                         {...field}
                       />
                     </FormControl>

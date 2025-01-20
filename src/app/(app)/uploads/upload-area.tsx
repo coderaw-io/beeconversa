@@ -64,7 +64,7 @@ export function UploadArea() {
       onClick={handleClick}
       animate={controls}
       initial={{ scale: 1 }}
-      whileHover={{ scale: 1.02 }}
+      whileHover={{ scale: 0.98 }}
       whileTap={{ scale: 0.98 }}
     >
       <input type="file" ref={fileInputRef} onChange={handleFileInput} className="hidden" />
