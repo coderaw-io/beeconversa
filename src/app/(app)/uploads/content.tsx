@@ -1,3 +1,5 @@
+"use client"
+
 import {
   ArrowDownUpIcon,
   ArrowsUpFromLineIcon,
@@ -14,15 +16,44 @@ import {
   CardTitle
 } from "@/components/ui/card";
 
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from "@/components/ui/form";
+
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import { UploadsTable } from "./table";
 
+const filterSchema = z.object({
+  fileName: z.string(),
+  initDate: z.date(),
+  endDate: z.date(),
+});
+
 export function UploadsContent() {
+  const form = useForm<z.infer<typeof filterSchema>>({
+    resolver: zodResolver(filterSchema),
+  });
+
+  const onSubmit = async () => { }
+
+  const handleSubmit = form.handleSubmit(onSubmit);
+
   return (
-    <>
+    <Form {...form}>
       <div className="space-y-6">
         <Card className="flex flex-col space-y-2 p-0">
           <CardHeader className="pt-6 pb-3 px-6">
@@ -34,30 +65,93 @@ export function UploadsContent() {
           <Separator />
           <CardContent className="grid grid-cols-1 items-center gap-6 py-4">
             <div className="flex items-center space-x-6">
-              <div className="w-full flex flex-col space-y-2">
-                <Label>Nome do arquivo</Label>
-                <Input
-                  placeholder="Informe o arquivo que deseja filtrar"
-                  className="w-full"
-                  maxLength={100}
-                />
-              </div>
+              <FormField
+                control={form.control}
+                name="fileName"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel>Nome do arquivo</FormLabel>
+                    <FormControl>
+                      <Input
+                        className="w-full"
+                        placeholder="Informe o arquivo que deseja filtrar"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-              <div className="w-full flex flex-col space-y-2">
-                <Label>Data inicial</Label>
-                <Input 
-                  placeholder="Escolha a data de início do período" 
-                  className="w-full"
-                />
-              </div>
+              <FormField
+                control={form.control}
+                name="initDate"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel>Filtrar pela data inicial</FormLabel>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            className="w-full justify-start text-left font-normal"
+                          >
+                            {field.value ? format(field.value, "dd/MM/yyyy") : "Data inicial do período"}
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
 
-              <div className="w-full flex flex-col space-y-2">
-                <Label>Data final</Label>
-                <Input 
-                  placeholder="Escolha a data final do período" 
-                  className="w-full"
-                />
-              </div>
+                      <PopoverContent className="w-auto p-0" align="end">
+                        <Calendar
+                          mode="single"
+                          selected={field.value ?? undefined}
+                          onSelect={field.onChange}
+                          locale={ptBR}
+                          disabled={(date) => date > new Date() || date < new Date("01-01-1900")}
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="endDate"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel>Filtrar pela data final</FormLabel>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            className="w-full justify-start text-left font-normal"
+                          >
+                            {field.value ? format(field.value, "dd/MM/yyyy") : "Data final do período"}
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+
+                      <PopoverContent className="w-auto p-0" align="end">
+                        <Calendar
+                          mode="single"
+                          selected={field.value ?? undefined}
+                          onSelect={field.onChange}
+                          locale={ptBR}
+                          disabled={(date) => date > new Date() || date < new Date("01-01-1900")}
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
 
             <div className="flex justify-end items-center space-x-6">
@@ -71,7 +165,7 @@ export function UploadsContent() {
                 <EraserIcon className="size-4" />
               </Button>
 
-              <Button type="button" className="flex items-center gap-2">
+              <Button type="submit" className="flex items-center gap-2">
                 Aplicar filtros
                 <FilterIcon className="size-4" />
               </Button>
@@ -108,6 +202,6 @@ export function UploadsContent() {
       </div>
 
       <UploadsTable />
-    </>
+    </Form>
   )
 }

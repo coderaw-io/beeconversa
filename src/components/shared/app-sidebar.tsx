@@ -33,6 +33,7 @@ import {
 import { usePathname } from "next/navigation";
 import { Button } from '../ui/button';
 import { Icon } from './icon';
+import { IconNavLink } from "./icon-nav-link";
 import { Logout } from "./logout";
 
 const links = [
@@ -65,30 +66,15 @@ export function AppSidebar() {
 
           <SidebarContent className='h-full py-6'>
             <nav className="flex flex-col gap-6 p-4">
-              {links.map(({ href, icon: Icon, tooltip }) => {
-                const isActive = pathname === href;
-                return (
-                  <Link key={tooltip} href={href} className="flex items-center justify-center">
-                    <Tooltip>
-                       <TooltipTrigger>
-                        <Button
-                          type="button"
-                          size="icon"
-                          variant="outline"
-                          className={isActive ? "bg-primary dark:bg-yellow-400 border-none" : ""}
-                        >
-                          <Icon
-                            className={`size-6 ${isActive ? "text-foreground dark:text-background" : ""}`}
-                          />
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent side="right">
-                        <p>{tooltip}</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </Link>
-                );
-              })}
+              {links.map(({ href, icon, tooltip }) => (
+                <IconNavLink
+                  key={tooltip}
+                  href={href}
+                  icon={icon}
+                  tooltip={tooltip}
+                  isActive={pathname === href}
+                />
+              ))}
             </nav>
           </SidebarContent>
 
