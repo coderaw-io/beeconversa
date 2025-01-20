@@ -30,18 +30,13 @@ import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
+import { filterSchema } from "@/schemas/filter";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { UploadsTable } from "./table";
-
-const filterSchema = z.object({
-  fileName: z.string(),
-  initDate: z.date(),
-  endDate: z.date(),
-});
 
 export function UploadsContent() {
   const form = useForm<z.infer<typeof filterSchema>>({

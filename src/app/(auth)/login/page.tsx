@@ -8,6 +8,7 @@ export default function LoginPage() {
         <div className="flex items-center gap-2 self-center font-medium">
           <Logo />
         </div>
+        
         <LoginForm />
       </div>
     </div>

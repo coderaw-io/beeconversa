@@ -9,15 +9,15 @@ import { useLayoutEffect, useState } from "react"
 
 export function Logo() {
   const { theme } = useTheme()
-  const [logoSrc, setLogoSrc] = useState(logoDarkImg)
+  const [logoSource, setLogoSource] = useState(logoDarkImg)
 
   useLayoutEffect(() => {
-    setLogoSrc(theme === "light" ? logoDarkImg : logoLightImg)
+    setLogoSource(theme === "light" ? logoDarkImg : logoLightImg)
   }, [theme])
 
   return (
     <Image
-      src={logoSrc || "/placeholder.svg"}
+      src={logoSource || "/placeholder.svg"}
       width={280}
       height={40}
       alt="Logo da botcolmeia"
