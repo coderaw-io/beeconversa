@@ -1,7 +1,8 @@
 import "./globals.css";
 
-import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/shared/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
+import type { Metadata } from "next";
 import { Host_Grotesk } from "next/font/google";
 
 const hostGrotesk = Host_Grotesk({
@@ -31,6 +32,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Toaster richColors />
         </ThemeProvider>
       </body>
     </html>

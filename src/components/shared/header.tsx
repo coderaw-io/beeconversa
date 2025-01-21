@@ -69,13 +69,13 @@ export function Header() {
 
         <div className="flex items-center space-x-4 pr-4">
           <Avatar className="size-9">
-            <AvatarImage src="https://i.ibb.co/5MV0D9t/linux.jpg" alt="@linux" />
+            <AvatarImage src="https://i.ibb.co/5MV0D9t/linux.jpg" alt="@linustorvalds" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
 
           <div className="w-full flex flex-col">
-            <p className="text-sm truncate">Linux Torvald's</p>
-            <span className="text-xs">linux@email.com</span>
+            <p className="text-sm truncate">Linus Torvald's</p>
+            <span className="text-xs">linustorvalds@email.com</span>
           </div>
         </div>
       </div>

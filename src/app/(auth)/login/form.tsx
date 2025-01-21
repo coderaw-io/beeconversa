@@ -21,10 +21,12 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 import { loginSchema } from "@/schemas/auth"
+import { AuthService } from "@/services/auth-service"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { LoaderPinwheelIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 import { z } from "zod"
 
 export function LoginForm({
@@ -48,9 +50,17 @@ export function LoginForm({
         password: form.watch("password"),
       };
 
+      await AuthService.signIn(formData);
+
+      toast.success("LOGIN EFETUADO COM SUCESSO ✅", {
+        description: "Usuário autenticado com êxito."
+      });
+
       route.push("/inicio");
-    } catch (error) {
-      console.log(error)
+    } catch {
+      toast.error("ERRO AO AUTENTICAR USUÁRIO 🚫", {
+        description: "Verifique as credenciais digitadas e tente novamente."
+      });
     }
   }
 
@@ -100,6 +110,7 @@ export function LoginForm({
                             type="email"
                             placeholder="exemplo@email.com"
                             required
+                            {...field}
                           />
                         </FormControl>
                         <FormMessage />
@@ -126,6 +137,7 @@ export function LoginForm({
                             id="password"
                             type="password"
                             placeholder="**********"
+                            {...field}
                           />
                         </FormControl>
                         <FormMessage />
