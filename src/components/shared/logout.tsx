@@ -1,3 +1,5 @@
+"use client"
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,9 +20,17 @@ import {
 } from "../ui/tooltip";
 
 import { LogOutIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 
 export function Logout() {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    router.push("/");
+  }
+
   return (
     <TooltipProvider>
       <Tooltip>
@@ -50,7 +60,7 @@ export function Logout() {
                   Cancelar
                 </AlertDialogCancel>
                 
-                <AlertDialogAction className="bg-destructive">
+                <AlertDialogAction className="bg-destructive" onClick={handleLogout}>
                   Encerrar sessão
                 </AlertDialogAction>
               </AlertDialogFooter>

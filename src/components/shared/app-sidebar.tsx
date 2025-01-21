@@ -10,14 +10,9 @@ import {
 } from "@/components/ui/sidebar";
 
 import {
-  ChartNoAxesColumnIcon,
   CloudUploadIcon,
   HomeIcon,
-  LayoutDashboardIcon,
-  LifeBuoyIcon,
-  MailsIcon,
   MessageCircleIcon,
-  MessagesSquareIcon,
   RocketIcon,
   Settings2Icon,
   UsersIcon
@@ -38,14 +33,14 @@ import { Logout } from "./logout";
 
 const links = [
   { href: "/inicio", icon: HomeIcon, tooltip: "Início" },
-  { href: "/dashboard", icon: LayoutDashboardIcon, tooltip: "Dashboard" },
+  // { href: "/dashboard", icon: LayoutDashboardIcon, tooltip: "Dashboard" },
   { href: "/uploads", icon: CloudUploadIcon, tooltip: "Uploads" },
   { href: "/clientes", icon: UsersIcon, tooltip: "Clientes" },
   { href: "/campanhas", icon: RocketIcon, tooltip: "Campanhas" },
   { href: "/whatsapp", icon: MessageCircleIcon, tooltip: "Whatsapp" },
-  { href: "/emails", icon: MailsIcon, tooltip: "E-mails" },
-  { href: "/mensagens", icon: MessagesSquareIcon, tooltip: "Mensagens" },
-  { href: "/metricas", icon: ChartNoAxesColumnIcon, tooltip: "Métricas" },
+  // { href: "/emails", icon: MailsIcon, tooltip: "E-mails" },
+  // { href: "/mensagens", icon: MessagesSquareIcon, tooltip: "SMS" },
+  // { href: "/metricas", icon: ChartNoAxesColumnIcon, tooltip: "Métricas" },
 ];
 
 export function AppSidebar() {
@@ -79,7 +74,7 @@ export function AppSidebar() {
           </SidebarContent>
 
           <SidebarFooter className='h-full mt-auto border-t border-border py-6 px-4 gap-6'>
-            <Link
+            {/* <Link
               href="/suporte"
               className="flex items-center justify-center"
             >
@@ -100,7 +95,7 @@ export function AppSidebar() {
                   <p>Suporte</p>
                 </TooltipContent>
               </Tooltip>
-            </Link>
+            </Link> */}
 
             <Link
               href="/minha-conta"

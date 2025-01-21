@@ -4,5 +4,23 @@ export interface UploadFileResponse {
   totalPages: number,
   totalResults: number,
   totalAmount: number,
-  results: []
+  results: Result[]
+}
+
+export interface Result {
+  id: string
+  user: User
+  fileType: string
+  fileStatus: string
+  filePath: string
+  totalRows: number
+  totalRowsImported: number
+  totalRowsNotImported: number
+  creationDate: string
+}
+
+export interface User {
+  id: string
+  name: string
+  email: string
 }
