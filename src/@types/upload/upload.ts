@@ -4,10 +4,10 @@ export interface UploadFileResponse {
   totalPages: number,
   totalResults: number,
   totalAmount: number,
-  results: Result[]
+  results: UploadedFileResult[]
 }
 
-export interface Result {
+export interface UploadedFileResult {
   id: string
   user: User
   fileType: string

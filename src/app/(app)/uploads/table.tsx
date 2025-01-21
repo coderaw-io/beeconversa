@@ -1,41 +1,20 @@
+import { UploadedFileResult } from "@/@types/upload/upload";
 import { Button } from "@/components/ui/button";
+import { format } from "date-fns";
 import { EditIcon, TrashIcon } from "lucide-react";
 import { UploadsPagination } from "./pagination";
 
-const uploadsData = [
-  {
-    fileName: "lista-fria-dezembro-2024.csv",
-    uploadDate: "02 de Dezembro de 2024",
-    fileSize: "350 KB",
-    responsible: "Ana Souza",
-  },
-  {
-    fileName: "lista-fria-outubro(1).csv",
-    uploadDate: "10 de Outubro de 2024",
-    fileSize: "800 KB",
-    responsible: "Roberto Almeida",
-  },
-  {
-    fileName: "prospectos-clientes-parceiro.csv",
-    uploadDate: "20 de Junho de 2024",
-    fileSize: "1.5 MB",
-    responsible: "Maria Fernanda",
-  },
-  {
-    fileName: "leads-site.csv",
-    uploadDate: "25 de Abril de 2024",
-    fileSize: "500 KB",
-    responsible: "Juliana Oliveira",
-  },
-  {
-    fileName: "retrabalho-clientes.csv",
-    uploadDate: "15 de Março de 2024",
-    fileSize: "1.2 MB",
-    responsible: "Carlos Lima",
-  },
-];
+interface UploadsTableProps {
+  uploads: UploadedFileResult[]
+  totalPages: number
+  currentPage: number
+}
 
-export function UploadsTable() {
+export function UploadsTable({
+  uploads,
+  totalPages,
+  currentPage
+}: UploadsTableProps) {
   return (
     <div className="space-y-4">
       <div className="border rounded-[0.75rem]">
@@ -44,51 +23,66 @@ export function UploadsTable() {
             <tr className="text-left">
               <th className="p-4 font-medium">Nome do arquivo</th>
               <th className="p-4 font-medium">Data do upload</th>
-              <th className="p-4 font-medium">Tamanho do arquivo</th>
+              <th className="p-4 font-medium">Linhas importadas</th>
+              <th className="p-4 font-medium">Linhas não importadas</th>
               <th className="p-4 font-medium">Responsável</th>
               <th className="p-4 font-medium">Ações</th>
             </tr>
           </thead>
 
           <tbody>
-            {uploadsData.map((upload, index) => (
-              <tr key={index} className="border-b">
-                <td className="p-4">
-                  <div className="flex items-center gap-4">
-                    <div className="size-8 bg-emerald-100 rounded flex items-center justify-center">
-                      <span className="text-xs text-emerald-700">
-                        CSV
-                      </span>
-                    </div>
+            {uploads.length ?
+              uploads.map((upload) => {
+                const fileName = upload.filePath.split("/")[2]
 
-                    <div>
-                      <p className="font-medium">{upload.fileName}</p>
-                      <p className="text-sm text-muted-foreground">{upload.fileSize}</p>
-                    </div>
-                  </div>
-                </td>
+                return (
+                  <tr key={upload.id} className="border-b">
+                    <td className="p-4">
+                      <div className="flex items-center gap-4">
+                        <div className="size-8 bg-emerald-100 rounded flex items-center justify-center">
+                          <span className="text-xs text-emerald-700">CSV</span>
+                        </div>
 
-                <td className="p-4 text-muted-foreground">{upload.uploadDate}</td>
-                <td className="p-4 text-muted-foreground">{upload.fileSize}</td>
-                <td className="p-4 text-muted-foreground">{upload.responsible}</td>
+                        <div>
+                          <p className="font-medium">{fileName}</p>
+                          <p className="text-sm text-muted-foreground">
+                            Total de {" "}
+                            {upload.totalRows} {" "}
+                            linhas neste arquivo.
+                          </p>
+                        </div>
+                      </div>
+                    </td>
 
-                <td className="p-4">
-                  <div className="flex items-center gap-2">
-                    <Button variant="ghost" size="icon">
-                      <TrashIcon className="size-4" />
-                    </Button>
+                    <td className="p-4 text-muted-foreground">
+                      {format(new Date(upload.creationDate).toLocaleDateString(), "dd/MM/yyyy")}
+                    </td>
 
-                    <Button variant="ghost" size="icon">
-                      <EditIcon className="size-4" />
-                    </Button>
-                  </div>
-                </td>
-              </tr>
-            ))}
+                    <td className="p-4 text-muted-foreground">{upload.totalRowsImported}</td>
+                    <td className="p-4 text-muted-foreground">{upload.totalRowsNotImported}</td>
+                    <td className="p-4 text-muted-foreground">{upload.user.name}</td>
+
+                    <td className="p-4">
+                      <div className="flex items-center gap-2">
+                        <Button variant="ghost" size="icon">
+                          <TrashIcon className="size-4" />
+                        </Button>
+
+                        <Button variant="ghost" size="icon">
+                          <EditIcon className="size-4" />
+                        </Button>
+                      </div>
+                    </td>
+                  </tr>
+                )
+              }) : (
+                <tr className="h-28 w-full flex justify-center items-center">
+                  Nenhum resultado encontrado.
+                </tr>
+              )}
           </tbody>
         </table>
       </div>
-      
       <UploadsPagination />
     </div>
   )

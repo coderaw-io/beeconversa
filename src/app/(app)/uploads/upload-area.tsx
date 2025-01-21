@@ -3,6 +3,7 @@
 import type { UploadFileResponse } from "@/@types/upload/upload"
 import { cn } from "@/lib/utils"
 import { UploadService } from "@/services/upload-service"
+import { useQueryClient } from "@tanstack/react-query"
 import { motion, useAnimation } from "framer-motion"
 import { UploadIcon, XIcon } from "lucide-react"
 import { useRef, useState } from "react"
@@ -25,8 +26,10 @@ interface FileUpload {
 export function UploadArea() {
   const [isDragging, setIsDragging] = useState(false)
   const [uploads, setUploads] = useState<FileUpload[]>([])
+
   const fileInputRef = useRef<HTMLInputElement>(null)
   const controls = useAnimation()
+  const queryClient = useQueryClient()
 
   const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
@@ -58,10 +61,8 @@ export function UploadArea() {
     }
   }
 
-  const handleClick = () => {
-    fileInputRef.current?.click()
-  }
-
+  const handleClick = () => fileInputRef.current?.click()
+  
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       handleFiles(e.target.files)
@@ -73,7 +74,8 @@ export function UploadArea() {
       file,
       progress: 0,
       status: isValidFileType(file) ? ("uploading" as const) : ("error" as const),
-      errorMessage: isValidFileType(file) ? undefined : "Arquivo inválido. Tipos de arquivos permitidos: .xls, .csv, .xlsx",
+      errorMessage: isValidFileType(file) ?
+        undefined : "Arquivo inválido. Tipos de arquivos permitidos: .xls, .csv, .xlsx",
     }))
 
     setUploads((prevUploads) => [...prevUploads, ...newUploads])
@@ -87,6 +89,11 @@ export function UploadArea() {
             setUploads((prevUploads) =>
               prevUploads.map((u) => (u.file === upload.file ? { ...u, status: "completed" as const, response } : u)),
             )
+            queryClient.invalidateQueries({
+              queryKey: ["get-all-uploaded-files"],
+              exact: true,
+              refetchType: "all",
+            })
           })
           .catch((error) => {
             setUploads((prevUploads) =>
@@ -126,7 +133,7 @@ export function UploadArea() {
           multiple
           accept=".xls,.csv,.xlsx"
         />
-        
+
         <div className="flex flex-col items-center gap-2">
           <motion.div animate={{ rotate: isDragging ? 360 : 0 }} transition={{ duration: 0.5 }}>
             <UploadIcon className="size-8 text-muted-foreground" />

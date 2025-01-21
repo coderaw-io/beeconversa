@@ -25,20 +25,32 @@ import {
   FormMessage
 } from "@/components/ui/form";
 
+import { UploadedFileResult } from "@/@types/upload/upload";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
 import { filterSchema } from "@/schemas/filter";
+import { UploadService } from "@/services/upload-service";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { UploadsTable } from "./table";
 
 export function UploadsContent() {
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(40);
+
+  const { data: uploadData } = useQuery<UploadedFileResult[]>({
+    queryKey: ["get-all-uploaded-files"],
+    queryFn: async () => await UploadService.getAllUploadedFiles()
+  })
+
   const form = useForm<z.infer<typeof filterSchema>>({
     resolver: zodResolver(filterSchema),
   });
@@ -199,7 +211,11 @@ export function UploadsContent() {
         </div>
       </div>
 
-      <UploadsTable />
+      <UploadsTable
+        uploads={uploadData ? uploadData : []}
+        currentPage={page}
+        totalPages={pageSize}
+      />
     </Form>
   )
 }

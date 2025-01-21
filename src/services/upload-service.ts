@@ -10,7 +10,6 @@ export class UploadService {
     return new Promise((resolve, reject) => {
       const formData = new FormData()
       formData.append("file", file)
-
       const xhr = new XMLHttpRequest()
 
       xhr.upload.addEventListener("progress", (event) => {
@@ -33,18 +32,19 @@ export class UploadService {
       })
 
       xhr.open("POST", `${uploadApi.defaults.baseURL}/import`, true)
-
-      // Set headers
       xhr.setRequestHeader("Tenant", tenant)
       xhr.setRequestHeader("Authorization", `Bearer ${localStorage.getItem(storageKeys.accessToken)}`)
-
       xhr.send(formData)
     })
   }
 
   static async getAllUploadedFiles() {
     try {
-      const { data } = await uploadApi.get<UploadFileResponse>("/imports");
+      const { data } = await uploadApi.get<UploadFileResponse>("/import", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem(storageKeys.accessToken)}`
+        }
+      });
       
       return data.results;
     } catch (error) {
