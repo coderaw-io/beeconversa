@@ -1,4 +1,4 @@
-import type { UploadFileResponse } from "@/@types/upload/upload"
+import type { GetAllUploadedFileResponse } from "@/@types/upload/upload"
 import { storageKeys } from "@/config/storage-keys"
 import { tenant, uploadApi } from "@/lib/axios"
 
@@ -6,7 +6,7 @@ export class UploadService {
   static async uploadFile(
     file: File, 
     onProgress: (progress: number) => void
-  ): Promise<UploadFileResponse> {
+  ): Promise<GetAllUploadedFileResponse> {
     return new Promise((resolve, reject) => {
       const formData = new FormData()
       formData.append("file", file)
@@ -40,7 +40,7 @@ export class UploadService {
 
   static async getAllUploadedFiles() {
     try {
-      const { data } = await uploadApi.get<UploadFileResponse>("/import", {
+      const { data } = await uploadApi.get<GetAllUploadedFileResponse>("/import", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem(storageKeys.accessToken)}`
         }

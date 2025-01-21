@@ -1,6 +1,6 @@
 "use client"
 
-import type { UploadFileResponse } from "@/@types/upload/upload"
+import type { GetAllUploadedFileResponse } from "@/@types/upload/upload"
 import { cn } from "@/lib/utils"
 import { UploadService } from "@/services/upload-service"
 import { useQueryClient } from "@tanstack/react-query"
@@ -19,7 +19,7 @@ interface FileUpload {
   file: File
   progress: number
   status: "uploading" | "completed" | "error"
-  response?: UploadFileResponse
+  response?: GetAllUploadedFileResponse
   errorMessage?: string
 }
 
@@ -62,7 +62,7 @@ export function UploadArea() {
   }
 
   const handleClick = () => fileInputRef.current?.click()
-  
+
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       handleFiles(e.target.files)
@@ -89,11 +89,6 @@ export function UploadArea() {
             setUploads((prevUploads) =>
               prevUploads.map((u) => (u.file === upload.file ? { ...u, status: "completed" as const, response } : u)),
             )
-            queryClient.invalidateQueries({
-              queryKey: ["get-all-uploaded-files"],
-              exact: true,
-              refetchType: "all",
-            })
           })
           .catch((error) => {
             setUploads((prevUploads) =>
@@ -101,6 +96,13 @@ export function UploadArea() {
                 u.file === upload.file ? { ...u, status: "error" as const, errorMessage: error.message } : u,
               ),
             )
+          })
+          .finally(() => {
+            queryClient.invalidateQueries({
+              queryKey: ["get-all-uploaded-files"],
+              exact: true,
+              refetchType: "all",
+            })
           })
       }
     })
@@ -185,7 +187,7 @@ export function UploadArea() {
                 />
 
                 {upload.status === "uploading" && `${upload.progress}%`}
-                {upload.status === "completed" && "Upload completo"}
+                {upload.status === "completed" && "Arquivo válido! Upload do seu arquivo foi iniciado."}
                 {upload.status === "error" && (
                   <span className="text-destructive">
                     {`Erro ao importar arquivo. ${upload.errorMessage}` || "Error"}

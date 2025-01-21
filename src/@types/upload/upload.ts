@@ -1,4 +1,8 @@
 export interface UploadFileResponse {
+  fileId: string;
+}
+
+export interface GetAllUploadedFileResponse {
   pageNumber: number,
   pageSize: number,
   totalPages: number,
