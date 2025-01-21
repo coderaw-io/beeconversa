@@ -41,5 +41,16 @@ export class UploadService {
       xhr.send(formData)
     })
   }
+
+  static async getAllUploadedFiles() {
+    try {
+      const { data } = await uploadApi.get<UploadFileResponse>("/imports");
+      
+      return data.results;
+    } catch (error) {
+      console.log("Get all uploaded files error:", error);
+      throw new Error("Internal server error!");
+    }
+  }
 }
 
