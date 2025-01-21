@@ -4,7 +4,7 @@ import { CustomersPagination } from "./_components/pagination";
 import { CustomersTable } from "./_components/table";
 import { CustomersTabs } from "./_components/tabs";
 
-export default function ContactsPage() {
+export default function CustomersPage() {
   return (
     <>
       <PageHeader

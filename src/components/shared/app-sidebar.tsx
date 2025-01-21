@@ -40,7 +40,7 @@ const links = [
   { href: "/inicio", icon: HomeIcon, tooltip: "Início" },
   { href: "/dashboard", icon: LayoutDashboardIcon, tooltip: "Dashboard" },
   { href: "/uploads", icon: CloudUploadIcon, tooltip: "Uploads" },
-  { href: "/contatos", icon: UsersIcon, tooltip: "Contatos" },
+  { href: "/clientes", icon: UsersIcon, tooltip: "Clientes" },
   { href: "/campanhas", icon: RocketIcon, tooltip: "Campanhas" },
   { href: "/whatsapp", icon: MessageCircleIcon, tooltip: "Whatsapp" },
   { href: "/emails", icon: MailsIcon, tooltip: "E-mails" },
