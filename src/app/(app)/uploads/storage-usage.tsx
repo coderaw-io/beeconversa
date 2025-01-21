@@ -11,16 +11,19 @@ export function StorageUsage() {
           <Badge variant="secondary" className="rounded-full text-foreground">
             <span className="size-2 rounded-full bg-green-500 mr-1" />
             Importados
+            (3)
           </Badge>
 
           <Badge variant="secondary" className="rounded-full text-foreground">
             <span className="size-2 rounded-full bg-red-500 mr-1" />
             Não importados
+            (1)
           </Badge>
 
           <Badge variant="secondary" className="rounded-full text-foreground">
             <span className="size-2 rounded-full bg-blue-500 mr-1" />
             Duplicados
+            (1)
           </Badge>
         </div>
 

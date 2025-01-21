@@ -59,16 +59,16 @@ export function UploadsContent() {
           </CardHeader>
           <Separator />
           <CardContent className="grid grid-cols-1 items-center gap-6 py-4">
-            <div className="flex items-center space-x-6">
+            <div className="max-w-6xl w-full flex items-center justify-center space-x-6">
               <FormField
                 control={form.control}
                 name="fileName"
                 render={({ field }) => (
-                  <FormItem className="w-full">
+                  <FormItem className="grid grid-cols-1 gap-1 items-center w-full">
                     <FormLabel>Nome do arquivo</FormLabel>
                     <FormControl>
                       <Input
-                        className="w-full"
+                        className="w-full h-11"
                         placeholder="Informe o arquivo que deseja filtrar"
                         maxLength={60}
                         {...field}
@@ -79,75 +79,77 @@ export function UploadsContent() {
                 )}
               />
 
-              <FormField
-                control={form.control}
-                name="initDate"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel>Filtrar pela data inicial</FormLabel>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <FormControl>
-                          <Button
-                            type="button"
-                            variant="outline"
-                            className="w-full justify-start text-left font-normal"
-                          >
-                            {field.value ? format(field.value, "dd/MM/yyyy") : "Data inicial do período"}
-                          </Button>
-                        </FormControl>
-                      </PopoverTrigger>
+              <div className="w-full flex items-center space-x-6">
+                <FormField
+                  control={form.control}
+                  name="initDate"
+                  render={({ field }) => (
+                    <FormItem className="grid grid-cols-1 gap-1 items-center w-full">
+                      <FormLabel>Filtrar pela data inicial</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              type="button"
+                              variant="outline"
+                              className="max-w-sm w-full h-11 justify-start text-left font-normal"
+                            >
+                              {field.value ? format(field.value, "dd/MM/yyyy") : "Data inicial do período"}
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
 
-                      <PopoverContent className="w-auto p-0" align="end">
-                        <Calendar
-                          mode="single"
-                          selected={field.value ?? undefined}
-                          onSelect={field.onChange}
-                          locale={ptBR}
-                          disabled={(date) => date > new Date() || date < new Date("01-01-1900")}
-                          initialFocus
-                        />
-                      </PopoverContent>
-                    </Popover>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                        <PopoverContent className="w-auto p-0" align="end">
+                          <Calendar
+                            mode="single"
+                            selected={field.value ?? undefined}
+                            onSelect={field.onChange}
+                            locale={ptBR}
+                            disabled={(date) => date > new Date() || date < new Date("01-01-1900")}
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-              <FormField
-                control={form.control}
-                name="endDate"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel>Filtrar pela data final</FormLabel>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <FormControl>
-                          <Button
-                            type="button"
-                            variant="outline"
-                            className="w-full justify-start text-left font-normal"
-                          >
-                            {field.value ? format(field.value, "dd/MM/yyyy") : "Data final do período"}
-                          </Button>
-                        </FormControl>
-                      </PopoverTrigger>
+                <FormField
+                  control={form.control}
+                  name="endDate"
+                  render={({ field }) => (
+                    <FormItem className="grid grid-cols-1 gap-1 items-center w-full">
+                      <FormLabel>Filtrar pela data final</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              type="button"
+                              variant="outline"
+                              className="max-w-sm w-full h-11 justify-start text-left font-normal"
+                            >
+                              {field.value ? format(field.value, "dd/MM/yyyy") : "Data final do período"}
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
 
-                      <PopoverContent className="w-auto p-0" align="end">
-                        <Calendar
-                          mode="single"
-                          selected={field.value ?? undefined}
-                          onSelect={field.onChange}
-                          locale={ptBR}
-                          disabled={(date) => date > new Date() || date < new Date("01-01-1900")}
-                          initialFocus
-                        />
-                      </PopoverContent>
-                    </Popover>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                        <PopoverContent className="w-auto p-0" align="end">
+                          <Calendar
+                            mode="single"
+                            selected={field.value ?? undefined}
+                            onSelect={field.onChange}
+                            locale={ptBR}
+                            disabled={(date) => date > new Date() || date < new Date("01-01-1900")}
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
             </div>
 
             <div className="flex justify-end items-center space-x-6">
