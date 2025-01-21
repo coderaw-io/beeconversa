@@ -132,10 +132,12 @@ export function UploadArea() {
             <UploadIcon className="size-8 text-muted-foreground" />
           </motion.div>
 
-          <p className="text-sm text-muted-foreground">
+          <p className="text-lg text-muted-foreground">
             Clique para importar seu arquivo ou arraste e solte o arquivo aqui.
             <br />
-            <span className="text-xs">Tipos permitidos: .xls, .csv, .xlsx</span>
+            <span className="text-sm">
+              Tipos permitidos: .xls, .csv, .xlsx
+            </span>
           </p>
         </div>
       </motion.div>
