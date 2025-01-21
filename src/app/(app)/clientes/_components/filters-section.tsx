@@ -1,5 +1,6 @@
 "use client"
 
+import { MicrosoftExcelIcon } from "@/components/shared/icons/microsoft-excel-icon"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Calendar, Search, SlidersHorizontal } from "lucide-react"
@@ -24,8 +25,9 @@ export function CustomersFiltersSection() {
 
       <Button 
         type="button" 
-        className="ml-auto"
+        className="ml-auto flex items-center gap-2"
       >
+        <MicrosoftExcelIcon />
         Baixar como arquivo CSV
       </Button>
     </div>

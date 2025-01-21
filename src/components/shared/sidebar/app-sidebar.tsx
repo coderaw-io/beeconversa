@@ -23,11 +23,11 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger
-} from "../ui/tooltip";
+} from "../../ui/tooltip";
 
 import { usePathname } from "next/navigation";
-import { Button } from '../ui/button';
-import { Icon } from './icon';
+import { Button } from '../../ui/button';
+import { Icon } from '../icons/icon';
 import { IconNavLink } from "./icon-nav-link";
 import { Logout } from "./logout";
 

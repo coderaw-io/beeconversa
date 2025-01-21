@@ -1,7 +1,7 @@
 "use client"
 
-import { AppSidebar } from "@/components/shared/app-sidebar"
-import { Header } from "@/components/shared/header"
+import { Header } from "@/components/shared/header/header"
+import { AppSidebar } from "@/components/shared/sidebar/app-sidebar"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { queryClient } from "@/lib/react-query"
 import { QueryClientProvider } from "@tanstack/react-query"

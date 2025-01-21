@@ -2,6 +2,7 @@ import {
   ArrowDownUpIcon,
   ArrowsUpFromLineIcon,
   PlusIcon,
+  RefreshCcwIcon,
   UploadIcon
 } from "lucide-react";
 
@@ -37,30 +38,39 @@ const tabs: TabsProps[] = [
   {
     name: "Cadastrados",
     active: false,
-    icon: <PlusIcon />
+    icon: <RefreshCcwIcon />
   },
 ]
 
 export function CustomersTabs() {
   return (
-    <div className="flex gap-4 p-1 bg-transparent">
-      {tabs.map((tab) => (
-        <Button
-          type="button"
-          variant="outline"
-          size="lg"
-          key={tab.name}
-          className={cn(
-            "px-4 py-2 text-sm rounded-md transition-colors",
-            tab.active ?
-              "bg-primary text-black font-semibold shadow-sm border-none" :
-              "flex items-center gap-2 text-foreground dark:text-foreground",
-          )}
-        >
-          {tab.icon}
-          {tab.name}
+    <div className="w-full flex justify-between items-center p-1 bg-transparent">
+      <div className="flex items-center gap-4">
+        {tabs.map((tab) => (
+          <Button
+            type="button"
+            variant="outline"
+            size="lg"
+            key={tab.name}
+            className={cn(
+              "px-4 py-2 text-sm rounded-md transition-colors",
+              tab.active ?
+                "bg-primary text-black font-semibold shadow-sm border-none" :
+                "flex items-center gap-2 text-foreground dark:text-foreground",
+            )}
+          >
+            {tab.icon}
+            {tab.name}
+          </Button>
+        ))}
+      </div>
+
+      <div className="flex items-center gap-4">
+        <Button type="button"variant="secondary" className="flex items-center gap-2">
+          <PlusIcon className="size-4" />
+          Cadastrar um novo cliente 
         </Button>
-      ))}
+      </div>
     </div>
   )
 }

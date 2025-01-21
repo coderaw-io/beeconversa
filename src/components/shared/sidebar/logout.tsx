@@ -17,11 +17,11 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger
-} from "../ui/tooltip";
+} from "../../ui/tooltip";
 
 import { LogOutIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 
 export function Logout() {
   const router = useRouter();

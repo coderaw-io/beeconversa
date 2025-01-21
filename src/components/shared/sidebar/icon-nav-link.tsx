@@ -5,10 +5,10 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger
-} from "../ui/tooltip";
+} from "../../ui/tooltip";
 
 import { LucideIcon } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 
 interface IconNavLinkProps {
   href: string

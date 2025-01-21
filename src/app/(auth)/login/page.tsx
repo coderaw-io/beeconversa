@@ -1,4 +1,4 @@
-import { Logo } from "@/components/shared/logo"
+import { Logo } from "@/components/shared/icons/logo"
 import { LoginForm } from "./form"
 
 export default function LoginPage() {

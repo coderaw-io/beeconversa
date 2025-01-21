@@ -12,7 +12,7 @@ import {
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { ArrowRightIcon, LinkIcon, SearchIcon } from "lucide-react";
 import { useState } from "react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 
 export function CommandSearch() {
   const [open, setOpen] = useState(false)

@@ -2,6 +2,7 @@
 
 import { Customers } from "@/@types/customers/customer"
 import { Badge } from "@/components/ui/badge"
+import { Checkbox } from "@/components/ui/checkbox"
 import { cn } from "@/lib/utils"
 import { CustomerService } from "@/services/customer-service"
 import { useQuery } from "@tanstack/react-query"
@@ -19,7 +20,7 @@ export function CustomersTable() {
         <thead className="border-b bg-muted/50">
           <tr className="text-left">
             <th className="p-4 font-medium">
-              <input type="checkbox" className="rounded border-border" />
+              <Checkbox />
             </th>
 
             <th className="p-4 font-medium">Nome completo</th>
@@ -59,7 +60,7 @@ export function CustomersTable() {
             customersData?.map((customer) => (
               <tr key={customer.id} className="border-b">
                 <td className="p-4">
-                  <input type="checkbox" className="rounded border-gray-300" />
+                  <Checkbox />
                 </td>
 
                 <td className="py-4">
@@ -68,9 +69,11 @@ export function CustomersTable() {
                     <div className="text-sm text-gray-500">{customer.id}</div>
                   </div>
                 </td>
+                
                 <td className="py-4">{customer.emails}</td>
                 <td className="py-4">{customer.phonenumbers}</td>
                 <td className="py-4">{customer.cpf}</td>
+
                 <td className="py-4">
                   <Badge
                     variant="secondary"
