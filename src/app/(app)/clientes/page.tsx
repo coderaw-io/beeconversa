@@ -8,15 +8,17 @@ export default function CustomersPage() {
   return (
     <>
       <PageHeader
-        title="Contatos cadastrados"
-        description="Gerencie todos os contatos dos seus clientes cadastrados."
+        title="Clientes cadastrados"
+        description="Gerencie todos os clientes cadastrados no sistema."
       />
 
       <div className="py-8 pl-1">
         <CustomersTabs />
+
         <div className="mt-6">
           <CustomersFiltersSection />
         </div>
+        
         <CustomersTable />
         <CustomersPagination />
       </div>

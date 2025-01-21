@@ -4,7 +4,7 @@ export type Customer = {
   id: string
   name: string
   emails: string[]
-  phones: string[]
+  phonenumbers: string[]
   cpf: string
   status?: "active" | "inactive" | "blocked"
 } 
@@ -21,5 +21,5 @@ export interface GetAllCustomerResponse {
   pageSize: number
   totalPages: number
   totalResults: number
-  results: any[]
+  results: Customer[]
 }

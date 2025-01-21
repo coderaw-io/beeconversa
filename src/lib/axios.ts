@@ -18,3 +18,11 @@ export const uploadApi = axios.create({
     Tenant: `${tenant}`,
   },
 });
+
+export const customerApi = axios.create({
+  baseURL: env.NEXT_PUBLIC_CUSTOMER_API,
+  headers: {
+    "Content-Type": "application/json;",
+    Tenant: `${tenant}`,
+  },
+});
