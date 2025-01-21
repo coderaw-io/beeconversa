@@ -1,5 +1,5 @@
-import { LoginForm } from "@/app/(auth)/login/form"
 import { Logo } from "@/components/shared/logo"
+import { LoginForm } from "./form"
 
 export default function LoginPage() {
   return (
