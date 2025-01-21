@@ -58,7 +58,7 @@ export function LoginForm({
 
       route.push("/inicio");
     } catch {
-      toast.error("ERRO AO AUTENTICAR USUÁRIO 🚫", {
+      toast.error("ERRO AO AUTENTICAR USUÁRIO ❌", {
         description: "Verifique as credenciais digitadas e tente novamente."
       });
     }
