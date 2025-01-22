@@ -21,8 +21,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
 import { loginSchema } from "@/schemas/auth"
-import { AuthService } from "@/services/auth-service"
 import { zodResolver } from "@hookform/resolvers/zod"
+import axios from "axios"
 import { LoaderPinwheelIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
@@ -50,7 +50,7 @@ export function LoginForm({
         password: form.watch("password"),
       };
 
-      await AuthService.signIn(formData);
+      await axios.post('/api/auth/sign-in', formData)
 
       toast.success("LOGIN EFETUADO COM SUCESSO ✅", {
         description: "Usuário autenticado com êxito."
