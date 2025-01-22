@@ -66,10 +66,10 @@ export class UploadService {
     file: File,
     onProgress?: (progress: number) => void
   ): Promise<GetAllUploadedFileResponse> {
-    return new Promise((resolve, reject) => {
-      const accessToken = AuthService.getAccessToken();
-      if (!accessToken) return;
+    const accessToken = await AuthService.getAccessToken();
+    Promise.resolve(accessToken);
 
+    return new Promise((resolve, reject) => {
       const formData = new FormData()
       formData.append("file", file)
 
