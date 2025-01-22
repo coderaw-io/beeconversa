@@ -1,10 +1,43 @@
-import type { GetAllUploadedFileResponse } from "@/@types/upload/upload"
-import { storageKeys } from "@/config/storage-keys"
-import { tenant, uploadApi } from "@/lib/axios"
+import type { GetAllUploadedFileResponse } from "@/@types/upload/upload";
+import { storageKeys } from "@/config/storage-keys";
+import { tenant, uploadApi } from "@/lib/axios";
 
 export class UploadService {
+  static async getAllUploadedFiles() {
+    try {
+      const { data } = await uploadApi.get<GetAllUploadedFileResponse>("/import", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem(storageKeys.accessToken)}`
+        }
+      });
+
+      return data.results;
+    } catch (error) {
+      console.log("Get all uploaded files error:", error);
+      throw new Error("Internal server error!");
+    }
+  }
+
+  static async getUploadedFileById(fileId: string) {
+    try {
+      const { data } = await uploadApi.get<GetAllUploadedFileResponse>(
+        `/import?FileIds=${fileId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem(storageKeys.accessToken)}`
+          }
+        }
+      )
+
+      return data.results;
+    } catch (error) {
+      console.log("Get uploaded file by id error:", error);
+      throw new Error("Internal server error!");
+    }
+  }
+
   static async uploadFile(
-    file: File, 
+    file: File,
     onProgress?: (progress: number) => void
   ): Promise<GetAllUploadedFileResponse> {
     return new Promise((resolve, reject) => {
@@ -36,21 +69,6 @@ export class UploadService {
       xhr.setRequestHeader("Authorization", `Bearer ${localStorage.getItem(storageKeys.accessToken)}`)
       xhr.send(formData)
     })
-  }
-
-  static async getAllUploadedFiles() {
-    try {
-      const { data } = await uploadApi.get<GetAllUploadedFileResponse>("/import", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem(storageKeys.accessToken)}`
-        }
-      });
-      
-      return data.results;
-    } catch (error) {
-      console.log("Get all uploaded files error:", error);
-      throw new Error("Internal server error!");
-    }
   }
 }
 

@@ -37,7 +37,7 @@ export function Header() {
         <CommandSearch />
 
         <Badge className="hidden lg:flex bg-lime-200 text-foreground tracking-wider hover:bg-succes dark:text-background">
-          <span className="size-2 rounded-full bg-emerald-900 mr-1" />
+          <span className="size-2 rounded-full bg-emerald-900 mr-1 animate-pulse" />
           Versão Beta
         </Badge>
 

@@ -15,7 +15,7 @@ export interface UploadedFileResult {
   id: string
   user: User
   fileType: string
-  fileStatus: string
+  fileStatus: "InProgress" | "Concluded"
   filePath: string
   totalRows: number
   totalRowsImported: number

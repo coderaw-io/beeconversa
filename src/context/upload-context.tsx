@@ -53,7 +53,7 @@ export const UploadProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         progress: 0,
         status: "uploading",
       }
-      
+
       setUploads((prevUploads) => [...prevUploads, newUpload])
 
       UploadService.uploadFile(file, (progress) => {

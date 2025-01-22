@@ -4,7 +4,8 @@ import { UploadedFileResult } from "@/@types/upload/upload";
 import { NetworkArrowUpIcon } from "@/components/shared/icons/network-arrow-up";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
-import { EditIcon, TrashIcon } from "lucide-react";
+import { TrashIcon } from "lucide-react";
+import { UploadFileSkeleton } from "./upload-file-skeleton";
 import { UploadsPagination } from "./upload-pagination";
 
 interface UploadsTableProps {
@@ -38,69 +39,65 @@ export function UploadsTable({
           </thead>
 
           <tbody>
-            {uploads.length ?
+            {uploads.length ? (
               uploads.map((upload) => {
-                const fileName = upload.filePath.split("/")[2]
+                const fileName = upload.filePath.split("/")[2];
 
                 return (
                   <tr key={upload.id} className="border-b">
-                    <td className="p-4">
-                      <div className="flex items-center gap-4">
-                        <div className="size-8 bg-emerald-100 rounded flex items-center justify-center">
-                          <span className="text-xs text-emerald-700">CSV</span>
-                        </div>
+                    {upload.fileStatus === "InProgress" ? (
+                      <UploadFileSkeleton fileId={upload.id} fileStatus={upload.fileStatus} />
+                    ) : (
+                      <>
+                        <td className="p-4">
+                          <div className="flex items-center gap-4">
+                            <div className="size-8 bg-emerald-100 rounded flex items-center justify-center">
+                              <span className="text-xs text-emerald-700">CSV</span>
+                            </div>
 
-                        <div>
-                          <p className="font-medium">{fileName}</p>
-                          <p className="text-sm text-muted-foreground">
-                            Total de {" "}
-                            {upload.totalRows} {" "}
-                            linhas neste arquivo.
-                          </p>
-                        </div>
-                      </div>
-                    </td>
+                            <div>
+                              <p className="font-medium">{fileName}</p>
 
-                    <td className="p-4 text-muted-foreground">
-                      {format(new Date(upload.creationDate).toLocaleDateString(), "dd/MM/yyyy")}
-                    </td>
-
-                    <td className="p-4 text-center text-muted-foreground">
-                      {upload.totalRowsImported}
-                    </td>
-
-                    <td className="p-4 text-center text-muted-foreground">
-                      {upload.totalRowsNotImported}
-                    </td>
-
-                    <td className="p-4 text-center text-muted-foreground">
-                      {upload.user.name}
-                    </td>
-
-                    <td className="p-4">
-                      <div className="flex items-center gap-2">
-                        <Button variant="ghost" size="icon">
-                          <TrashIcon className="size-4" />
-                        </Button>
-
-                        <Button variant="ghost" size="icon">
-                          <EditIcon className="size-4" />
-                        </Button>
-                      </div>
-                    </td>
+                              <p className="text-sm text-muted-foreground">
+                                Total de {upload.totalRows} linhas neste arquivo.
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="p-4 text-muted-foreground">
+                          {format(new Date(upload.creationDate).toLocaleDateString(), "dd/MM/yyyy")}
+                        </td>
+                        <td className="p-4 text-center text-muted-foreground">
+                          {upload.totalRowsImported}
+                        </td>
+                        <td className="p-4 text-center text-muted-foreground">
+                          {upload.totalRowsNotImported}
+                        </td>
+                        <td className="p-4 text-center text-muted-foreground">
+                          {upload.user.name}
+                        </td>
+                        <td className="p-4">
+                          <div className="flex items-center gap-2">
+                            <Button variant="ghost" size="icon">
+                              <TrashIcon className="size-4" />
+                            </Button>
+                          </div>
+                        </td>
+                      </>
+                    )}
                   </tr>
-                )
-              }) : uploads.length > 0 ? <UploadLoading /> : (
-                <tr className="h-28 w-full">
-                  <td colSpan={6} className="text-center text-sm pt-6 pb-12 dark:text-zinc-600">
-                    <div className="w-full flex justify-center items-center">
-                      <NetworkArrowUpIcon className="size-36" />
-                    </div>
-
-                    Nenhum resultado encontrado.
-                  </td>
-                </tr>
-              )}
+                );
+              })
+            ) : (
+              <tr className="h-28 w-full">
+                <td colSpan={6} className="text-center text-sm pt-6 pb-12 dark:text-zinc-600">
+                  <div className="w-full flex justify-center items-center">
+                    <NetworkArrowUpIcon className="size-36" />
+                  </div>
+                  Nenhum resultado encontrado.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

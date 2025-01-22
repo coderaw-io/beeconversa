@@ -39,8 +39,9 @@ export function StorageUsage() {
           </Badge>
 
           <p className="text-sm text-muted-foreground">
-            {totalStorageUsed} GB de arquivos importados na plataforma. {" "}
-            Disponível um total de 500 GB. 
+            <strong>{totalStorageUsed} GB</strong> {" "}
+            de arquivos importados na plataforma. {" "}
+            Disponível um total de <strong>500 GB</strong>. 
           </p>
         </div>
       </div>
