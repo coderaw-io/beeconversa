@@ -138,7 +138,7 @@ export function UploadArea() {
                 />
 
                 {upload.status === "uploading" && `${upload.progress}%`}
-                {upload.status === "completed" && "Arquivo válido! A importação do seu arquivo foi iniciada."}
+                {upload.status === "completed" && "Arquivo enviado com sucesso! A importação do seu arquivo foi iniciada."}
                 {upload.status === "error" && (
                   <span className="text-destructive">
                     {`Erro ao importar arquivo. ${upload.errorMessage}` || "Error"}

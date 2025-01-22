@@ -1,40 +1,46 @@
+"use client"
+
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { useUploadContext } from "@/hooks/use-upload";
 
 export function StorageUsage() {
+  const { successfulUploads, failedUploads, duplicateFiles, uploadedFiles } = useUploadContext()
+
+  const totalStorageUsed = uploadedFiles ? uploadedFiles.length : 0
+  const storagePercentage = Math.min(Math.round((totalStorageUsed / 500) * 100), 100)
+
   return (
     <div className="space-y-4">
-      <Progress value={60} className="h-2" />
+      <Progress value={storagePercentage} className="h-2" />
 
       <div className="flex justify-between items-center">
         <div className="flex gap-4">
           <Badge variant="secondary" className="rounded-full text-foreground">
             <span className="size-2 rounded-full bg-green-500 mr-1" />
-            Importados
-            (3)
+            Importados ({successfulUploads})
           </Badge>
 
           <Badge variant="secondary" className="rounded-full text-foreground">
             <span className="size-2 rounded-full bg-red-500 mr-1" />
-            Não importados
-            (1)
+            Não importados ({failedUploads})
           </Badge>
 
           <Badge variant="secondary" className="rounded-full text-foreground">
             <span className="size-2 rounded-full bg-blue-500 mr-1" />
-            Duplicados
-            (1)
+            Duplicados ({duplicateFiles})
           </Badge>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <Badge variant="secondary" className="rounded-full text-foreground">
             <span className="size-2 rounded-full bg-violet-500 mr-1 animate-bounce" />
-            68%
+            {storagePercentage}%
           </Badge>
 
           <p className="text-sm text-muted-foreground">
-            177 GB de arquivos importados na plataforma.
+            {totalStorageUsed} GB de arquivos importados na plataforma. {" "}
+            Disponível um total de 500 GB. 
           </p>
         </div>
       </div>

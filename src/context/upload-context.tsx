@@ -22,12 +22,19 @@ interface UploadContextType {
   uploadedFiles: UploadedFileResult[] | undefined
   isLoading: boolean
   refetchUploadedFiles: () => void
+  successfulUploads: number
+  failedUploads: number
+  duplicateFiles: number
 }
 
 export const UploadContext = createContext<UploadContextType | undefined>(undefined)
 
 export const UploadProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [uploads, setUploads] = useState<FileUpload[]>([])
+  const [successfulUploads, setSuccessfulUploads] = useState(0)
+  const [failedUploads, setFailedUploads] = useState(0)
+  const [duplicateFiles, setDuplicateFiles] = useState(0)
+
   const queryClient = useQueryClient()
 
   const {
@@ -46,6 +53,7 @@ export const UploadProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         progress: 0,
         status: "uploading",
       }
+      
       setUploads((prevUploads) => [...prevUploads, newUpload])
 
       UploadService.uploadFile(file, (progress) => {
@@ -55,6 +63,12 @@ export const UploadProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           setUploads((prevUploads) =>
             prevUploads.map((u) => (u.file === file ? { ...u, status: "completed", response } : u)),
           )
+
+          setSuccessfulUploads((prev) => prev + 1)
+
+          const isDuplicate = uploadedFiles?.some((uploadedFile) => uploadedFile.filePath.includes(file.name))
+          if (isDuplicate) setDuplicateFiles((prev) => prev + 1)
+
           queryClient.invalidateQueries({ 
             queryKey: ["get-all-uploaded-files"],
             exact: true,
@@ -63,11 +77,16 @@ export const UploadProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         })
         .catch((error) => {
           setUploads((prevUploads) =>
-            prevUploads.map((u) => (u.file === file ? { ...u, status: "error", errorMessage: error.message } : u)),
+            prevUploads.map((u) => (u.file === file ? { 
+              ...u, 
+              status: "error", 
+              errorMessage: error.message 
+            } : u)),
           )
+          setFailedUploads((prev) => prev + 1)
         })
     },
-    [queryClient],
+    [queryClient, uploadedFiles],
   )
 
   const removeUpload = useCallback((file: File) => {
@@ -83,6 +102,9 @@ export const UploadProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         uploadedFiles,
         isLoading,
         refetchUploadedFiles,
+        successfulUploads,
+        failedUploads,
+        duplicateFiles,
       }}
     >
       {children}
