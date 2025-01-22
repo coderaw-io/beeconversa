@@ -1,16 +1,15 @@
 "use client"
 
-import { MicrosoftExcelIcon } from "@/components/shared/icons/microsoft-excel-icon"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Calendar, Search, SlidersHorizontal } from "lucide-react"
+import { Calendar, FileDownIcon, Search, SlidersHorizontal } from "lucide-react"
 
 export function CustomersFiltersSection() {
   return (
     <div className="flex items-center gap-4">
       <div className="relative flex-1 max-w-md">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground size-4" />
-        <Input className="pl-10 h-11" placeholder="Filtrar contato" />
+        <Input className="pl-10" placeholder="Filtrar contato" />
       </div>
 
       <Button variant="outline" size="icon">
@@ -25,10 +24,10 @@ export function CustomersFiltersSection() {
 
       <Button 
         type="button" 
-        className="ml-auto flex items-center gap-2"
+        className="bg-success ml-auto flex items-center gap-2 hover:bg-emerald-500 dark:bg-emerald-500 dark:hover:bg-success"
       >
-        <MicrosoftExcelIcon />
-        Baixar como arquivo CSV
+        <FileDownIcon />
+        Exportar como CSV
       </Button>
     </div>
   )

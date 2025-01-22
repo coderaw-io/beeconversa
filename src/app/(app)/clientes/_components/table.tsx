@@ -3,12 +3,12 @@
 import CustomersLoading from "../loading"
 
 import { Customers } from "@/@types/customers/customer"
+import { NetworkArrowUpIcon } from "@/components/shared/icons/network-arrow-up"
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 import { cn } from "@/lib/utils"
 import { CustomerService } from "@/services/customer-service"
 import { useQuery } from "@tanstack/react-query"
-import { FingerprintIcon, InfoIcon, MailIcon, PhoneCallIcon } from "lucide-react"
 
 export function CustomersTable() {
   const { data: customersData, isPending } = useQuery<Customers>({
@@ -30,31 +30,19 @@ export function CustomersTable() {
             <th className="p-4 font-medium">Nome completo</th>
 
             <th className="p-4 font-medium">
-              <div className="flex items-center gap-2">
-                <MailIcon className="size-4" />
-                E-mail
-              </div>
+              E-mail
             </th>
 
             <th className="p-4 font-medium">
-              <div className="flex items-center gap-2">
-                <PhoneCallIcon className="size-4" />
-                Telefone
-              </div>
+              Telefone
             </th>
 
             <th className="p-4 font-medium">
-              <div className="flex items-center gap-2">
-                <FingerprintIcon className="size-4" />
-                CPF
-              </div>
+              CPF
             </th>
 
             <th className="p-4 font-medium">
-              <div className="flex items-center gap-2">
-                <InfoIcon className="size-4" />
-                Status
-              </div>
+              Status
             </th>
           </tr>
         </thead>
@@ -105,9 +93,13 @@ export function CustomersTable() {
               </tr>
             )) : !customersData ? (
               <tr className="h-28 w-full">
-                <div className="flex justify-center items-center">
+                <td colSpan={6} className="text-center text-sm pt-6 pb-12 dark:text-zinc-600">
+                  <div className="w-full flex justify-center items-center">
+                    <NetworkArrowUpIcon className="size-36" />
+                  </div>
+
                   Nenhum resultado encontrado.
-                </div>
+                </td>
               </tr>
             ) : <CustomersLoading />}
         </tbody>

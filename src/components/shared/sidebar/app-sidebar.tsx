@@ -27,7 +27,7 @@ import {
 
 import { usePathname } from "next/navigation";
 import { Button } from '../../ui/button';
-import { Icon } from '../icons/icon';
+import { AppIcon } from '../icons/app-icon';
 import { IconNavLink } from "./icon-nav-link";
 import { Logout } from "./logout";
 
@@ -55,7 +55,7 @@ export function AppSidebar() {
         <div className='h-full'>
           <SidebarHeader className="h-[70px] border-b border-border">
             <div className="flex h-[70px] w-full items-center justify-center">
-              <Icon />
+              <AppIcon />
             </div>
           </SidebarHeader>
 

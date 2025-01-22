@@ -53,7 +53,7 @@ export function CustomersTabs() {
             size="lg"
             key={tab.name}
             className={cn(
-              "px-4 py-2 text-sm rounded-md transition-colors",
+              "h-11 px-4 py-2 text-sm rounded-md transition-colors",
               tab.active ?
                 "bg-primary text-black font-semibold shadow-sm border-none" :
                 "flex items-center gap-2 text-foreground dark:text-foreground",
@@ -66,7 +66,7 @@ export function CustomersTabs() {
       </div>
 
       <div className="flex items-center gap-4">
-        <Button type="button"variant="secondary" className="flex items-center gap-2">
+        <Button type="button"variant="secondary" className="h-11 flex items-center gap-2">
           <PlusIcon className="size-4" />
           Cadastrar um novo Cliente 
         </Button>

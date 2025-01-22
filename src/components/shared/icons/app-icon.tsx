@@ -6,7 +6,7 @@ import Image from "next/image"
 
 import { useTheme } from "next-themes"
 
-export function Icon() {
+export function AppIcon() {
   const { theme } = useTheme();
 
   return (

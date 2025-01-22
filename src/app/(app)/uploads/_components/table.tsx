@@ -1,6 +1,7 @@
 import UploadLoading from "../loading";
 
 import { UploadedFileResult } from "@/@types/upload/upload";
+import { NetworkArrowUpIcon } from "@/components/shared/icons/network-arrow-up";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { EditIcon, TrashIcon } from "lucide-react";
@@ -82,8 +83,14 @@ export function UploadsTable({
                   </tr>
                 )
               }) : uploads.length > 0 ? <UploadLoading /> : (
-                <tr className="h-28 w-full flex justify-center items-center">
-                  Nenhum resultado encontrado.
+                <tr className="h-28 w-full">
+                  <td colSpan={6} className="text-center text-sm pt-6 pb-12 dark:text-zinc-600">
+                  <div className="w-full flex justify-center items-center">
+                      <NetworkArrowUpIcon className="size-36" />
+                    </div>
+
+                    Nenhum resultado encontrado.
+                  </td>
                 </tr>
               )}
           </tbody>

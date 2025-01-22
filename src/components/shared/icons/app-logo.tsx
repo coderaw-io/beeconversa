@@ -7,7 +7,7 @@ import Image from "next/image"
 import { useTheme } from "next-themes"
 import { useLayoutEffect, useState } from "react"
 
-export function Logo() {
+export function AppLogo() {
   const { theme } = useTheme()
   const [logoSource, setLogoSource] = useState(logoDarkImg)
 
