@@ -1,6 +1,5 @@
 import {
   ArrowDownUpIcon,
-  ArrowsUpFromLineIcon,
   PlusIcon,
   RefreshCcwIcon,
   UploadIcon
@@ -19,11 +18,6 @@ const tabs: TabsProps[] = [
   {
     name: "Ver todos",
     active: true
-  },
-  {
-    name: "Mais recentes",
-    active: false,
-    icon: <ArrowsUpFromLineIcon />
   },
   {
     name: "Mais antigos",

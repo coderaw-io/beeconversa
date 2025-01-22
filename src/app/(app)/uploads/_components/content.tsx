@@ -2,7 +2,6 @@
 
 import {
   ArrowDownUpIcon,
-  ArrowsUpFromLineIcon,
   EraserIcon,
   FileDownIcon,
   FilterIcon
@@ -186,11 +185,6 @@ export function UploadsContent() {
         <div className="flex items-center gap-4">
           <Button type="button" variant="default">
             Ver Todos
-          </Button>
-
-          <Button type="button" variant="outline" className="flex items-center gap-2">
-            <ArrowsUpFromLineIcon className="size-4" />
-            Mais recentes
           </Button>
 
           <Button type="button" variant="outline" className="flex items-center gap-2">
