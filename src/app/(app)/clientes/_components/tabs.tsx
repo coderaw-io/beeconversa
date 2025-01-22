@@ -68,7 +68,7 @@ export function CustomersTabs() {
       <div className="flex items-center gap-4">
         <Button type="button"variant="secondary" className="flex items-center gap-2">
           <PlusIcon className="size-4" />
-          Cadastrar um novo cliente 
+          Cadastrar um novo Cliente 
         </Button>
       </div>
     </div>

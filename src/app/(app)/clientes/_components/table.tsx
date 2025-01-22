@@ -1,5 +1,7 @@
 "use client"
 
+import CustomersLoading from "../loading"
+
 import { Customers } from "@/@types/customers/customer"
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -9,10 +11,12 @@ import { useQuery } from "@tanstack/react-query"
 import { FingerprintIcon, InfoIcon, MailIcon, PhoneCallIcon } from "lucide-react"
 
 export function CustomersTable() {
-  const { data: customersData } = useQuery<Customers>({
+  const { data: customersData, isPending } = useQuery<Customers>({
     queryKey: ["get-all-customers"],
     queryFn: async () => await CustomerService.getAllCustomers()
-  })
+  });
+
+  if (isPending) return <CustomersLoading />
 
   return (
     <div className="my-8 border rounded-[0.75rem]">
@@ -69,7 +73,7 @@ export function CustomersTable() {
                     <div className="text-sm text-gray-500">{customer.id}</div>
                   </div>
                 </td>
-                
+
                 <td className="py-4">{customer.emails}</td>
                 <td className="py-4">{customer.phonenumbers}</td>
                 <td className="py-4">{customer.cpf}</td>
@@ -99,11 +103,13 @@ export function CustomersTable() {
                   </Badge>
                 </td>
               </tr>
-            )) : (
-              <tr className="h-28 w-full flex justify-center items-center">
-                Nenhum resultado encontrado.
+            )) : !customersData ? (
+              <tr className="h-28 w-full">
+                <div className="flex justify-center items-center">
+                  Nenhum resultado encontrado.
+                </div>
               </tr>
-            )}
+            ) : <CustomersLoading />}
         </tbody>
       </table>
     </div>

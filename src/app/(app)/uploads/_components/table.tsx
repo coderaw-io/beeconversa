@@ -1,3 +1,5 @@
+import UploadLoading from "../loading";
+
 import { UploadedFileResult } from "@/@types/upload/upload";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
@@ -6,15 +8,19 @@ import { UploadsPagination } from "./pagination";
 
 interface UploadsTableProps {
   uploads: UploadedFileResult[]
+  isPending: boolean
   totalPages: number
   currentPage: number
 }
 
 export function UploadsTable({
   uploads,
+  isPending,
   totalPages,
   currentPage
 }: UploadsTableProps) {
+  if (isPending) return <UploadLoading />
+
   return (
     <div className="space-y-4">
       <div className="border rounded-[0.75rem]">
@@ -75,7 +81,7 @@ export function UploadsTable({
                     </td>
                   </tr>
                 )
-              }) : (
+              }) : uploads.length > 0 ? <UploadLoading /> : (
                 <tr className="h-28 w-full flex justify-center items-center">
                   Nenhum resultado encontrado.
                 </tr>

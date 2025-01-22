@@ -1,7 +1,7 @@
 import { PageHeader } from "@/components/shared/page-header";
-import { UploadsContent } from "./content";
-import { StorageUsage } from "./storage-usage";
-import { UploadArea } from "./upload-area";
+import { UploadsContent } from "./_components/content";
+import { StorageUsage } from "./_components/storage-usage";
+import { UploadArea } from "./_components/upload-area";
 
 export default function UploadsPage() {
   return (

@@ -46,7 +46,7 @@ export function UploadsContent() {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(40);
 
-  const { data: uploadData } = useQuery<UploadedFileResult[]>({
+  const { data: uploadData, isPending } = useQuery<UploadedFileResult[]>({
     queryKey: ["get-all-uploaded-files"],
     queryFn: async () => await UploadService.getAllUploadedFiles()
   })
@@ -213,6 +213,7 @@ export function UploadsContent() {
 
       <UploadsTable
         uploads={uploadData ? uploadData : []}
+        isPending={isPending}
         currentPage={page}
         totalPages={pageSize}
       />
