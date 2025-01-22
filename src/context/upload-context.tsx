@@ -105,7 +105,7 @@ export const UploadProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           setFailedUploads((prev) => prev + 1)
         })
     },
-    [queryClient, uploadedFiles],
+    [queryClient, uploadedFiles, currentPage, pageSize],
   )
 
   const removeUpload = useCallback((file: File) => {

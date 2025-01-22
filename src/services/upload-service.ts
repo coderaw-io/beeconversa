@@ -6,7 +6,7 @@ export class UploadService {
   static async getAllUploadedFiles() {
     try {
       const accessToken = await AuthService.getAccessToken();
-      if (!accessToken) return;
+      Promise.resolve(accessToken)
 
       const { data } = await uploadApi.get<GetAllUploadedFileResponse>("/import", {
         headers: {
@@ -24,7 +24,7 @@ export class UploadService {
   static async getAllUploadedFilesPaginated(page: number, pageSize: number) {
     try {
       const accessToken = await AuthService.getAccessToken();
-      if (!accessToken) return;
+      Promise.resolve(accessToken)
 
       const { data } = await uploadApi.get<GetAllUploadedFileResponse>(
         `/import?PageFilter.Page=${page}&PageFilter.PageSize=${pageSize}`,
@@ -44,7 +44,7 @@ export class UploadService {
   static async getUploadedFileById(fileId: string) {
     try {
       const accessToken = await AuthService.getAccessToken();
-      if (!accessToken) return;
+      Promise.resolve(accessToken)
 
       const { data } = await uploadApi.get<GetAllUploadedFileResponse>(
         `/import?FileIds=${fileId}`,

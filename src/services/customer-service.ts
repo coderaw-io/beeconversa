@@ -4,10 +4,10 @@ import { AuthService } from "./auth-service";
 
 export class CustomerService {
   static async getAllCustomers() {
-    const accessToken = await AuthService.getAccessToken();
-    if (!accessToken) return;
-
     try {
+      const accessToken = await AuthService.getAccessToken();
+      Promise.resolve(accessToken)
+
       const { data } = await customerApi.get<GetAllCustomerResponse>("/customers", {
         headers: {
           Authorization: `Bearer ${accessToken}`
