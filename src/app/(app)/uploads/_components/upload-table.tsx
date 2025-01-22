@@ -54,7 +54,11 @@ export function UploadsTable({
                 return (
                   <tr key={upload.id} className="border-b">
                     {upload.fileStatus === "InProgress" ? (
-                      <UploadFileSkeleton fileId={upload.id} />
+                      <UploadFileSkeleton
+                        fileId={upload.id}
+                        page={currentPage}
+                        pageSize={pageSize}
+                      />
                     ) : (
                       <>
                         <td className="p-4">

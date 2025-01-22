@@ -89,7 +89,7 @@ export const UploadProvider: React.FC<{ children: React.ReactNode }> = ({ childr
           if (isDuplicate) setDuplicateFiles((prev) => prev + 1)
 
           queryClient.invalidateQueries({ 
-            queryKey: ["get-all-uploaded-files"],
+            queryKey: ["get-all-uploaded-files", currentPage, pageSize],
             exact: true,
             refetchType: "all"
           })

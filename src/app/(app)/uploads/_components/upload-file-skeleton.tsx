@@ -7,9 +7,15 @@ import { useQuery, useQueryClient } from "@tanstack/react-query"
 
 interface UploadFileSkeletonProps {
   fileId: string
+  page: number
+  pageSize: number
 }
 
-export function UploadFileSkeleton({ fileId }: UploadFileSkeletonProps) {
+export function UploadFileSkeleton({ 
+  fileId,
+  page,
+  pageSize
+}: UploadFileSkeletonProps) {
   const queryClient = useQueryClient()
 
   const { data: fileStatusData } = useQuery<UploadedFileResult | undefined>({
@@ -24,7 +30,7 @@ export function UploadFileSkeleton({ fileId }: UploadFileSkeletonProps) {
 
   if (fileStatusData && fileStatusData.fileStatus === "Concluded") {
     queryClient.invalidateQueries({
-      queryKey: ["get-all-uploaded-files"],
+      queryKey: ["get-all-uploaded-files", page, pageSize],
       exact: true,
       refetchType: "all",
     })
