@@ -18,6 +18,23 @@ export class UploadService {
     }
   }
 
+  static async getAllUploadedFilesPaginated(page: number, pageSize: number) {
+    try {
+      const { data } = await uploadApi.get<GetAllUploadedFileResponse>(
+        `/import?PageFilter.Page=${page}&PageFilter.PageSize=${pageSize}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem(storageKeys.accessToken)}`
+          }
+        });
+
+      return data;
+    } catch (error) {
+      console.log("Get all uploaded files error:", error);
+      throw new Error("Internal server error!");
+    }
+  }
+
   static async getUploadedFileById(fileId: string) {
     try {
       const { data } = await uploadApi.get<GetAllUploadedFileResponse>(

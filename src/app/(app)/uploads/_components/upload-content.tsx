@@ -9,13 +9,18 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useUploadContext } from "@/hooks/use-upload";
-import { useState } from "react";
 import { UploadsTable } from "./upload-table";
 
 export function UploadsContent() {
-  const { uploadedFiles: uploadData, isLoading: isPending } = useUploadContext()
-  const [page] = useState(1);
-  const [pageSize] = useState(40);
+  const {
+    uploadedFiles,
+    isLoading: isPending,
+    currentPage,
+    totalPages,
+    pageSize,
+    setCurrentPage,
+    setPageSize,
+  } = useUploadContext()
 
   return (
     <>
@@ -54,10 +59,13 @@ export function UploadsContent() {
       </div>
 
       <UploadsTable
-        uploads={uploadData ? uploadData : []}
+        uploads={uploadedFiles || []}
         isPending={isPending}
-        currentPage={page}
-        totalPages={pageSize}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        pageSize={pageSize}
+        onPageChange={setCurrentPage}
+        onPageSizeChange={setPageSize}
       />
     </>
   )

@@ -13,13 +13,19 @@ interface UploadsTableProps {
   isPending: boolean
   totalPages: number
   currentPage: number
+  pageSize: number
+  onPageChange: (page: number) => void
+  onPageSizeChange: (size: number) => void
 }
 
 export function UploadsTable({
   uploads,
   isPending,
   totalPages,
-  currentPage
+  currentPage,
+  pageSize,
+  onPageChange,
+  onPageSizeChange,
 }: UploadsTableProps) {
   if (isPending) return <UploadLoading />
 
@@ -108,7 +114,14 @@ export function UploadsTable({
           </tbody>
         </table>
       </div>
-      <UploadsPagination />
+
+      <UploadsPagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        pageSize={pageSize}
+        onPageChange={onPageChange}
+        onPageSizeChange={onPageSizeChange}
+      />
     </div>
   )
 }
