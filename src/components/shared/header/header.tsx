@@ -36,16 +36,6 @@ export function Header() {
       <div className="hidden md:flex items-center gap-6 w-full">
         <CommandSearch />
 
-        <Badge className="hidden lg:flex bg-lime-200 text-foreground tracking-wider hover:bg-succes dark:text-background">
-          <span className="size-2 rounded-full bg-emerald-900 mr-1 animate-pulse" />
-          Versão Beta
-        </Badge>
-
-        <Separator orientation="vertical" className="hidden lg:flex h-6" />
-        <span className="hidden lg:flex text-sm">{formatDate()}</span>
-      </div>
-
-      <div className="flex items-center space-x-6 lg:justify-end xl:w-full">
         <Button
           type="button"
           size="sm"
@@ -55,6 +45,17 @@ export function Header() {
           Chat com IA
         </Button>
 
+        <Separator orientation="vertical" className="hidden lg:flex h-6" />
+
+        {/* <span className="hidden lg:flex text-sm">{formatDate()}</span> */}
+
+        <Badge className="hidden lg:flex bg-lime-200 text-foreground tracking-wider hover:bg-succes dark:text-background">
+          <span className="size-2 rounded-full bg-emerald-900 mr-1 animate-pulse" />
+          Versão Beta
+        </Badge>
+      </div>
+
+      <div className="flex items-center space-x-6 lg:justify-end xl:w-full">
         <Notifications />
 
         <Tooltip>
