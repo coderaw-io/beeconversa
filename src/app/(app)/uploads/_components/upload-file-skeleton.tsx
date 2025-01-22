@@ -7,10 +7,9 @@ import { useQuery, useQueryClient } from "@tanstack/react-query"
 
 interface UploadFileSkeletonProps {
   fileId: string
-  fileStatus: Extract<UploadedFileResult["fileStatus"], "InProgress" | "Concluded">
 }
 
-export function UploadFileSkeleton({ fileId, fileStatus }: UploadFileSkeletonProps) {
+export function UploadFileSkeleton({ fileId }: UploadFileSkeletonProps) {
   const queryClient = useQueryClient()
 
   const { data: fileStatusData } = useQuery<UploadedFileResult | undefined>({

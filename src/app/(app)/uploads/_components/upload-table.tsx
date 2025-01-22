@@ -46,7 +46,7 @@ export function UploadsTable({
                 return (
                   <tr key={upload.id} className="border-b">
                     {upload.fileStatus === "InProgress" ? (
-                      <UploadFileSkeleton fileId={upload.id} fileStatus={upload.fileStatus} />
+                      <UploadFileSkeleton fileId={upload.id} />
                     ) : (
                       <>
                         <td className="p-4">
@@ -56,9 +56,11 @@ export function UploadsTable({
                             </div>
 
                             <div>
-                              <p className="font-medium">{fileName}</p>
+                              <p className="font-medium truncate">
+                                {fileName}
+                              </p>
 
-                              <p className="text-sm text-muted-foreground">
+                              <p className="text-sm text-muted-foreground truncate">
                                 Total de {upload.totalRows} linhas neste arquivo.
                               </p>
                             </div>
@@ -78,7 +80,12 @@ export function UploadsTable({
                         </td>
                         <td className="p-4">
                           <div className="flex items-center gap-2">
-                            <Button variant="ghost" size="icon">
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="icon"
+                              className="hover:bg-destructive hover:text-foreground dark:hover:text-primary"
+                            >
                               <TrashIcon className="size-4" />
                             </Button>
                           </div>

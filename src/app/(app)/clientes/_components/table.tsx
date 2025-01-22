@@ -27,7 +27,9 @@ export function CustomersTable() {
               <Checkbox />
             </th>
 
-            <th className="p-4 font-medium">Nome completo</th>
+            <th className="p-4 font-medium">
+              Nome completo
+            </th>
 
             <th className="p-4 font-medium">
               E-mail
