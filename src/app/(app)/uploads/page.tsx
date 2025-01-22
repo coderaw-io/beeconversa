@@ -1,11 +1,12 @@
 import { PageHeader } from "@/components/shared/page-header";
-import { UploadsContent } from "./_components/content";
+import { UploadProvider } from "@/context/upload-context";
 import { StorageUsage } from "./_components/storage-usage";
 import { UploadArea } from "./_components/upload-area";
+import { UploadsContent } from "./_components/upload-content";
 
 export default function UploadsPage() {
   return (
-    <>
+    <UploadProvider>
       <PageHeader
         title="Importações de arquivos"
         description="Faça upload de arquivos para adicionar a sua base de dados no sistema."
@@ -16,6 +17,6 @@ export default function UploadsPage() {
         <StorageUsage />
         <UploadsContent />
       </div>
-    </>
+    </UploadProvider>
   )
 }

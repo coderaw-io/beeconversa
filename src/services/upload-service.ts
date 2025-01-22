@@ -5,7 +5,7 @@ import { tenant, uploadApi } from "@/lib/axios"
 export class UploadService {
   static async uploadFile(
     file: File, 
-    onProgress: (progress: number) => void
+    onProgress?: (progress: number) => void
   ): Promise<GetAllUploadedFileResponse> {
     return new Promise((resolve, reject) => {
       const formData = new FormData()
@@ -15,7 +15,7 @@ export class UploadService {
       xhr.upload.addEventListener("progress", (event) => {
         if (event.lengthComputable) {
           const percentCompleted = Math.round((event.loaded * 100) / event.total)
-          onProgress(percentCompleted)
+          if (onProgress) onProgress(percentCompleted)
         }
       })
 

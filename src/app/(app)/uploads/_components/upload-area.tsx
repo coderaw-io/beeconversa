@@ -1,9 +1,7 @@
 "use client"
 
-import type { GetAllUploadedFileResponse } from "@/@types/upload/upload"
+import { useUploadContext } from "@/hooks/use-upload"
 import { cn } from "@/lib/utils"
-import { UploadService } from "@/services/upload-service"
-import { useQueryClient } from "@tanstack/react-query"
 import { motion, useAnimation } from "framer-motion"
 import { UploadIcon, XIcon } from "lucide-react"
 import { useRef, useState } from "react"
@@ -15,21 +13,13 @@ const isValidFileType = (file: File) => {
   return ALLOWED_EXTENSIONS.includes(extension)
 }
 
-interface FileUpload {
-  file: File
-  progress: number
-  status: "uploading" | "completed" | "error"
-  response?: GetAllUploadedFileResponse
-  errorMessage?: string
-}
-
 export function UploadArea() {
+  const { uploads, addUpload, removeUpload } = useUploadContext()
+
   const [isDragging, setIsDragging] = useState(false)
-  const [uploads, setUploads] = useState<FileUpload[]>([])
 
   const fileInputRef = useRef<HTMLInputElement>(null)
   const controls = useAnimation()
-  const queryClient = useQueryClient()
 
   const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
@@ -64,52 +54,13 @@ export function UploadArea() {
   const handleClick = () => fileInputRef.current?.click()
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      handleFiles(e.target.files)
-    }
+    if (e.target.files && e.target.files.length > 0) handleFiles(e.target.files)
   }
 
   const handleFiles = (files: FileList) => {
-    const newUploads = Array.from(files).map((file) => ({
-      file,
-      progress: 0,
-      status: isValidFileType(file) ? ("uploading" as const) : ("error" as const),
-      errorMessage: isValidFileType(file) ?
-        undefined : "Arquivo inválido. Tipos de arquivos permitidos: .xls, .csv, .xlsx",
-    }))
-
-    setUploads((prevUploads) => [...prevUploads, ...newUploads])
-
-    newUploads.forEach((upload) => {
-      if (upload.status === "uploading") {
-        UploadService.uploadFile(upload.file, (progress) => {
-          setUploads((prevUploads) => prevUploads.map((u) => (u.file === upload.file ? { ...u, progress } : u)))
-        })
-          .then((response) => {
-            setUploads((prevUploads) =>
-              prevUploads.map((u) => (u.file === upload.file ? { ...u, status: "completed" as const, response } : u)),
-            )
-          })
-          .catch((error) => {
-            setUploads((prevUploads) =>
-              prevUploads.map((u) =>
-                u.file === upload.file ? { ...u, status: "error" as const, errorMessage: error.message } : u,
-              ),
-            )
-          })
-          .finally(() => {
-            queryClient.invalidateQueries({
-              queryKey: ["get-all-uploaded-files"],
-              exact: true,
-              refetchType: "all",
-            })
-          })
-      }
+    Array.from(files).forEach((file) => {
+      if (isValidFileType(file)) addUpload(file)
     })
-  }
-
-  const removeUpload = (fileToRemove: File) => {
-    setUploads((prevUploads) => prevUploads.filter((u) => u.file !== fileToRemove))
   }
 
   return (
@@ -187,7 +138,7 @@ export function UploadArea() {
                 />
 
                 {upload.status === "uploading" && `${upload.progress}%`}
-                {upload.status === "completed" && "Arquivo válido! Upload do seu arquivo foi iniciado."}
+                {upload.status === "completed" && "Arquivo válido! A importação do seu arquivo foi iniciada."}
                 {upload.status === "error" && (
                   <span className="text-destructive">
                     {`Erro ao importar arquivo. ${upload.errorMessage}` || "Error"}

@@ -5,7 +5,7 @@ import { NetworkArrowUpIcon } from "@/components/shared/icons/network-arrow-up";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { EditIcon, TrashIcon } from "lucide-react";
-import { UploadsPagination } from "./pagination";
+import { UploadsPagination } from "./upload-pagination";
 
 interface UploadsTableProps {
   uploads: UploadedFileResult[]
@@ -30,9 +30,9 @@ export function UploadsTable({
             <tr className="text-left">
               <th className="p-4 font-medium">Nome do arquivo</th>
               <th className="p-4 font-medium">Data do upload</th>
-              <th className="p-4 font-medium">Linhas importadas</th>
-              <th className="p-4 font-medium">Linhas não importadas</th>
-              <th className="p-4 font-medium">Responsável</th>
+              <th className="p-4 text-center font-medium">Linhas importadas</th>
+              <th className="p-4 text-center font-medium">Linhas não importadas</th>
+              <th className="p-4 text-center font-medium">Responsável</th>
               <th className="p-4 font-medium">Ações</th>
             </tr>
           </thead>
@@ -65,9 +65,17 @@ export function UploadsTable({
                       {format(new Date(upload.creationDate).toLocaleDateString(), "dd/MM/yyyy")}
                     </td>
 
-                    <td className="p-4 text-muted-foreground">{upload.totalRowsImported}</td>
-                    <td className="p-4 text-muted-foreground">{upload.totalRowsNotImported}</td>
-                    <td className="p-4 text-muted-foreground">{upload.user.name}</td>
+                    <td className="p-4 text-center text-muted-foreground">
+                      {upload.totalRowsImported}
+                    </td>
+
+                    <td className="p-4 text-center text-muted-foreground">
+                      {upload.totalRowsNotImported}
+                    </td>
+
+                    <td className="p-4 text-center text-muted-foreground">
+                      {upload.user.name}
+                    </td>
 
                     <td className="p-4">
                       <div className="flex items-center gap-2">
@@ -85,7 +93,7 @@ export function UploadsTable({
               }) : uploads.length > 0 ? <UploadLoading /> : (
                 <tr className="h-28 w-full">
                   <td colSpan={6} className="text-center text-sm pt-6 pb-12 dark:text-zinc-600">
-                  <div className="w-full flex justify-center items-center">
+                    <div className="w-full flex justify-center items-center">
                       <NetworkArrowUpIcon className="size-36" />
                     </div>
 

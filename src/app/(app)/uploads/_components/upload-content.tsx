@@ -5,22 +5,16 @@ import {
   FileDownIcon
 } from "lucide-react";
 
-import { UploadedFileResult } from "@/@types/upload/upload";
 import { Button } from "@/components/ui/button";
-import { UploadService } from "@/services/upload-service";
-import { useQuery } from "@tanstack/react-query";
+import { useUploadContext } from "@/hooks/use-upload";
 import { useState } from "react";
 import { UploadsFiltersSection } from "./filters-section";
-import { UploadsTable } from "./table";
+import { UploadsTable } from "./upload-table";
 
 export function UploadsContent() {
+  const { uploadedFiles: uploadData, isLoading: isPending } = useUploadContext()
   const [page] = useState(1);
   const [pageSize] = useState(40);
-
-  const { data: uploadData, isPending } = useQuery<UploadedFileResult[]>({
-    queryKey: ["get-all-uploaded-files"],
-    queryFn: async () => await UploadService.getAllUploadedFiles()
-  })
 
   return (
     <>
