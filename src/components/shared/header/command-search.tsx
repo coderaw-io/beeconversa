@@ -34,7 +34,7 @@ export function CommandSearch() {
         onClick={() => setOpen(true)}
       >
         <SearchIcon className="size-4" />
-        <span>Pesquisar</span>
+        <span>Pesquisa global</span>
       </Button>
 
       <Dialog open={open} onOpenChange={setOpen}>

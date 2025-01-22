@@ -4,7 +4,7 @@ export default function WhatsappPage() {
   return (
     <>
       <PageHeader
-        title="Minha operação pelo whatsapp"
+        title="Minha operação via whatsapp"
         description="Gerencie e automatize processos da sua operação via whatsapp."
       />
 

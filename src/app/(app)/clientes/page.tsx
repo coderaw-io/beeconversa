@@ -13,11 +13,11 @@ export default function CustomersPage() {
       />
 
       <div className="py-8 pl-1">
-        <CustomersTabs />
-
-        <div className="mt-6">
+        <div className="mb-6">
           <CustomersFiltersSection />
         </div>
+
+        <CustomersTabs />
         
         <CustomersTable />
         <CustomersPagination />

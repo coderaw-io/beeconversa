@@ -9,7 +9,7 @@ export function CustomersFiltersSection() {
     <div className="flex items-center gap-4">
       <div className="relative flex-1 max-w-md">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground size-4" />
-        <Input className="pl-10 h-10" placeholder="Filtrar contato" />
+        <Input className="pl-10 h-10" placeholder="Filtrar cliente ..." />
       </div>
 
       <Button variant="outline" className="h-10 flex items-center gap-2">
