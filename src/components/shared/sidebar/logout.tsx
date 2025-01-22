@@ -1,5 +1,7 @@
 "use client"
 
+import axios from "axios";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -26,8 +28,8 @@ import { Button } from "../../ui/button";
 export function Logout() {
   const router = useRouter();
 
-  const handleLogout = () => {
-    localStorage.clear();
+  async function handleLogout() {
+    await axios.post("/api/auth/sign-out");
     router.push("/");
   }
 
