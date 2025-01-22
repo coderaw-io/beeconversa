@@ -36,8 +36,9 @@ export function Header() {
       <div className="hidden md:flex items-center gap-6 w-full">
         <CommandSearch />
 
-        <Badge className="hidden lg:flex bg-success text-foreground tracking-wider hover:bg-emerald-400 dark:text-background">
-          Free trial
+        <Badge className="hidden lg:flex bg-lime-200 text-foreground tracking-wider hover:bg-succes dark:text-background">
+          <span className="size-2 rounded-full bg-emerald-900 mr-1" />
+          Versão Beta
         </Badge>
 
         <Separator orientation="vertical" className="hidden lg:flex h-6" />
@@ -48,7 +49,7 @@ export function Header() {
         <Button
           type="button"
           size="sm"
-          className="hidden xl:flex items-center gap-2"
+          className="hidden xl:flex items-center gap-2 h-9"
         >
           <SparklesIcon className="size-4" />
           Chat com IA
