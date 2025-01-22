@@ -17,6 +17,7 @@ export function UploadsContent() {
     isLoading: isPending,
     currentPage,
     totalPages,
+    totalResults,
     pageSize,
     setCurrentPage,
     setPageSize,
@@ -63,6 +64,7 @@ export function UploadsContent() {
         isPending={isPending}
         currentPage={currentPage}
         totalPages={totalPages}
+        totalResults={totalResults}
         pageSize={pageSize}
         onPageChange={setCurrentPage}
         onPageSizeChange={setPageSize}

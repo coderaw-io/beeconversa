@@ -1,6 +1,6 @@
 import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
+  ChevronsLeftIcon,
+  ChevronsRightIcon,
   EllipsisIcon
 } from "lucide-react"
 
@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 interface UploadsPaginationProps {
   currentPage: number
   totalPages: number
+  totalResults: number
   pageSize: number
   onPageChange: (page: number) => void
   onPageSizeChange: (size: number) => void
@@ -17,9 +18,9 @@ interface UploadsPaginationProps {
 export function UploadsPagination({
   currentPage,
   totalPages,
+  totalResults,
   pageSize,
   onPageChange,
-  onPageSizeChange,
 }: UploadsPaginationProps) {
   const renderPageButtons = () => {
     const visiblePages = 5
@@ -39,7 +40,7 @@ export function UploadsPagination({
           type="button"
           size="sm"
           variant={currentPage === i ? "default" : "outline"}
-          className="p-5"
+          className="p-5 h-11"
           onClick={() => onPageChange(i)}
         >
           {i}
@@ -51,16 +52,20 @@ export function UploadsPagination({
   }
 
   return (
-    <div className="pt-2">
-      <div className="flex items-center justify-center gap-2 mt-6">
+    <div className="p-2 flex items-center justify-between">
+      <p>
+        Exibindo {pageSize} de {totalResults} resultados.
+      </p>
+
+      <div className="flex items-center justify-center gap-4">
         <Button
           type="button"
-          variant="ghost"
+          variant="outline"
           size="icon"
           onClick={() => onPageChange(Math.max(1, currentPage - 1))}
           disabled={currentPage === 1}
         >
-          <ChevronLeftIcon className="size-4" />
+          <ChevronsLeftIcon className="size-4" />
         </Button>
 
         {renderPageButtons()}
@@ -70,7 +75,14 @@ export function UploadsPagination({
             <Button type="button" variant="ghost" size="icon">
               <EllipsisIcon className="size-4" />
             </Button>
-            <Button type="button" size="sm" variant="outline" className="p-5" onClick={() => onPageChange(totalPages)}>
+
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              className="p-5 h-11"
+              onClick={() => onPageChange(totalPages)}
+            >
               {totalPages}
             </Button>
           </>
@@ -78,12 +90,12 @@ export function UploadsPagination({
 
         <Button
           type="button"
-          variant="ghost"
+          variant="outline"
           size="icon"
           onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
           disabled={currentPage === totalPages}
         >
-          <ChevronRightIcon className="size-4" />
+          <ChevronsRightIcon className="size-4" />
         </Button>
       </div>
     </div>

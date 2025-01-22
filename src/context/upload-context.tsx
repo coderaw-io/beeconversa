@@ -27,6 +27,7 @@ interface UploadContextType {
   duplicateFiles: number
   currentPage: number
   totalPages: number
+  totalResults: number
   pageSize: number
   setCurrentPage: (page: number) => void
   setPageSize: (size: number) => void
@@ -42,6 +43,7 @@ export const UploadProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [currentPage, setCurrentPage] = useState(1)
   const [pageSize, setPageSize] = useState(20)
   const [totalPages, setTotalPages] = useState(1)
+  const [totalResults, setTotalResults] = useState(1)
 
   const queryClient = useQueryClient()
 
@@ -55,7 +57,10 @@ export const UploadProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   })
 
   useEffect(() => {
-    if (data) setTotalPages(data.totalPages)
+    if (data) {
+      setTotalPages(data.totalPages)
+      setTotalResults(data.totalResults)
+    }
   }, [data])
 
   const uploadedFiles = data?.results
@@ -121,6 +126,7 @@ export const UploadProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         duplicateFiles,
         currentPage,
         totalPages,
+        totalResults,
         pageSize,
         setCurrentPage,
         setPageSize,

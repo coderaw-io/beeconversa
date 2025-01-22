@@ -12,6 +12,7 @@ interface UploadsTableProps {
   uploads: UploadedFileResult[]
   isPending: boolean
   totalPages: number
+  totalResults: number
   currentPage: number
   pageSize: number
   onPageChange: (page: number) => void
@@ -22,6 +23,7 @@ export function UploadsTable({
   uploads,
   isPending,
   totalPages,
+  totalResults,
   currentPage,
   pageSize,
   onPageChange,
@@ -118,6 +120,7 @@ export function UploadsTable({
       <UploadsPagination
         currentPage={currentPage}
         totalPages={totalPages}
+        totalResults={totalResults}
         pageSize={pageSize}
         onPageChange={onPageChange}
         onPageSizeChange={onPageSizeChange}
