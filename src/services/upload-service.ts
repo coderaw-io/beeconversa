@@ -1,13 +1,16 @@
 import type { GetAllUploadedFileResponse } from "@/@types/upload/upload";
-import { storageKeys } from "@/config/storage-keys";
 import { tenant, uploadApi } from "@/lib/axios";
+import { AuthService } from "./auth-service";
 
 export class UploadService {
   static async getAllUploadedFiles() {
     try {
+      const accessToken = await AuthService.getAccessToken();
+      if (!accessToken) return;
+
       const { data } = await uploadApi.get<GetAllUploadedFileResponse>("/import", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem(storageKeys.accessToken)}`
+          Authorization: `Bearer ${accessToken}`
         }
       });
 
@@ -20,11 +23,14 @@ export class UploadService {
 
   static async getAllUploadedFilesPaginated(page: number, pageSize: number) {
     try {
+      const accessToken = await AuthService.getAccessToken();
+      if (!accessToken) return;
+
       const { data } = await uploadApi.get<GetAllUploadedFileResponse>(
         `/import?PageFilter.Page=${page}&PageFilter.PageSize=${pageSize}`,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem(storageKeys.accessToken)}`
+            Authorization: `Bearer ${accessToken}`
           }
         });
 
@@ -37,11 +43,14 @@ export class UploadService {
 
   static async getUploadedFileById(fileId: string) {
     try {
+      const accessToken = await AuthService.getAccessToken();
+      if (!accessToken) return;
+
       const { data } = await uploadApi.get<GetAllUploadedFileResponse>(
         `/import?FileIds=${fileId}`,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem(storageKeys.accessToken)}`
+            Authorization: `Bearer ${accessToken}`
           }
         }
       )
@@ -58,8 +67,12 @@ export class UploadService {
     onProgress?: (progress: number) => void
   ): Promise<GetAllUploadedFileResponse> {
     return new Promise((resolve, reject) => {
+      const accessToken = AuthService.getAccessToken();
+      if (!accessToken) return;
+
       const formData = new FormData()
       formData.append("file", file)
+
       const xhr = new XMLHttpRequest()
 
       xhr.upload.addEventListener("progress", (event) => {
@@ -83,7 +96,7 @@ export class UploadService {
 
       xhr.open("POST", `${uploadApi.defaults.baseURL}/import`, true)
       xhr.setRequestHeader("Tenant", tenant)
-      xhr.setRequestHeader("Authorization", `Bearer ${localStorage.getItem(storageKeys.accessToken)}`)
+      xhr.setRequestHeader("Authorization", `Bearer ${accessToken}`)
       xhr.send(formData)
     })
   }

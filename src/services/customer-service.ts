@@ -1,13 +1,16 @@
 import { GetAllCustomerResponse } from "@/@types/customers/customer";
-import { storageKeys } from "@/config/storage-keys";
 import { customerApi } from "@/lib/axios";
+import { AuthService } from "./auth-service";
 
 export class CustomerService {
   static async getAllCustomers() {
+    const accessToken = await AuthService.getAccessToken();
+    if (!accessToken) return;
+
     try {
       const { data } = await customerApi.get<GetAllCustomerResponse>("/customers", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem(storageKeys.accessToken)}`
+          Authorization: `Bearer ${accessToken}`
         }
       });
 

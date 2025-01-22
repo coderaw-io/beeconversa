@@ -1,3 +1,5 @@
+import axios from "axios";
+
 import { SignInRequest, SignInResponse } from "@/@types/auth/sign-in";
 import { authApi } from "@/lib/axios";
 
@@ -21,6 +23,16 @@ export class AuthService {
     } catch (error) {
       console.log("Auth error:", error);
       throw new Error("Internal server error!");
+    }
+  }
+
+  static async getAccessToken() {
+    try {
+      const { data } = await axios.get("/api/auth/get-token");
+      return data.token;
+    } catch (error) {
+      console.error("Failed to fetch token:", error);
+      return null;
     }
   }
 }
