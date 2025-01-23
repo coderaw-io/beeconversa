@@ -35,7 +35,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { addCustomerSchema, AddCustomerSchema } from "@/schemas/customer";
+import { maskDocument } from "@/utils/masks/mask-document";
+import { maskPhoneNumber } from "@/utils/masks/mask-phone-number";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 export function AddCustomer() {
@@ -49,15 +52,21 @@ export function AddCustomer() {
     },
   });
 
-  const onSubmit = form.handleSubmit(async data => {
-    const formData = {
-      name: data.name,
-      emails: data.emails[0],
-      phones: data.phones[0],
-      cpf: data.cpf
-    }
+  const phones = form.watch("phones");
+  const document = form.watch("cpf");
+  const [maskedPhone, setMaskedPhone] = useState("")
 
-    console.log(formData);
+  useEffect(() => {
+    if (phones && phones.length > 0 || document !== undefined) {
+      const maskedValue = maskPhoneNumber(phones[0])
+      if (maskedValue !== maskedPhone) setMaskedPhone(maskedValue)
+
+      form.setValue("cpf", maskDocument(document))
+    }
+  }, [phones, maskedPhone, document, form])
+
+  const onSubmit = form.handleSubmit(async data => {
+    console.log(data);
     form.reset();
   });
 
@@ -154,7 +163,12 @@ export function AddCustomer() {
                           <Input
                             placeholder="Informe o telefone do seu cliente"
                             className="h-11 w-full pl-10 pr-10"
-                            {...field}
+                            value={maskedPhone}
+                            onChange={(e) => {
+                              const value = e.target.value
+                              setMaskedPhone(value)
+                              field.onChange([value])
+                            }}
                           />
                           <Button
                             type="button"

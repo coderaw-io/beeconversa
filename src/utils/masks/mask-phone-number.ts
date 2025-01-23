@@ -1,4 +1,4 @@
-export const maskPhone = (value: string) => {
+export const maskPhoneNumber = (value: string) => {
   if (!value) return "";
 
   return value
