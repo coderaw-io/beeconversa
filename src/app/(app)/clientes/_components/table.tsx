@@ -3,7 +3,7 @@
 import CustomersLoading from "../loading"
 
 import { Customers } from "@/@types/customers/customer"
-import { NetworkArrowUpIcon } from "@/components/shared/icons/network-arrow-up"
+import { ReportIsonIcon } from "@/components/shared/icons/report-ison-icon"
 import { Badge } from "@/components/ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 import { cn } from "@/lib/utils"
@@ -97,7 +97,7 @@ export function CustomersTable() {
               <tr className="h-28 w-full">
                 <td colSpan={6} className="text-center text-sm pt-6 pb-12 dark:text-zinc-600">
                   <div className="w-full flex justify-center items-center">
-                    <NetworkArrowUpIcon className="size-36" />
+                    <ReportIsonIcon className="size-36" />
                   </div>
 
                   Nenhum resultado encontrado.

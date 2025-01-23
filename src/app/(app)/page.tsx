@@ -12,7 +12,7 @@ export default function HomePage() {
       />
 
       <div className="py-8 pl-1">
-        <main className="container space-y-12">
+        <main className="space-y-12">
           <section className="flex flex-col space-y-4">
             <h2 className="flex items-center gap-2 text-xl font-semibold">
               Vamos começar
