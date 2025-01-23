@@ -14,23 +14,6 @@ import { CommandSearch } from "./command-search";
 import { Notifications } from "./notifications";
 
 export function Header() {
-  const capitalizeFirstLetter = (value: string) => {
-    return value.charAt(0).toUpperCase() + value.slice(1);
-  };
-
-  const formatDate = () => {
-    const now = new Date();
-
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: 'long',
-      day: 'numeric',
-      month: 'long',
-    };
-
-    const formattedDate = now.toLocaleDateString('pt-BR', options);
-    return formattedDate.replace(/(^[a-zá-ú]+)/i, (match) => capitalizeFirstLetter(match));
-  };
-
   return (
     <header className="bg-background sticky top-0 shrink-0 z-10 flex h-[70px] items-center gap-2 border-b border-border px-6 overflow-hidden">
       <div className="hidden md:flex items-center gap-6 w-full">
@@ -46,8 +29,6 @@ export function Header() {
         </Button>
 
         <Separator orientation="vertical" className="hidden lg:flex h-6" />
-
-        {/* <span className="hidden lg:flex text-sm">{formatDate()}</span> */}
 
         <Badge className="hidden lg:flex bg-lime-200 text-foreground tracking-wider hover:bg-succes dark:text-background">
           <span className="size-2 rounded-full bg-emerald-900 mr-1 animate-pulse" />

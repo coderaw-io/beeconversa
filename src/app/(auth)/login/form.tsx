@@ -56,7 +56,7 @@ export function LoginForm({
         description: "Usuário autenticado com êxito."
       });
 
-      route.push("/inicio");
+      route.push("/");
     } catch {
       toast.error("ERRO AO AUTENTICAR USUÁRIO ❌", {
         description: "Verifique as credenciais digitadas e tente novamente."

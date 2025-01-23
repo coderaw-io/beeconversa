@@ -1,20 +1,28 @@
-"use client"
+import ProtectedLayout from "@/components/shared/protected-layout"
 
 import { Header } from "@/components/shared/header/header"
 import { AppSidebar } from "@/components/shared/sidebar/app-sidebar"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { queryClient } from "@/lib/react-query"
-import { QueryClientProvider } from "@tanstack/react-query"
+import { storageKeys } from "@/config/storage-keys"
+import { cookies } from "next/headers"
+import { redirect } from "next/navigation"
 
 interface DashboardLayoutProps {
   children: React.ReactNode
 }
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children
 }: DashboardLayoutProps) {
+  const cookieStore = await cookies();
+  const token = cookieStore.get(storageKeys.accessToken);
+
+  if (!token) {
+    redirect("/login");
+  }
+
   return (
-    <QueryClientProvider client={queryClient}>
+    <ProtectedLayout>
       <SidebarProvider>
         <AppSidebar />
         <SidebarInset>
@@ -26,6 +34,6 @@ export default function DashboardLayout({
           </div>
         </SidebarInset>
       </SidebarProvider>
-    </QueryClientProvider>
+    </ProtectedLayout>
   )
 }

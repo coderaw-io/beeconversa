@@ -41,7 +41,7 @@ interface AppSidebarLinksProps {
 }
 
 const links: AppSidebarLinksProps[] = [
-  { href: "/inicio", icon: HomeIcon, tooltip: "Início" },
+  { href: "/", icon: HomeIcon, tooltip: "Início" },
   { href: "/dashboard", icon: LayoutDashboardIcon, tooltip: "Dashboard" },
   { href: "/uploads", icon: CloudUploadIcon, tooltip: "Uploads" },
   { href: "/clientes", icon: UsersIcon, tooltip: "Clientes" },

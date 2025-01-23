@@ -1,7 +1,7 @@
 import { PageHeader } from "@/components/shared/page-header";
 import { TelescopeIcon, ZapIcon } from "lucide-react";
-import { HomeExplorerSection } from "./_components/explorer-section";
-import { HomeGetStartedSection } from "./_components/get-started-section";
+import { HomeExplorerSection } from "./explorer-section";
+import { HomeGetStartedSection } from "./get-started-section";
 
 export default function HomePage() {
   return (
