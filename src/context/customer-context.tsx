@@ -21,7 +21,7 @@ export const CustomerContext = createContext<CustomerContextType | undefined>(un
 
 export const CustomerProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [currentPage, setCurrentPage] = useState(1)
-  const [pageSize, setPageSize] = useState(20)
+  const [pageSize, setPageSize] = useState(60)
   const [totalPages, setTotalPages] = useState(1)
   const [totalResults, setTotalResults] = useState(1)
 

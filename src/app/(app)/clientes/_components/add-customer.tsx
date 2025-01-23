@@ -66,6 +66,7 @@ export function AddCustomer() {
 
   const [emailFields, setEmailFields] = useState([0])
   const [phoneFields, setPhoneFields] = useState([0])
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (document !== undefined) {
@@ -92,6 +93,8 @@ export function AddCustomer() {
       toast.success("CLIENTE CADASTRADO COM SUCESSO", {
         description: "O registro do novo cliente foi concluído."
       });
+
+      setIsOpen(false);
     } catch {
       toast.error("OCORREU UM ERRO AO CADASTRAR CLIENTE", {
         description: "Verifique os dados digitados e tente novamente."
@@ -105,7 +108,7 @@ export function AddCustomer() {
 
   return (
     <Form {...form}>
-      <Sheet>
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild>
           <Button type="button" variant="secondary" className="h-11 flex items-center gap-2">
             <PlusIcon className="size-4" />
