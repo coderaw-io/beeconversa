@@ -93,7 +93,7 @@ export function CustomersTable() {
                   </Badge>
                 </td>
               </tr>
-            )) : !customersData ? (
+            )) : (
               <tr className="h-28 w-full">
                 <td colSpan={6} className="text-center text-sm pt-6 pb-12 dark:text-zinc-600">
                   <div className="w-full flex justify-center items-center">
@@ -103,7 +103,7 @@ export function CustomersTable() {
                   Nenhum resultado encontrado.
                 </td>
               </tr>
-            ) : <CustomersLoading />}
+            )}
         </tbody>
       </table>
     </div>
