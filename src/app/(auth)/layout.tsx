@@ -8,9 +8,9 @@ export default async function AuthLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const loggedUser = getAccessToken();
+  const loggedUser = await getAccessToken();
 
-  if (await loggedUser) {
+  if (loggedUser) {
     redirect("/");
   }
 
