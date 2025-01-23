@@ -16,6 +16,7 @@ import {
   FingerprintIcon,
   LoaderPinwheelIcon,
   MailIcon,
+  MinusIcon,
   PhoneIcon,
   PlusIcon,
   User2Icon
@@ -33,7 +34,9 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 import { addCustomerSchema, AddCustomerSchema } from "@/schemas/customer";
 import { CustomerService } from "@/services/customer-service";
 import { maskDocument } from "@/utils/masks/mask-document";
@@ -128,7 +131,7 @@ export function AddCustomer() {
                         <div className="relative flex-1">
                           <User2Icon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground size-4" />
                           <Input
-                            placeholder="Informe o nome completo do seu cliente"
+                            placeholder="Informe o nome completo do cliente"
                             className="h-11 w-full pl-10 pr-10"
                             maxLength={100}
                             {...field}
@@ -141,90 +144,136 @@ export function AddCustomer() {
                 )}
               />
 
-              {emailFields.map((field, index) => (
-                <FormField
-                  key={field}
-                  control={form.control}
-                  name={`emails.${index}`}
-                  render={({ field }) => (
-                    <FormItem className="flex flex-col items-center">
-                      <div className="w-full flex justify-between items-center space-x-6 md:space-x-8 xl:space-x-10">
-                        <FormLabel className="w-12">{index === 0 ? "Email" : ""}</FormLabel>
-                        <FormControl className="w-full">
-                          <div className="relative flex-1">
-                            <MailIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground size-4" />
-                            <Input
-                              placeholder="Informe o e-mail do seu cliente"
-                              className="h-11 w-full pl-10 pr-10"
-                              maxLength={100}
-                              {...field}
-                            />
-                            {index === emailFields.length - 1 && (
-                              <Button
-                                type="button"
-                                variant="link"
-                                size="sm"
-                                className="absolute right-1.5 top-1/2 flex items-center gap-1 transform -translate-y-1/2"
-                                onClick={() => setEmailFields([...emailFields, emailFields.length])}
-                              >
-                                <PlusIcon className="size-4" />
-                                Adicionar
-                              </Button>
-                            )}
-                          </div>
-                        </FormControl>
-                      </div>
-                      <FormDescription>
-                        Você pode adicionar um ou mais e-mail's para este cliente.
-                      </FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              ))}
+              <ScrollArea className={cn("h-auto", {
+                "h-48 pr-4": emailFields.length > 2
+              })}>
+                {emailFields.map((field, index) => (
+                  <FormField
+                    key={index}
+                    control={form.control}
+                    name={`emails.${index}`}
+                    render={({ field }) => (
+                      <FormItem className="flex flex-col items-center py-3">
+                        <div className="w-full flex justify-between items-center space-x-6 md:space-x-8 xl:space-x-10">
+                          <FormLabel className="w-12">{index === 0 ? "Email" : ""}</FormLabel>
+                          <FormControl className="w-full">
+                            <div className="relative flex-1">
+                              <MailIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground size-4" />
+                              <Input
+                                placeholder="Informe o e-mail do cliente"
+                                className="h-11 w-full pl-10 pr-10"
+                                maxLength={100}
+                                {...field}
+                              />
 
-              {phoneFields.map((field, index) => (
-                <FormField
-                  key={field}
-                  control={form.control}
-                  name={`phones.${index}`}
-                  render={({ field }) => (
-                    <FormItem className="flex flex-col items-center">
-                      <div className="w-full flex justify-between items-center space-x-6 md:space-x-8 xl:space-x-10">
-                        <FormLabel className="w-12">{index === 0 ? "Telefone" : ""}</FormLabel>
-                        <FormControl className="w-full">
-                          <div className="relative flex-1">
-                            <PhoneIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground size-4" />
-                            <Input
-                              placeholder="Informe o telefone do seu cliente"
-                              className="h-11 w-full pl-10 pr-10"
-                              {...field}
-                              onChange={(e) => {
-                                const maskedValue = maskPhoneNumber(e.target.value)
-                                field.onChange(maskedValue)
-                              }}
-                            />
-                            {index === phoneFields.length - 1 && (
-                              <Button
-                                type="button"
-                                variant="link"
-                                size="sm"
-                                className="absolute right-1.5 top-1/2 flex items-center gap-1 transform -translate-y-1/2"
-                                onClick={() => setPhoneFields([...phoneFields, phoneFields.length])}
-                              >
-                                <PlusIcon className="size-4" />
-                                Adicionar
-                              </Button>
-                            )}
-                          </div>
-                        </FormControl>
-                      </div>
-                      <FormDescription>Você pode adicionar um ou mais telefones para este cliente.</FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              ))}
+                              <div className="absolute right-1.5 top-1/2 transform -translate-y-1/2 flex items-center gap-1">
+                                {index === emailFields.length - 1 && (
+                                  <Button
+                                    type="button"
+                                    variant="link"
+                                    size="sm"
+                                    onClick={() => setEmailFields([...emailFields, emailFields.length])}
+                                  >
+                                    <PlusIcon className="size-4" />
+                                    Adicionar
+                                  </Button>
+                                )}
+
+                                {emailFields.length > 1 && (
+                                  <Button
+                                    type="button"
+                                    variant="destructive"
+                                    size="icon"
+                                    className="size-7 bg-red-100 text-destructive dark:bg-destructive dark:text-red-100 hover:text-red-100 dark:hover:bg-destructive-foreground dark:hover:text-destructive"
+                                    onClick={() => {
+                                      const newEmailFields = emailFields.filter((_, i) => i !== index)
+                                      setEmailFields(newEmailFields)
+                                      const newEmails = form.getValues("emails").filter((_, i) => i !== index)
+                                      form.setValue("emails", newEmails)
+                                    }}
+                                  >
+                                    <MinusIcon className="size-4" />
+                                  </Button>
+                                )}
+                              </div>
+                            </div>
+                          </FormControl>
+                        </div>
+                        <FormDescription>
+                          Você pode adicionar um ou mais e-mail's para este cliente.
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                ))}
+              </ScrollArea>
+
+              <ScrollArea className={cn("h-auto", {
+                "h-48 pr-4": phoneFields.length > 2
+              })}>
+                {phoneFields.map((field, index) => (
+                  <FormField
+                    key={index}
+                    control={form.control}
+                    name={`phones.${index}`}
+                    render={({ field }) => (
+                      <FormItem className="flex flex-col items-center py-3">
+                        <div className="w-full flex justify-between items-center space-x-6 md:space-x-8 xl:space-x-10">
+                          <FormLabel className="w-12">{index === 0 ? "Telefone" : ""}</FormLabel>
+                          <FormControl className="w-full">
+                            <div className="relative flex-1">
+                              <PhoneIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground size-4" />
+                              <Input
+                                placeholder="Informe o telefone do cliente"
+                                className="h-11 w-full pl-10 pr-10"
+                                {...field}
+                                onChange={(e) => {
+                                  const maskedValue = maskPhoneNumber(e.target.value)
+                                  field.onChange(maskedValue)
+                                }}
+                              />
+
+                              <div className="absolute right-1.5 top-1/2 transform -translate-y-1/2 flex items-center gap-1">
+                                {index === phoneFields.length - 1 && (
+                                  <Button
+                                    type="button"
+                                    variant="link"
+                                    size="sm"
+                                    onClick={() => setPhoneFields([...phoneFields, phoneFields.length])}
+                                  >
+                                    <PlusIcon className="size-4" />
+                                    Adicionar
+                                  </Button>
+                                )}
+
+                                {phoneFields.length > 1 && (
+                                  <Button
+                                    type="button"
+                                    variant="destructive"
+                                    size="icon"
+                                    className="size-7 bg-red-100 text-destructive dark:bg-destructive dark:text-red-100 hover:text-red-100 dark:hover:bg-destructive-foreground dark:hover:text-destructive"
+                                    onClick={() => {
+                                      const newPhoneFields = phoneFields.filter((_, i) => i !== index)
+                                      setPhoneFields(newPhoneFields)
+                                      const newPhones = form.getValues("phones").filter((_, i) => i !== index)
+                                      form.setValue("phones", newPhones)
+                                    }}
+                                  >
+                                    <MinusIcon className="size-4" />
+                                  </Button>
+                                )}
+                              </div>
+                            </div>
+                          </FormControl>
+                        </div>
+                        <FormDescription>Você pode adicionar um ou mais telefones para este cliente.</FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                ))}
+              </ScrollArea>
 
               <FormField
                 control={form.control}
@@ -237,7 +286,7 @@ export function AddCustomer() {
                         <div className="relative flex-1">
                           <FingerprintIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground size-4" />
                           <Input
-                            placeholder="Informe o CPF do seu cliente"
+                            placeholder="Informe o CPF do cliente"
                             className="h-11 w-full pl-10 pr-10"
                             {...field}
                           />

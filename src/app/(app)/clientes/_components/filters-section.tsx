@@ -1,6 +1,7 @@
 "use client"
 
 import {
+  ArrowRightIcon,
   CalendarIcon,
   FileDownIcon,
   SearchIcon,
@@ -18,11 +19,6 @@ export function CustomersFiltersSection() {
         <Input className="pl-10 h-10" placeholder="Filtrar cliente ..." />
       </div>
 
-      <Button variant="outline" className="h-10 flex items-center gap-2">
-        <CalendarIcon className="size-4" />
-        <span>01 de Dezembro - 21 de Janeiro - 2025</span>
-      </Button>
-
       <Button
         type="button"
         variant="outline"
@@ -31,6 +27,15 @@ export function CustomersFiltersSection() {
       >
         <SlidersHorizontal className="size-4" />
         <span className="text-sm">Filtros</span>
+      </Button>
+
+      <Button variant="outline" className="h-10 flex items-center gap-2">
+        <CalendarIcon className="size-4" />
+        <span className="flex items-center gap-2">
+          01 de Dezembro 2025 
+          <ArrowRightIcon className="size-3" />
+          23 de Janeiro 2025
+        </span>
       </Button>
 
       <Button
