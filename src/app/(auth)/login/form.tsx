@@ -20,14 +20,13 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
-import { loginSchema } from "@/schemas/auth"
+import { LoginSchema, loginSchema } from "@/schemas/auth"
 import { zodResolver } from "@hookform/resolvers/zod"
 import axios from "axios"
 import { LoaderPinwheelIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
-import { z } from "zod"
 
 export function LoginForm({
   className,
@@ -35,7 +34,7 @@ export function LoginForm({
 }: React.ComponentPropsWithoutRef<"div">) {
   const route = useRouter();
   
-  const form = useForm<z.infer<typeof loginSchema>>({
+  const form = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       username: "",

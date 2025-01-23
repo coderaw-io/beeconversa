@@ -1,12 +1,12 @@
 import {
   ArrowDownUpIcon,
-  PlusIcon,
   RefreshCcwIcon,
   UploadIcon
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { AddCustomer } from "./add-customer";
 
 interface TabsProps {
   name: string;
@@ -60,10 +60,7 @@ export function CustomersTabs() {
       </div>
 
       <div className="flex items-center gap-4">
-        <Button type="button"variant="secondary" className="h-11 flex items-center gap-2">
-          <PlusIcon className="size-4" />
-          Cadastrar um novo Cliente 
-        </Button>
+        <AddCustomer />
       </div>
     </div>
   )
