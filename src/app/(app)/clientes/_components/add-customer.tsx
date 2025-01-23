@@ -36,6 +36,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { useCustomerContext } from "@/hooks/use-customer";
 import { cn } from "@/lib/utils";
 import { addCustomerSchema, AddCustomerSchema } from "@/schemas/customer";
 import { CustomerService } from "@/services/customer-service";
@@ -48,6 +49,8 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 export function AddCustomer() {
+  const { currentPage, pageSize } = useCustomerContext()
+
   const form = useForm<AddCustomerSchema>({
     resolver: zodResolver(addCustomerSchema),
     defaultValues: {
@@ -81,7 +84,7 @@ export function AddCustomer() {
 
       await CustomerService.createCustomer(formData);
       queryClient.invalidateQueries({
-        queryKey: ["get-all-customers"],
+        queryKey: ["get-all-customers", currentPage, pageSize],
         exact: true,
         refetchType: "all"
       })

@@ -21,6 +21,26 @@ export class CustomerService {
     }
   }
 
+  static async getAllCustomersPaginated(page: number, pageSize: number) {
+    try {
+      const accessToken = await AuthService.getAccessToken();
+      Promise.resolve(accessToken)
+
+      const { data } = await customerApi.get<GetAllCustomerResponse>(
+        `/customers?PageFilter.Page=${page}&PageFilter.PageSize=${pageSize}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`
+          }
+        });
+
+      return data;
+    } catch (error) {
+      console.log("Get all customers paginated error:", error);
+      throw new Error("Internal server error!");
+    }
+  }
+
   static async createCustomer(request: CreateCustomerRequest) {
     try {
       const accessToken = await AuthService.getAccessToken();

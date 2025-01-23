@@ -1,27 +1,16 @@
 import { PageHeader } from "@/components/shared/page-header";
-import { CustomersFiltersSection } from "./_components/filters-section";
-import { CustomersPagination } from "./_components/pagination";
-import { CustomersTable } from "./_components/table";
-import { CustomersTabs } from "./_components/tabs";
+import { CustomerProvider } from "@/context/customer-context";
+import { CustomersContent } from "./_components/customers-content";
 
 export default function CustomersPage() {
   return (
-    <>
+    <CustomerProvider>
       <PageHeader
         title="Clientes cadastrados"
         description="Gerencie todos os clientes cadastrados no sistema."
       />
 
-      <div className="py-8 pl-1">
-        <div className="mb-6">
-          <CustomersFiltersSection />
-        </div>
-
-        <CustomersTabs />
-        
-        <CustomersTable />
-        <CustomersPagination />
-      </div>
-    </>
+      <CustomersContent />
+    </CustomerProvider>
   )
 }

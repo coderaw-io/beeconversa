@@ -1,34 +1,104 @@
+import {
+  ChevronsLeftIcon,
+  ChevronsRightIcon,
+  EllipsisIcon
+} from "lucide-react"
+
 import { Button } from "@/components/ui/button"
-import { ChevronLeftIcon, ChevronRightIcon, EllipsisIcon } from "lucide-react"
 
-export function CustomersPagination() {
+interface CustomersPaginationProps {
+  currentPage: number
+  totalPages: number
+  totalResults: number
+  pageSize: number
+  onPageChange: (page: number) => void
+  onPageSizeChange: (size: number) => void
+}
+
+export function CustomersPagination({
+  currentPage,
+  totalPages,
+  totalResults,
+  pageSize,
+  onPageChange,
+}: CustomersPaginationProps) {
+  const renderPageButtons = () => {
+    const visiblePages = 5
+    let startPage = Math.max(1, currentPage - Math.floor(visiblePages / 2))
+    const endPage = Math.min(totalPages, startPage + visiblePages - 1)
+
+    if (endPage - startPage + 1 < visiblePages) {
+      startPage = Math.max(1, endPage - visiblePages + 1)
+    }
+
+    const pageButtons = []
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageButtons.push(
+        <Button
+          key={i}
+          type="button"
+          size="sm"
+          variant={currentPage === i ? "default" : "outline"}
+          className="p-5 h-11"
+          onClick={() => onPageChange(i)}
+        >
+          {i}
+        </Button>,
+      )
+    }
+
+    return pageButtons
+  }
+
   return (
-    <div className="pt-2">
-      <div className="flex items-center justify-center gap-2 mt-6">
-        <Button type="button" variant="ghost" size="icon">
-          <ChevronLeftIcon className="size-4" />
+    <div className="p-2 flex items-center justify-between">
+      <p>
+        Exibindo {totalResults} de {pageSize} items por página. {" "}
+        Página {currentPage} de um total de {totalPages} página(s).
+      </p>
+
+      <div className="flex items-center justify-center gap-4">
+        <Button
+          type="button"
+          variant="outline"
+          size="icon"
+          onClick={() => onPageChange(Math.max(1, currentPage - 1))}
+          disabled={currentPage === 1}
+        >
+          <ChevronsLeftIcon className="size-4" />
         </Button>
 
-        <Button type="button" size="sm" variant="outline" className="p-5">
-          1
-        </Button>
+        {renderPageButtons()}
 
-        <Button type="button" variant="ghost">2</Button>
-        <Button type="button" variant="ghost">3</Button>
+        {totalPages > 5 && currentPage < totalPages - 2 && (
+          <>
+            <Button type="button" variant="ghost" size="icon">
+              <EllipsisIcon className="size-4" />
+            </Button>
 
-        <Button type="button" variant="ghost" size='icon'>
-          <EllipsisIcon className="size-4" />
-        </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              className="p-5 h-11"
+              onClick={() => onPageChange(totalPages)}
+            >
+              {totalPages}
+            </Button>
+          </>
+        )}
 
-        <Button type="button" variant="ghost">10</Button>
-        <Button type="button" variant="ghost">11</Button>
-        <Button type="button" variant="ghost">12</Button>
-
-        <Button type="button" variant="ghost" size="icon">
-          <ChevronRightIcon className="size-4" />
+        <Button
+          type="button"
+          variant="outline"
+          size="icon"
+          onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
+          disabled={currentPage === totalPages}
+        >
+          <ChevronsRightIcon className="size-4" />
         </Button>
       </div>
     </div>
   )
 }
-

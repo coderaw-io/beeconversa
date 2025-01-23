@@ -1,5 +1,3 @@
-"use client"
-
 import CustomersLoading from "../loading";
 
 import { Customers } from "@/@types/customers/customer";
@@ -7,17 +5,18 @@ import { ReportIsonIcon } from "@/components/shared/icons/report-ison-icon";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
-import { CustomerService } from "@/services/customer-service";
-import { useQuery } from "@tanstack/react-query";
 import { CustomersEmailsPopover } from "./emails-popover";
 import { CustomersPhoneNumbersPopover } from "./phone-numbers-popover";
 
-export function CustomersTable() {
-  const { data: customersData, isPending } = useQuery<Customers>({
-    queryKey: ["get-all-customers"],
-    queryFn: async () => await CustomerService.getAllCustomers()
-  });
+interface CustomersTableProps {
+  data: Customers
+  isPending: boolean
+}
 
+export function CustomersTable({
+  data: customersData,
+  isPending,
+}: CustomersTableProps) {
   if (isPending) return <CustomersLoading />
 
   return (
