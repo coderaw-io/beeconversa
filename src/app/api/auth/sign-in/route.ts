@@ -19,12 +19,25 @@ export async function POST(request: NextRequest) {
   const { data } = await authApi.post<SignInResponse>("/users/login", formData);
 
   const response = new NextResponse(null, { status: 204 });
+
   response.cookies.set(
     storageKeys.accessToken,
     data.accessToken,
     {
       httpOnly: true,
-      maxAge: 1800, // 30 min
+      maxAge: data.expiresIn,
+      path: '/',
+      sameSite: 'strict',
+      secure: true,
+    }
+  );
+
+  response.cookies.set(
+    storageKeys.refreshToken,
+    data.refreshToken,
+    {
+      httpOnly: true,
+      maxAge: data.refreshExpiresIn,
       path: '/',
       sameSite: 'strict',
       secure: true,
