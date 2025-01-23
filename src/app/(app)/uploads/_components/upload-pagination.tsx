@@ -54,8 +54,8 @@ export function UploadsPagination({
   return (
     <div className="p-2 flex items-center justify-between">
       <p>
-        Exibindo {pageSize} de {totalResults} resultados. {" "}
-        Página {currentPage} de {totalPages} página(s).
+        Exibindo {totalResults} de {pageSize} items por página. {" "}
+        Página {currentPage} de um total de {totalPages} página(s).
       </p>
 
       <div className="flex items-center justify-center gap-4">

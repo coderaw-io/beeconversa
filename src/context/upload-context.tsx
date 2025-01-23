@@ -110,8 +110,8 @@ export const UploadProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   const removeUpload = useCallback((file: File) => {
     setUploads((prevUploads) => prevUploads.filter((u) => u.file !== file))
-
   }, [])
+  
   return (
     <UploadContext.Provider
       value={{

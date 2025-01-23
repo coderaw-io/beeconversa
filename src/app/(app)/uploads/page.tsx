@@ -1,5 +1,3 @@
-"use client"
-
 import { PageHeader } from "@/components/shared/page-header";
 import { UploadProvider } from "@/context/upload-context";
 import { StorageUsage } from "./_components/storage-usage";
