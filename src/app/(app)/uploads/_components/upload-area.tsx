@@ -16,6 +16,8 @@ const isValidFileType = (file: File) => {
 export function UploadArea() {
   const { uploads, addUpload, removeUpload } = useUploadContext()
 
+  if (!uploads) return null; 
+
   const [isDragging, setIsDragging] = useState(false)
 
   const fileInputRef = useRef<HTMLInputElement>(null)

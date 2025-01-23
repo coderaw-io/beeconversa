@@ -5,7 +5,14 @@ import { Progress } from "@/components/ui/progress";
 import { useUploadContext } from "@/hooks/use-upload";
 
 export function StorageUsage() {
-  const { successfulUploads, failedUploads, duplicateFiles, uploadedFiles } = useUploadContext()
+  const {
+    successfulUploads,
+    failedUploads,
+    duplicateFiles,
+    uploadedFiles
+  } = useUploadContext()
+
+  if (!uploadedFiles) return null;
 
   const totalStorageUsed = uploadedFiles ? uploadedFiles.length : 0
   const storagePercentage = Math.min(Math.round((totalStorageUsed / 500) * 100), 100)
@@ -41,7 +48,7 @@ export function StorageUsage() {
           <p className="text-sm text-muted-foreground">
             <strong>{totalStorageUsed} GB</strong> {" "}
             de arquivos importados na plataforma. {" "}
-            Disponível um total de <strong>500 GB</strong>. 
+            Disponível um total de <strong>500 GB</strong>.
           </p>
         </div>
       </div>

@@ -23,6 +23,8 @@ export function UploadsContent() {
     setPageSize,
   } = useUploadContext()
 
+  if (!uploadedFiles) return null; 
+
   return (
     <>
       <div className="pt-6 space-y-6">

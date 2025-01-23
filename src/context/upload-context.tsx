@@ -58,12 +58,12 @@ export const UploadProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   useEffect(() => {
     if (data) {
-      setTotalPages(data.totalPages)
-      setTotalResults(data.totalResults)
+      setTotalPages(data.totalPages ?? 1);
+      setTotalResults(data.totalResults ?? 0);
     }
-  }, [data])
+  }, [data]);  
 
-  const uploadedFiles = data?.results
+  const uploadedFiles = data?.results || [];
 
   const addUpload = useCallback(
     (file: File) => {
