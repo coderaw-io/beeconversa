@@ -12,6 +12,16 @@ import {
 } from "@/components/ui/sheet";
 
 import {
+  ArrowLeftIcon,
+  FingerprintIcon,
+  LoaderPinwheelIcon,
+  MailIcon,
+  PhoneIcon,
+  PlusIcon,
+  User2Icon
+} from "lucide-react";
+
+import {
   Form,
   FormControl,
   FormDescription,
@@ -24,11 +34,32 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeftIcon, FingerprintIcon, MailIcon, PhoneIcon, PlusIcon, User2Icon } from "lucide-react";
+import { addCustomerSchema, AddCustomerSchema } from "@/schemas/customer";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
 export function AddCustomer() {
-  const form = useForm();
+  const form = useForm<AddCustomerSchema>({
+    resolver: zodResolver(addCustomerSchema),
+    defaultValues: {
+      name: "",
+      emails: [],
+      phones: [],
+      cpf: "",
+    },
+  });
+
+  const onSubmit = form.handleSubmit(async data => {
+    const formData = {
+      name: data.name,
+      emails: data.emails[0],
+      phones: data.phones[0],
+      cpf: data.cpf
+    }
+
+    console.log(formData);
+    form.reset();
+  });
 
   return (
     <Form {...form}>
@@ -41,7 +72,7 @@ export function AddCustomer() {
         </SheetTrigger>
 
         <SheetContent className="p-0">
-          <form>
+          <form onSubmit={onSubmit}>
             <SheetHeader className="p-6">
               <SheetTitle>Adicionar um novo cliente</SheetTitle>
               <SheetDescription>
@@ -63,6 +94,7 @@ export function AddCustomer() {
                           <Input
                             placeholder="Informe o nome completo do seu cliente"
                             className="h-11 w-full pl-10 pr-10"
+                            maxLength={100}
                             {...field}
                           />
                         </div>
@@ -86,6 +118,7 @@ export function AddCustomer() {
                           <Input
                             placeholder="Informe o e-mail do seu cliente"
                             className="h-11 w-full pl-10 pr-10"
+                            maxLength={100}
                             {...field}
                           />
                           <Button
@@ -175,8 +208,10 @@ export function AddCustomer() {
                 </Button>
               </SheetClose>
 
-              <Button type="submit" className="h-10">
-                Finalizar cadastro
+              <Button type="submit" className="h-10" disabled={form.formState.isSubmitting}>
+                {form.formState.isSubmitting ? (
+                  <LoaderPinwheelIcon className="size-4 animate-spin" />
+                ) : "Finalizar cadastro"}
               </Button>
             </SheetFooter>
           </form>
