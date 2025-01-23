@@ -7,8 +7,7 @@ import {
 import { Customer } from "@/@types/customers/customer"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { MailsIcon } from "lucide-react"
+import { MailIcon, MailsIcon } from "lucide-react"
 
 interface CustomersEmailsPopoverProps {
   customer: Customer
@@ -20,35 +19,38 @@ export function CustomersEmailsPopover({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button type="button" variant="outline">
-          Email's
+        <Button 
+          type="button" 
+          size="sm" 
+          variant="outline"
+          className="flex items-center gap-2 xl:h-9"
+        >
+          <MailsIcon className="size-4" />
+          Emails ({customer.emails.length})
         </Button>
       </PopoverTrigger>
 
-      <PopoverContent align="center" className="w-80">
+      <PopoverContent align="start" className="w-72">
         <div className="grid gap-4">
           <div className="space-y-2">
             <h4 className="font-medium leading-none">
-              E-mail's cadastrados
+              E-mails cadastrados
             </h4>
 
             <p className="text-sm text-muted-foreground">
-              Este cliente possui mais de um e-mail cadastrado.
+              Este cliente possui mais de um e-mail cadastrado no sistema.
             </p>
           </div>
 
-          <div className="grid gap-2">
-            {customer.emails.map((data) => (
-              <div className="grid grid-cols-3 items-center gap-4">
-                <Label htmlFor="emails">
-                  <MailsIcon />
-                </Label>
+          <div className="grid grid-cols-1 items-center gap-4">
+            {customer.emails.map((data, index) => (
+              <div key={index} className="relative w-full">
+                <MailIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground size-4" />
 
                 <Input
                   id="emails"
-                  className="col-span-2 h-8"
-                  value={customer.emails}
-                  disabled
+                  className="w-full pl-10"
+                  value={data}
                 />
               </div>
             ))}
