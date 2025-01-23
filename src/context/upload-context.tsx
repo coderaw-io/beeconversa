@@ -5,7 +5,7 @@ import type React from "react"
 import type { GetAllUploadedFileResponse, UploadedFileResult } from "@/@types/upload/upload"
 import { UploadService } from "@/services/upload-service"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
-import { createContext, useCallback, useEffect, useState } from "react"
+import { createContext, useCallback, useEffect, useMemo, useState } from "react"
 
 interface FileUpload {
   file: File
@@ -63,7 +63,7 @@ export const UploadProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
   }, [data]);  
 
-  const uploadedFiles = data?.results || [];
+  const uploadedFiles = useMemo(() => data?.results || [], [data])
 
   const addUpload = useCallback(
     (file: File) => {
