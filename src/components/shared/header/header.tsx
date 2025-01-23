@@ -4,11 +4,11 @@ import {
   TooltipTrigger
 } from "../../ui/tooltip";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { SparklesIcon } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
-import { Badge } from "../../ui/badge";
-import { Button } from "../../ui/button";
-import { Separator } from "../../ui/separator";
 import { ChangeTheme } from "./change-theme";
 import { CommandSearch } from "./command-search";
 import { Notifications } from "./notifications";
@@ -30,8 +30,8 @@ export function Header() {
 
         <Separator orientation="vertical" className="hidden lg:flex h-6" />
 
-        <Badge className="hidden lg:flex bg-lime-200 text-foreground tracking-wider hover:bg-succes dark:text-background">
-          <span className="size-2 rounded-full bg-emerald-900 mr-1 animate-pulse" />
+        <Badge className="hidden lg:flex bg-success text-foreground tracking-wider hover:bg-succes dark:text-secondary">
+          <span className="size-2 rounded-full bg-foreground mr-1 animate-pulse dark:bg-secondary" />
           Versão Beta
         </Badge>
       </div>

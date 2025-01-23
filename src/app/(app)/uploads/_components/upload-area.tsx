@@ -95,7 +95,7 @@ export function UploadArea() {
           <p className="text-lg text-muted-foreground">
             Clique para importar seu arquivo ou arraste e solte o arquivo aqui.
             <br />
-            <span className="text-sm">
+            <span className="text-sm font-bold italic tracking-widest">
               Tipos permitidos: .xls, .csv, .xlsx
             </span>
           </p>

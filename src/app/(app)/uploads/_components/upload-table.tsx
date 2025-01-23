@@ -105,12 +105,12 @@ export function UploadsTable({
                           <Badge
                             variant="secondary"
                             className={cn("rounded-full tracking-wider bg-link text-background dark:bg-link dark:text-foreground", {
-                              "bg-success text-foreground dark:bg-success dark:text-foreground": upload.fileStatus === "Concluded",
+                              "bg-success text-foreground dark:bg-success dark:text-secondary": upload.fileStatus === "Concluded",
                             })}
                           >
                             <span
                               className={cn("size-2 rounded-full bg-background dark:bg-foreground mr-1", {
-                                "bg-foreground dark:bg-foreground": upload.fileStatus === "Concluded",
+                                "bg-foreground dark:bg-secondary": upload.fileStatus === "Concluded",
                               })}
                             />
                             {uploadFileStatus}
