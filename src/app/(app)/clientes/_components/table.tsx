@@ -1,14 +1,16 @@
 "use client"
 
-import CustomersLoading from "../loading"
+import CustomersLoading from "../loading";
 
-import { Customers } from "@/@types/customers/customer"
-import { ReportIsonIcon } from "@/components/shared/icons/report-ison-icon"
-import { Badge } from "@/components/ui/badge"
-import { Checkbox } from "@/components/ui/checkbox"
-import { cn } from "@/lib/utils"
-import { CustomerService } from "@/services/customer-service"
-import { useQuery } from "@tanstack/react-query"
+import { Customers } from "@/@types/customers/customer";
+import { ReportIsonIcon } from "@/components/shared/icons/report-ison-icon";
+import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
+import { cn } from "@/lib/utils";
+import { CustomerService } from "@/services/customer-service";
+import { useQuery } from "@tanstack/react-query";
+import { CustomersEmailsPopover } from "./emails-popover";
+import { CustomersPhoneNumbersPopover } from "./phone-numbers-popover";
 
 export function CustomersTable() {
   const { data: customersData, isPending } = useQuery<Customers>({
@@ -59,19 +61,35 @@ export function CustomersTable() {
 
                 <td className="py-4">
                   <div>
-                    <div className="font-medium">{customer.name}</div>
-                    <div className="text-sm text-gray-500">{customer.id}</div>
+                    <div className="text-sm font-medium truncate xl:text-base">
+                      {customer.name}
+                    </div>
+                    <div className="text-xs text-muted-foreground truncate xl:text-sm">
+                      {customer.id}
+                    </div>
                   </div>
                 </td>
 
-                <td className="py-4">{customer.emails}</td>
-                <td className="py-4">{customer.phonenumbers}</td>
-                <td className="py-4">{customer.cpf}</td>
+                <td className="text-sm py-4 xl:text-base">
+                  {customer.emails.length > 1 ? (
+                    <CustomersEmailsPopover customer={customer} />
+                  ) : customer.emails}
+                </td>
+
+                <td className="text-sm py-4 xl:text-base">
+                  {customer.phonenumbers.length > 1 ? (
+                    <CustomersPhoneNumbersPopover customer={customer} />
+                  ) : customer.phonenumbers}
+                </td>
+
+                <td className="text-sm py-4 xl:text-base">
+                  {customer.cpf}
+                </td>
 
                 <td className="py-4">
                   <Badge
                     variant="secondary"
-                    className={cn("rounded-full tracking-wider", {
+                    className={cn("text-[11px] rounded-full tracking-wider xl:text-xs", {
                       "bg-success text-emerald-950 hover:bg-emerald-300 dark:bg-success dark:hover:bg-emerald-300": customer.status === "active",
                       "bg-yellow-400 text-black hover:bg-yellow-500 dark:bg-yellow-400 dark:hover:bg-yellow-500": customer.status === "inactive",
                       "bg-red-100 text-destructive hover:bg-red-200 dark:bg-red-100 dark:hover:bg-red-200": customer.status === "blocked",

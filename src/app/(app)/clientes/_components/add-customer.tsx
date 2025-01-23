@@ -35,39 +35,63 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { addCustomerSchema, AddCustomerSchema } from "@/schemas/customer";
+import { CustomerService } from "@/services/customer-service";
 import { maskDocument } from "@/utils/masks/mask-document";
 import { maskPhoneNumber } from "@/utils/masks/mask-phone-number";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 export function AddCustomer() {
   const form = useForm<AddCustomerSchema>({
     resolver: zodResolver(addCustomerSchema),
     defaultValues: {
       name: "",
-      emails: [],
-      phones: [],
+      emails: "",
+      phones: "",
       cpf: "",
     },
   });
 
   const phones = form.watch("phones");
   const document = form.watch("cpf");
-  const [maskedPhone, setMaskedPhone] = useState("")
+  const queryClient = useQueryClient();
 
   useEffect(() => {
-    if (phones && phones.length > 0 || document !== undefined) {
-      const maskedValue = maskPhoneNumber(phones[0])
-      if (maskedValue !== maskedPhone) setMaskedPhone(maskedValue)
-
-      form.setValue("cpf", maskDocument(document))
+    if (phones !== undefined || document !== undefined) {
+      form.setValue("phones", maskPhoneNumber(phones));
+      form.setValue("cpf", maskDocument(document));
     }
-  }, [phones, maskedPhone, document, form])
+  }, [phones, document, form]);
 
   const onSubmit = form.handleSubmit(async data => {
-    console.log(data);
-    form.reset();
+    try {
+      const formData = {
+        name: data.name,
+        emails: [data.emails],
+        phones: [data.phones],
+        cpf: data.cpf
+      }
+
+      await CustomerService.createCustomer(formData);
+      queryClient.invalidateQueries({
+        queryKey: ["get-all-customers"],
+        exact: true,
+        refetchType: "all"
+      })
+
+      toast.success("CLIENTE CADASTRADO COM SUCESSO", {
+        description: "O registro do novo cliente foi concluído."
+      });
+    } catch {
+      toast.error("OCORREU UM ERRO AO CADASTRAR CLIENTE", {
+        description: "Verifique os dados digitados e tente novamente."
+      });
+    } finally {
+      form.reset();
+    }
   });
 
   return (
@@ -163,12 +187,7 @@ export function AddCustomer() {
                           <Input
                             placeholder="Informe o telefone do seu cliente"
                             className="h-11 w-full pl-10 pr-10"
-                            value={maskedPhone}
-                            onChange={(e) => {
-                              const value = e.target.value
-                              setMaskedPhone(value)
-                              field.onChange([value])
-                            }}
+                            {...field}
                           />
                           <Button
                             type="button"
@@ -224,7 +243,10 @@ export function AddCustomer() {
 
               <Button type="submit" className="h-10" disabled={form.formState.isSubmitting}>
                 {form.formState.isSubmitting ? (
-                  <LoaderPinwheelIcon className="size-4 animate-spin" />
+                  <div className="flex items-center gap-2">
+                    Cadastrando
+                    <LoaderPinwheelIcon className="size-4 animate-spin" />
+                  </div>
                 ) : "Finalizar cadastro"}
               </Button>
             </SheetFooter>

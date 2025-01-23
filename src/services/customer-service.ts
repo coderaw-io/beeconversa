@@ -1,4 +1,4 @@
-import { GetAllCustomerResponse } from "@/@types/customers/customer";
+import { CreateCustomerRequest, GetAllCustomerResponse } from "@/@types/customers/customer";
 import { customerApi } from "@/lib/axios";
 import { AuthService } from "./auth-service";
 
@@ -17,6 +17,25 @@ export class CustomerService {
       return data.results;
     } catch (error) {
       console.log("Get all customers error:", error);
+      throw new Error("Internal server error!");
+    }
+  }
+
+  static async createCustomer(request: CreateCustomerRequest) {
+    try {
+      const accessToken = await AuthService.getAccessToken();
+      Promise.resolve(accessToken)
+
+      const { data } = await customerApi.post("/customers",
+        request, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+
+      return data;
+    } catch (error) {
+      console.log("Create customer error:", error);
       throw new Error("Internal server error!");
     }
   }
