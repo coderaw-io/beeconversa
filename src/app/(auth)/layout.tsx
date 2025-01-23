@@ -1,7 +1,6 @@
 import React from "react";
 
-import { storageKeys } from "@/config/storage-keys";
-import { cookies } from "next/headers";
+import { getAccessToken } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
 export default async function AuthLayout({
@@ -9,10 +8,9 @@ export default async function AuthLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(storageKeys.accessToken);
+  const loggedUser = getAccessToken();
 
-  if (token) {
+  if (await loggedUser) {
     redirect("/");
   }
 

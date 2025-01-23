@@ -3,8 +3,7 @@ import ProtectedLayout from "@/components/shared/protected-layout"
 import { Header } from "@/components/shared/header/header"
 import { AppSidebar } from "@/components/shared/sidebar/app-sidebar"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { storageKeys } from "@/config/storage-keys"
-import { cookies } from "next/headers"
+import { getAccessToken } from "@/lib/auth"
 import { redirect } from "next/navigation"
 
 interface DashboardLayoutProps {
@@ -14,10 +13,9 @@ interface DashboardLayoutProps {
 export default async function DashboardLayout({
   children
 }: DashboardLayoutProps) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(storageKeys.accessToken);
+  const loggedUser = getAccessToken();
 
-  if (!token) {
+  if (!loggedUser) {
     redirect("/login");
   }
 
