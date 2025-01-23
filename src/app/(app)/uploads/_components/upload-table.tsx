@@ -3,7 +3,6 @@ import UploadLoading from "../loading";
 import { UploadedFileResult } from "@/@types/upload/upload";
 import { NetworkArrowUpIcon } from "@/components/shared/icons/network-arrow-up";
 import { Button } from "@/components/ui/button";
-import { format } from "date-fns";
 import { TrashIcon } from "lucide-react";
 import { UploadFileSkeleton } from "./upload-file-skeleton";
 import { UploadsPagination } from "./upload-pagination";
@@ -38,7 +37,7 @@ export function UploadsTable({
           <thead className="border-b bg-muted/50">
             <tr className="text-left">
               <th className="p-4 font-medium">Nome do arquivo</th>
-              <th className="p-4 font-medium">Data do upload</th>
+              {/* <th className="p-4 font-medium">Data do upload</th> */}
               <th className="p-4 text-center font-medium">Linhas importadas</th>
               <th className="p-4 text-center font-medium">Linhas não importadas</th>
               <th className="p-4 text-center font-medium">Responsável</th>
@@ -78,9 +77,9 @@ export function UploadsTable({
                             </div>
                           </div>
                         </td>
-                        <td className="p-4 text-muted-foreground">
+                        {/* <td className="p-4 text-muted-foreground">
                           {format(new Date(upload.creationDate).toLocaleDateString(), "dd/MM/yyyy")}
-                        </td>
+                        </td> */}
                         <td className="p-4 text-center text-muted-foreground">
                           {upload.totalRowsImported}
                         </td>
