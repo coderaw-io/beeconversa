@@ -4,15 +4,18 @@ import { UploadedFileResult } from "@/@types/upload/upload"
 import { Skeleton } from "@/components/ui/skeleton"
 import { UploadService } from "@/services/upload-service"
 import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { toast } from "sonner"
 
 interface UploadFileSkeletonProps {
   fileId: string
+  fileName: string
   page: number
   pageSize: number
 }
 
 export function UploadFileSkeleton({ 
   fileId,
+  fileName,
   page,
   pageSize
 }: UploadFileSkeletonProps) {
@@ -29,6 +32,10 @@ export function UploadFileSkeleton({
   })
 
   if (fileStatusData && fileStatusData.fileStatus === "Concluded") {
+    toast.info("UPLOAD DO SEU ARQUIVO CONCLUÍDO", {
+      description: `Você importou o arquivo ${fileName} com êxito.`
+    })
+
     queryClient.invalidateQueries({
       queryKey: ["get-all-uploaded-files", page, pageSize],
       exact: true,

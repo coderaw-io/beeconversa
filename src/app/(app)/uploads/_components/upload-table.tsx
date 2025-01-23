@@ -2,7 +2,9 @@ import UploadLoading from "../loading";
 
 import { UploadedFileResult } from "@/@types/upload/upload";
 import { NetworkArrowUpIcon } from "@/components/shared/icons/network-arrow-up";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { TrashIcon } from "lucide-react";
 import { UploadFileSkeleton } from "./upload-file-skeleton";
@@ -42,6 +44,7 @@ export function UploadsTable({
               <th className="p-4 text-center font-medium">Linhas importadas</th>
               <th className="p-4 text-center font-medium">Linhas não importadas</th>
               <th className="p-4 text-center font-medium">Responsável</th>
+              <th className="p-4 text-center font-medium">Status</th>
               <th className="p-4 font-medium">Ações</th>
             </tr>
           </thead>
@@ -50,13 +53,15 @@ export function UploadsTable({
             {uploads.length ? (
               uploads.map((upload) => {
                 const fileName = upload.filePath.split("/")[2];
-                const formattedDate = format(new Date(upload.creationDate), "dd/MM/yyyy")
+                const formattedDate = format(new Date(upload.creationDate), "dd/MM/yyyy");
+                const uploadFileStatus = upload.fileStatus === "InProgress" ? "Em proguesso" : "Concluído";
 
                 return (
                   <tr key={upload.id} className="border-b">
                     {upload.fileStatus === "InProgress" ? (
                       <UploadFileSkeleton
                         fileId={upload.id}
+                        fileName={fileName}
                         page={currentPage}
                         pageSize={pageSize}
                       />
@@ -79,18 +84,39 @@ export function UploadsTable({
                             </div>
                           </div>
                         </td>
+
                         <td className="p-4 text-muted-foreground">
                           {formattedDate}
                         </td>
+
                         <td className="p-4 text-center text-muted-foreground">
                           {upload.totalRowsImported}
                         </td>
+
                         <td className="p-4 text-center text-muted-foreground">
                           {upload.totalRowsNotImported}
                         </td>
-                        <td className="p-4 text-center text-muted-foreground">
-                          {upload.user.name}
+
+                        <td className="p-4 text-sm text-center text-muted-foreground truncate xl:text-base">
+                          {upload.user.username}
                         </td>
+
+                        <td className="p-4 text-center text-muted-foreground">
+                          <Badge
+                            variant="secondary"
+                            className={cn("rounded-full tracking-wider bg-link text-background dark:bg-link dark:text-foreground", {
+                              "bg-success text-foreground dark:bg-success dark:text-foreground": upload.fileStatus === "Concluded",
+                            })}
+                          >
+                            <span
+                              className={cn("size-2 rounded-full bg-background dark:bg-foreground mr-1", {
+                                "bg-foreground dark:bg-foreground": upload.fileStatus === "Concluded",
+                              })}
+                            />
+                            {uploadFileStatus}
+                          </Badge>
+                        </td>
+
                         <td className="p-4">
                           <div className="flex items-center gap-2">
                             <Button
