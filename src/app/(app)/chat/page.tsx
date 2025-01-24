@@ -1,9 +1,11 @@
 "use client"
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Separator } from "@/components/ui/separator"
 import { type Message, useChat } from "ai/react"
-import { CloudUploadIcon, LoaderIcon, MicIcon, SendIcon } from "lucide-react"
+import { CloudUploadIcon, LoaderIcon, MessageCircleIcon, MicIcon, SendIcon } from "lucide-react"
 import { useState } from "react"
 
 export default function AIChatPage() {
@@ -25,9 +27,12 @@ export default function AIChatPage() {
         <section className="flex-1 flex flex-col items-center justify-center px-4">
           <div className="w-full max-w-3xl space-y-6">
             <div className="flex flex-col space-y-1.5">
-              <h1 className="text-left text-3xl md:text-4xl font-bold">Bem vindo ao assistente de IA</h1>
-              <p className="text-muted-foreground">
-                O seu copiloto com tecnologia de Inteligência Artificial para o dia a dia.
+              <h1 className="text-left text-3xl font-bold md:text-4xl xl:text-5xl xl:italic">
+                Beeconversa
+                <strong className="text-yellow-400">IA</strong>
+              </h1>
+              <p className="text-muted-foreground xl:text-lg">
+                O seu assistente de inteligência artificial.
               </p>
             </div>
 
@@ -45,7 +50,7 @@ export default function AIChatPage() {
 
                 <Input
                   className="flex-1 bg-transparent border-0 ring-0 outline-none focus-visible:ring-0 shadow-none"
-                  placeholder="Pergunte-me sobre qualquer assunto ..."
+                  placeholder="Envie uma mensagem para o Beeconversa IA"
                   value={input}
                   onChange={handleInputChange}
                   disabled={isLoading}
@@ -60,10 +65,10 @@ export default function AIChatPage() {
                     type="submit"
                     variant="secondary"
                     size="sm"
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-2 h-9"
                     disabled={!input.trim() || isLoading}
                   >
-                    {isLoading ? "Enviando..." : "Enviar"}
+                    Iniciar conversa
                     <SendIcon className="size-4" />
                   </Button>
                 </div>
@@ -76,10 +81,26 @@ export default function AIChatPage() {
   }
 
   return (
-    <div className="flex flex-col h-auto max-w-3xl mx-auto">
-      <div className="flex-1 overflow-y-auto p-4">
+    <div className="flex flex-col space-y-6 h-auto w-full mt-6">
+      <div className="max-w-3xl w-full mx-auto flex-1 overflow-y-auto">
         {messages.map((message: Message) => (
-          <div key={message.id} className={`mb-4 ${message.role === "user" ? "text-right" : "text-left"}`}>
+          <div
+            key={message.id}
+            className={`mb-6 ${message.role !== "user" ?
+              "flex justify-end items-center text-right gap-4" : "flex justify-start items-center text-left gap-4"}`}
+          >
+            <Avatar className={`mb-auto ${message.role !== "user" ? "hidden" : "flex"}`}>
+              <AvatarImage
+                src={`${message.role === "user" ?
+                  "https://i.ibb.co/5MV0D9t/linux.jpg" : `https://i.ibb.co/HhQqVFS/icon-dark.png`}`}
+                className="object-cover"
+                alt="@shadcn"
+              />
+              <AvatarFallback>
+                {`${message.role === "user" ? "USR" : "BEE"}`}
+              </AvatarFallback>
+            </Avatar>
+
             <div
               className={`inline-block p-4 rounded-[1rem] ${message.role === "user" ?
                 "bg-border text-foreground" : "bg-foreground text-background"
@@ -87,24 +108,48 @@ export default function AIChatPage() {
             >
               {message.content}
             </div>
+
+            <Avatar className={`mb-auto ${message.role === "user" ? "hidden" : "flex"}`}>
+              <AvatarImage
+                src={`${message.role === "user" ?
+                  "https://i.ibb.co/5MV0D9t/linux.jpg" : `https://i.ibb.co/HhQqVFS/icon-dark.png`}`}
+                className="object-cover"
+                alt="@shadcn"
+              />
+              <AvatarFallback>
+                {`${message.role === "user" ? "USR" : "BEE"}`}
+              </AvatarFallback>
+            </Avatar>
           </div>
         ))}
       </div>
 
-      <form onSubmit={handleSubmit} className="p-4 border-t">
+      <Separator className="w-full" />
+
+      <form onSubmit={handleSubmit} className="sticky bottom-0 shrink-0 z-10 max-w-3xl w-full mx-auto p-4">
         <div className="flex items-center space-x-2">
-          <Input
-            className="flex-1"
-            placeholder="Digite sua mensagem..."
-            value={input}
-            onChange={handleInputChange}
-            disabled={isLoading}
-          />
+          <div className="relative w-full">
+            <MessageCircleIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground size-4" />
+
+            <Input
+              className="flex-1 h-11 pl-10"
+              placeholder="Digite sua mensagem"
+              value={input}
+              onChange={handleInputChange}
+              disabled={isLoading}
+            />
+          </div>
+
           <Button type="submit" disabled={!input.trim() || isLoading}>
-            {isLoading ? <LoaderIcon className="size-4 animate-spin" /> : (
+            {isLoading ? (
+              <>
+                Gerando
+                <LoaderIcon className="ml-2 after:size-4 animate-spin" />
+              </>
+            ) : (
               <>
                 Enviar
-                <SendIcon className="ml-2 size-4" />
+                <SendIcon className="ml-0.5 size-4" />
               </>
             )}
           </Button>
@@ -112,7 +157,7 @@ export default function AIChatPage() {
       </form>
 
       {errorMessage && (
-        <div className="text-red-500 text-center mx-4 mb-4">
+        <div className="text-destructive text-center mx-4 mb-4">
           Erro interno ao processar mensagem. Tente novamente.
         </div>
       )}

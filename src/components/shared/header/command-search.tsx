@@ -9,10 +9,10 @@ import {
   CommandList
 } from '@/components/ui/command';
 
+import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { ArrowRightIcon, LinkIcon, SearchIcon } from "lucide-react";
 import { useState } from "react";
-import { Button } from "../../ui/button";
 
 export function CommandSearch() {
   const [open, setOpen] = useState(false)
