@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import {
   Tooltip,
   TooltipContent,
@@ -19,14 +21,16 @@ export function Header() {
       <div className="hidden md:flex items-center gap-6 w-full">
         <CommandSearch />
 
-        <Button
-          type="button"
-          size="sm"
-          className="hidden xl:flex items-center gap-2 h-9"
-        >
-          <SparklesIcon className="size-4" />
-          Chat com IA
-        </Button>
+        <Link href="/chat">
+          <Button
+            type="button"
+            size="sm"
+            className="hidden xl:flex items-center gap-2 h-9"
+          >
+            <SparklesIcon className="size-4" />
+            Chat com IA
+          </Button>
+        </Link>
 
         <Separator orientation="vertical" className="hidden lg:flex h-6" />
 
