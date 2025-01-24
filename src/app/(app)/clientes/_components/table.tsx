@@ -20,7 +20,7 @@ export function CustomersTable({
   if (isPending) return <CustomersLoading />
 
   return (
-    <div className="my-8 border rounded-[0.75rem]">
+    <div className="mt-8 mb-4 border rounded-[0.75rem]">
       <table className="w-full">
         <thead className="border-b bg-muted/50">
           <tr className="text-left">

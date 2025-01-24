@@ -116,7 +116,7 @@ export function AddCustomer() {
           </Button>
         </SheetTrigger>
 
-        <SheetContent className="p-0">
+        <SheetContent className="p-0 m-3 h-auto rounded-[0.75rem]">
           <form onSubmit={onSubmit}>
             <SheetHeader className="p-6">
               <SheetTitle>Adicionar um novo cliente</SheetTitle>
