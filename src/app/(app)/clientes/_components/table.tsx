@@ -5,6 +5,7 @@ import { ReportIsonIcon } from "@/components/shared/icons/report-ison-icon";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
+import { DeleteCustomer } from "./delete-customer";
 import { CustomersEmailsPopover } from "./emails-popover";
 import { CustomersPhoneNumbersPopover } from "./phone-numbers-popover";
 
@@ -46,6 +47,12 @@ export function CustomersTable({
 
             <th className="p-4 font-medium">
               Status
+            </th>
+
+            <th className="p-4">
+              <span className="sr-only">
+                Ações
+              </span>
             </th>
           </tr>
         </thead>
@@ -108,6 +115,10 @@ export function CustomersTable({
                       customer.status === "inactive" ? "Inativo" :
                         customer.status === "blocked" ? "Bloqueado" : "Não informado"}
                   </Badge>
+                </td>
+
+                <td className="py-4 text-left">
+                  <DeleteCustomer customerId={customer.id} customerName={customer.name} />
                 </td>
               </tr>
             )) : (
