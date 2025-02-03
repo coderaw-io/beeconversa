@@ -45,7 +45,7 @@ export function CustomersTable({
               CPF
             </th>
 
-            <th className="p-4 font-medium">
+            <th className="hidden xl:flex p-4 font-medium">
               Status
             </th>
 
@@ -92,7 +92,7 @@ export function CustomersTable({
                   {customer.cpf}
                 </td>
 
-                <td className="py-4">
+                <td className="hidden xl:flex py-4">
                   <Badge
                     variant="secondary"
                     className={cn("text-[11px] rounded-full tracking-wider xl:text-xs", {
