@@ -7,7 +7,10 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request: NextRequest) {
   const body = await request.json();
 
-  const { success, error, data: formData } = loginSchema.safeParse(body);
+  const { success, error, data: form } = loginSchema.safeParse(body);
+  
+  const signIn = { username: form?.username, password: form?.password };
+  const tenant = form?.tenant.toLowerCase();
 
   if (!success) {
     return NextResponse.json(
@@ -16,7 +19,11 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const { data } = await authApi.post<SignInResponse>("/users/login", formData);
+  const { data } = await authApi.post<SignInResponse>("/users/login", signIn, {
+    headers: {
+      Tenant: `${tenant}`
+    }
+  });
 
   const response = new NextResponse(null, { status: 204 });
 

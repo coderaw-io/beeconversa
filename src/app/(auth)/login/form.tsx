@@ -33,10 +33,11 @@ export function LoginForm({
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
   const route = useRouter();
-  
+
   const form = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
+      tenant: "",
       username: "",
       password: "",
     },
@@ -45,6 +46,7 @@ export function LoginForm({
   async function onSubmit() {
     try {
       const formData = {
+        tenant: form.watch("tenant"),
         username: form.watch("username"),
         password: form.watch("password"),
       };
@@ -97,6 +99,26 @@ export function LoginForm({
                 </div>
 
                 <div className="grid gap-6">
+                  <FormField
+                    name="tenant"
+                    control={form.control}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Empresa</FormLabel>
+                        <FormControl>
+                          <Input
+                            id="tenant"
+                            type="text"
+                            placeholder="Nome da sua empresa"
+                            required
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
                   <FormField
                     name="username"
                     control={form.control}
