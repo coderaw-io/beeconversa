@@ -66,7 +66,7 @@ export function DashboardCards() {
               </div>
 
               <Badge className={cn(
-                "rounded-sm text-sm flex items-center gap-2 px-4 hover:bg-foreground",
+                "rounded-sm text-xs flex items-center gap-2 hover:bg-foreground",
                 item.status === "decreasing" ?
                   "bg-destructive text-red-100 dark:bg-red-100 dark:text-destructive" :
                   "bg-emerald-100 text-emerald-600 dark:bg-emerald-600 dark:text-emerald-100"
