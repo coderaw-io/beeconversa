@@ -15,7 +15,7 @@ const metrics = [
   {
     id: 1,
     title: "Campanhas",
-    balance: "16.500,91",
+    total: "16.500",
     percent: "3.7%",
     status: "growing",
     period: "01 de Janeiro de 2025 - 01 de Fevereiro de 2025"
@@ -23,7 +23,7 @@ const metrics = [
   {
     id: 2,
     title: "Envios",
-    balance: "342,85",
+    total: "342",
     percent: "1.8%",
     status: "decreasing",
     period: "01 de Dezembro de 2024 - 01 de Janeiro de 2025"
@@ -31,15 +31,15 @@ const metrics = [
   {
     id: 3,
     title: "Negociando",
-    balance: "1.024,17",
+    total: "1.024",
     percent: "2.1%",
     status: "growing",
     period: "01 de Dezembro de 2024 - 30 de Janeiro de 2025"
   },
   {
     id: 4,
-    title: "Taxa de conversão",
-    balance: "9.403,29",
+    title: "Conversão de clientes",
+    total: "9.403",
     percent: "2.5%",
     status: "growing",
     period: "01 de Dezembro de 2024 - 01 de Fevereiro de 2025"
@@ -51,15 +51,15 @@ export function DashboardCards() {
     <div className="grid grid-cols-2 items-center gap-6 xl:grid-cols-4">
       {metrics.map((item) => (
         <Card key={item.id} className="p-0">
-          <CardHeader className="p-6">
+          <CardHeader className="px-6">
             <CardTitle className="text-xl">{item.title}</CardTitle>
             <CardDescription className="sr-only">Métricas do sistema</CardDescription>
           </CardHeader>
+          
           <CardContent className="p-0">
             <div className="flex justify-between items-center px-6 pb-8">
-              <h4 className="text-3xl font-bold">
-                <span className="text-xl font-bold mr-1">R$</span>
-                {item.balance}
+              <h4 className="text-3xl font-bold xl:text-4xl">
+                {item.total}
               </h4>
 
               <Badge className={cn(
@@ -74,7 +74,7 @@ export function DashboardCards() {
               </Badge>
             </div>
 
-            <CardFooter className="flex items-center gap-2 text-muted-foreground text-sm font-medium border-t py-4 truncate">
+            <CardFooter className="flex items-center gap-2 text-muted-foreground text-[13px] leading-5 font-medium border-t py-4 truncate">
               <CalendarCheck2Icon className="size-4" />
               {item.period}
             </CardFooter>

@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/chart"
 import { Separator } from "@/components/ui/separator"
 
-import { TrendingUpIcon } from "lucide-react"
+import { Share2Icon, TrendingUpIcon } from "lucide-react"
 import { Bar, BarChart, XAxis, YAxis } from "recharts"
 
 const chartData = [
@@ -40,8 +40,16 @@ export function DashboardBarChartHorizontal() {
   return (
     <Card className="h-auto p-0 xl:h-[438px]">
       <CardHeader className="p-6">
-        <CardTitle>Métricas de envios por período</CardTitle>
-        <CardDescription>Janeiro 2025 - Junho 2025</CardDescription>
+        <div className="flex items-center gap-4">
+          <div className="size-12 rounded-lg bg-yellow-100 flex items-center justify-center dark:bg-border">
+            <Share2Icon className="size-6 text-primary dark:text-foreground" />
+          </div>
+
+          <div className="flex flex-col space-y-1.5">
+            <CardTitle>Métricas de envios por período</CardTitle>
+            <CardDescription>Janeiro 2025 - Junho 2025</CardDescription>
+          </div>
+        </div>
       </CardHeader>
       <Separator />
       <CardContent className="p-6">

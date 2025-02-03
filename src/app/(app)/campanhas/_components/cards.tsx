@@ -32,7 +32,7 @@ export function CampaignCards() {
           campaignData?.map((item) => (
             <Card key={item.id} className="p-0 mt-8 mb-4">
               <div className="flex items-start justify-between p-6">
-                <div className="flex gap-4">
+                <div className="flex items-center gap-4">
                   <div className="size-12 rounded-lg bg-yellow-100 flex items-center justify-center">
                     <RocketIcon className="h-6 w-6 text-yellow-500" />
                   </div>

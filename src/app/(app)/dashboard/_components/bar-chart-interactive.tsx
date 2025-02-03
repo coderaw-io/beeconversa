@@ -17,7 +17,12 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 
-import { MonitorDotIcon, SmartphoneIcon } from "lucide-react"
+import {
+  MessagesSquareIcon,
+  MonitorDotIcon,
+  SmartphoneIcon
+} from "lucide-react"
+
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 
 const chartData = [
@@ -144,10 +149,18 @@ export function DashboardBarChartInteractive() {
     <Card className="size-full h-[438px]">
       <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
-          <CardTitle>Métricas de interações por dispositivo</CardTitle>
-          <CardDescription>
-            Dados relacionados as suas interações com clientes por período.
-          </CardDescription>
+          <div className="flex items-center gap-4">
+            <div className="size-12 rounded-lg bg-yellow-100 flex items-center justify-center dark:bg-border">
+              <MessagesSquareIcon className="size-6 text-primary dark:text-foreground" />
+            </div>
+
+            <div className="flex flex-col space-y-1.5">
+              <CardTitle>Métricas de interações por dispositivo</CardTitle>
+              <CardDescription>
+                Dados relacionados as suas interações com clientes por período.
+              </CardDescription>
+            </div>
+          </div>
         </div>
         <div className="flex">
           {["desktop", "mobile"].map((key) => {
@@ -160,7 +173,7 @@ export function DashboardBarChartInteractive() {
                 onClick={() => setActiveChart(chart)}
               >
                 <span className="flex items-center gap-2 text-xs text-muted-foreground">
-                  {chartConfig[chart].label === "Desktop" ? 
+                  {chartConfig[chart].label === "Desktop" ?
                     <MonitorDotIcon className="size-4" /> : <SmartphoneIcon className="size-4" />}
                   {chartConfig[chart].label}
                 </span>
