@@ -6,13 +6,13 @@ import {
   TooltipTrigger
 } from "@/components/ui/tooltip";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SparklesIcon } from "lucide-react";
 import { ChangeTheme } from "./change-theme";
 import { CommandSearch } from "./command-search";
+import { LoggedUserDetails } from "./logged-user";
 import { Notifications } from "./notifications";
 
 export function Header() {
@@ -53,18 +53,7 @@ export function Header() {
         </Tooltip>
 
         <Separator orientation="vertical" className="mr-2 h-6" />
-
-        <div className="flex items-center space-x-4 pr-4">
-          <Avatar className="size-9">
-            <AvatarImage src="https://i.ibb.co/5MV0D9t/linux.jpg" alt="@black-adm" />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-
-          <div className="w-full flex flex-col">
-            <p className="text-sm truncate">Matheus Madureira</p>
-            <span className="text-xs">matheus.madureira@gmail.com</span>
-          </div>
-        </div>
+        <LoggedUserDetails />
       </div>
     </header>
   )

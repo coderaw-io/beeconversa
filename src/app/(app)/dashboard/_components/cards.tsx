@@ -51,16 +51,19 @@ export function DashboardCards() {
     <div className="grid grid-cols-2 items-center gap-6 xl:grid-cols-4">
       {metrics.map((item) => (
         <Card key={item.id} className="p-0">
-          <CardHeader className="px-6">
-            <CardTitle className="text-xl">{item.title}</CardTitle>
+          <CardHeader className="hidden">
+            <CardTitle className="sr-only">{item.title}</CardTitle>
             <CardDescription className="sr-only">Métricas do sistema</CardDescription>
           </CardHeader>
-          
+
           <CardContent className="p-0">
-            <div className="flex justify-between items-center px-6 pb-8">
-              <h4 className="text-3xl font-bold xl:text-4xl">
-                {item.total}
-              </h4>
+            <div className="flex justify-between items-center p-6">
+              <div className="flex flex-col space-y-1.5">
+                <span className="text-xl">{item.title}</span>
+                <h4 className="text-3xl font-bold xl:text-4xl">
+                  {item.total}
+                </h4>
+              </div>
 
               <Badge className={cn(
                 "rounded-sm text-sm flex items-center gap-2 px-4 hover:bg-foreground",
@@ -69,7 +72,7 @@ export function DashboardCards() {
                   "bg-emerald-100 text-emerald-600 dark:bg-emerald-600 dark:text-emerald-100"
               )}>
                 {item.status === "decreasing" ?
-                   <TrendingDownIcon className="size-4" /> : <TrendingUpIcon className="size-4" />}
+                  <TrendingDownIcon className="size-4" /> : <TrendingUpIcon className="size-4" />}
                 {item.percent}
               </Badge>
             </div>

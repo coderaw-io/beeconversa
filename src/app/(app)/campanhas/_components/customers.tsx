@@ -29,7 +29,8 @@ export function CampaignCustomers({ customers, campaign }: CampaignCustomersProp
           disabled={customers.length === 0}
         >
           <CircleUserIcon className="size-4" />
-          Clientes cadastrados
+          {customers.length === 0 ? 
+            "Nenhum cliente vinculado nesta campanha" : "Clientes vinculados desta campanha"}
         </Button>
       </SheetTrigger>
 
@@ -51,7 +52,7 @@ export function CampaignCustomers({ customers, campaign }: CampaignCustomersProp
               className="flex flex-col space-y-6 py-8 px-6 border-b-2 lg:space-y-8 xl:space-y-10"
             >
               <div className="flex justify-between items-center">
-                <div className="flex gap-4">
+                <div className="flex items-center gap-4">
                   <div className="size-9 rounded-lg bg-zinc-100 flex items-center justify-center">
                     <UserCircleIcon className="size-6 text-zinc-800" />
                   </div>

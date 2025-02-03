@@ -12,7 +12,7 @@ export default function UploadsPage() {
         description="Faça upload de arquivos para adicionar a sua base de dados no sistema."
       />
 
-      <div className="py-8 pl-1 space-y-6">
+      <div className="w-full px-4 py-8 pl-1 space-y-6 xl:px-0">
         <UploadArea />
         <StorageUsage />
         <UploadsContent />

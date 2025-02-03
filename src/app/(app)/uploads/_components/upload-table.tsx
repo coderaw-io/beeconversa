@@ -39,13 +39,13 @@ export function UploadsTable({
         <table className="w-full">
           <thead className="border-b bg-muted/50">
             <tr className="text-left">
-              <th className="p-4 font-medium">Nome do arquivo</th>
-              <th className="p-4 font-medium">Data do upload</th>
-              <th className="p-4 text-center font-medium">Linhas importadas</th>
-              <th className="p-4 text-center font-medium">Linhas não importadas</th>
-              <th className="p-4 text-center font-medium">Responsável</th>
-              <th className="p-4 text-center font-medium">Status</th>
-              <th className="p-4 font-medium">Ações</th>
+              <th className="p-4 font-medium truncate">Nome do arquivo</th>
+              <th className="p-4 font-medium truncate">Data do upload</th>
+              <th className="p-4 text-center font-medium truncate">Linhas importadas</th>
+              <th className="p-4 text-center font-medium truncate">Linhas não importadas</th>
+              <th className="p-4 text-center font-medium truncate">Responsável</th>
+              <th className="p-4 text-center font-medium truncate">Status</th>
+              <th className="p-4 font-medium truncate">Ações</th>
             </tr>
           </thead>
 
