@@ -38,7 +38,7 @@ const metrics = [
   },
   {
     id: 4,
-    title: "Conversão de clientes",
+    title: "Conversão",
     total: "9.403",
     percent: "2.5%",
     status: "growing",
@@ -50,7 +50,7 @@ export function DashboardCards() {
   return (
     <div className="grid grid-cols-2 items-center gap-6 xl:grid-cols-4">
       {metrics.map((item) => (
-        <Card key={item.id} className="p-0">
+        <Card key={item.id} className="p-0 h-44">
           <CardHeader className="hidden">
             <CardTitle className="sr-only">{item.title}</CardTitle>
             <CardDescription className="sr-only">Métricas do sistema</CardDescription>
@@ -60,7 +60,7 @@ export function DashboardCards() {
             <div className="flex justify-between items-center p-6">
               <div className="flex flex-col space-y-1.5">
                 <span className="text-xl">{item.title}</span>
-                <h4 className="text-3xl font-bold xl:text-4xl">
+                <h4 className="text-3xl font-bold 2xl:text-4xl">
                   {item.total}
                 </h4>
               </div>
@@ -77,8 +77,8 @@ export function DashboardCards() {
               </Badge>
             </div>
 
-            <CardFooter className="flex items-center gap-2 text-muted-foreground text-[13px] leading-5 font-medium border-t py-4 truncate">
-              <CalendarCheck2Icon className="size-4" />
+            <CardFooter className="flex items-center gap-2 text-muted-foreground text-xs font-medium border-t py-4 2xl:text-[13px] 2xl:leading-5 2xl:truncate">
+              <CalendarCheck2Icon className="hidden 2xl:flex 2xl:size-4" />
               {item.period}
             </CardFooter>
           </CardContent>

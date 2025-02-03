@@ -21,9 +21,9 @@ import {
   TooltipTrigger
 } from "../../ui/tooltip";
 
+import { Button } from "@/components/ui/button";
 import { LogOutIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { Button } from "../../ui/button";
 
 export function Logout() {
   const router = useRouter();
