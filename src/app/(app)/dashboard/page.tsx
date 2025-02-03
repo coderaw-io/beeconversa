@@ -1,17 +1,23 @@
 import { PageHeader } from "@/components/shared/page-header";
+import { DashboardCards } from "./_components/cards";
+import { DashboardChartsContent } from "./_components/charts-content";
+import { DashboardFilters } from "./_components/filters";
 
 export default function DashboardPage() {
   return (
     <>
-      <PageHeader
-        title="Dashboard"
-        description="Gerencie todos os dados da sua operação de forma eficiente."
-      />
+      <div className="w-full flex justify-between items-center">
+        <PageHeader
+          title="Dashboard"
+          description="Gerencie todos os dados da sua operação de forma eficiente."
+        />
+        
+        <DashboardFilters />
+      </div>
 
-      <div className="grid auto-rows-min gap-6 md:grid-cols-5">
-        {Array.from({ length: 20 }).map((_, i) => (
-          <div key={i} className="aspect-square rounded-xl bg-accent" />
-        ))}
+      <div className="py-8">
+        <DashboardCards />
+        <DashboardChartsContent />
       </div>
     </>
   )
