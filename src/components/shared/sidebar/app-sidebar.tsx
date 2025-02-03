@@ -14,10 +14,10 @@ import {
   HomeIcon,
   LayoutDashboardIcon,
   LucideProps,
+  MegaphoneIcon,
   MessageCircleIcon,
-  RocketIcon,
   Settings2Icon,
-  UsersIcon,
+  UsersIcon
 } from "lucide-react";
 
 import {
@@ -45,7 +45,7 @@ const links: AppSidebarLinksProps[] = [
   { href: "/dashboard", icon: LayoutDashboardIcon, tooltip: "Dashboard" },
   { href: "/uploads", icon: CloudUploadIcon, tooltip: "Uploads" },
   { href: "/clientes", icon: UsersIcon, tooltip: "Clientes" },
-  { href: "/campanhas", icon: RocketIcon, tooltip: "Campanhas" },
+  { href: "/campanhas", icon: MegaphoneIcon, tooltip: "Campanhas" },
   { href: "/whatsapp", icon: MessageCircleIcon, tooltip: "Whatsapp" },
 ];
 

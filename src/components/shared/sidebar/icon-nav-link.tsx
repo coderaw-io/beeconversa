@@ -39,10 +39,10 @@ function NavLink({ href, icon: Icon, isActive }: Pick<IconNavLinkProps, "href" |
         type="button"
         size="icon"
         variant="outline"
-        className={isActive ? "bg-primary dark:bg-yellow-400 border-none" : ""}
+        className={isActive ? "bg-primary border-none dark:bg-yellow-400 dark:hover:bg-foreground" : ""}
       >
         <Icon
-          className={`size-6 ${isActive ? "text-foreground dark:text-background" : ""}`}
+          className={`size-6 ${isActive ? "dark:text-background" : ""}`}
         />
       </Button>
     </Link>

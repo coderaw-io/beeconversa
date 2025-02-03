@@ -16,7 +16,7 @@ export function CustomersFiltersSection() {
     <div className="flex items-center gap-4">
       <div className="relative flex-1 max-w-md">
         <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground size-4" />
-        <Input className="pl-10 h-10" placeholder="Filtrar cliente ..." />
+        <Input className="pl-10 h-10" placeholder="Filtrar cliente" />
       </div>
 
       <Button

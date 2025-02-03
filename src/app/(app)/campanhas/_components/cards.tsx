@@ -61,7 +61,7 @@ export function CampaignCards() {
                     type="button"
                     size="sm"
                     variant="outline"
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-2 h-9"
                   >
                     <CircleUserIcon className="size-4" />
                     Clientes cadastrados
@@ -77,19 +77,21 @@ export function CampaignCards() {
 
               <div className="flex justify-around items-center gap-4 px-6 py-10">
                 <div>
-                  <div className="text-lg font-semibold">{item.customers.length}</div>
+                  <div className="text-lg font-semibold md:text-xl">
+                    {item.customers.length}
+                  </div>
                   <div className="text-sm text-muted-foreground">Clientes</div>
                 </div>
                 <div>
-                  <div className="text-lg font-semibold">60.5%</div>
+                  <div className="text-lg font-semibold md:text-xl">60.5%</div>
                   <div className="text-sm text-muted-foreground">Resposta</div>
                 </div>
                 <div>
-                  <div className="text-lg font-semibold">17.3%</div>
+                  <div className="text-lg font-semibold md:text-xl">17.3%</div>
                   <div className="text-sm text-muted-foreground">Visto</div>
                 </div>
                 <div>
-                  <div className="text-lg font-semibold">1.2%</div>
+                  <div className="text-lg font-semibold md:text-xl">1.2%</div>
                   <div className="text-sm text-muted-foreground">Clicado</div>
                 </div>
               </div>
