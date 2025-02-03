@@ -1,8 +1,9 @@
 "use client"
 
+import CampaignLoading from "../loading";
+
 import {
   CalendarDaysIcon,
-  CircleUserIcon,
   RocketIcon,
   Trash2Icon
 } from "lucide-react";
@@ -14,12 +15,15 @@ import { Separator } from "@/components/ui/separator";
 import { CampaignService } from "@/services/campaign-service";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
+import { CampaignCustomers } from "./customers";
 
 export function CampaignCards() {
-  const { data: campaignData } = useQuery({
+  const { data: campaignData, status } = useQuery({
     queryKey: ['get-all-campaigns'],
     queryFn: async () => await CampaignService.getAllCampaigns(),
   });
+
+  if (status === "pending") return <CampaignLoading />;
 
   return (
     <>
@@ -57,17 +61,17 @@ export function CampaignCards() {
                     Ativa
                   </Button>
 
+                  <CampaignCustomers 
+                    campaign={item.name}
+                    customers={item.customers} 
+                  />
+
                   <Button
                     type="button"
-                    size="sm"
                     variant="outline"
-                    className="flex items-center gap-2 h-9"
+                    size="icon"
+                    className="hover:bg-destructive hover:text-red-200 dark:hover:bg-red-200 dark:hover:text-destructive"
                   >
-                    <CircleUserIcon className="size-4" />
-                    Clientes cadastrados
-                  </Button>
-
-                  <Button type="button" variant="ghost" size="icon">
                     <Trash2Icon className="size-4" />
                   </Button>
                 </div>
@@ -77,28 +81,28 @@ export function CampaignCards() {
 
               <div className="flex justify-around items-center gap-4 px-6 py-10">
                 <div>
-                  <div className="text-lg font-semibold md:text-xl">
+                  <div className="text-lg font-bold md:text-2xl">
                     {item.customers.length}
                   </div>
                   <div className="text-sm text-muted-foreground">Clientes</div>
                 </div>
                 <div>
-                  <div className="text-lg font-semibold md:text-xl">60.5%</div>
+                  <div className="text-lg font-bold md:text-2xl">60.5%</div>
                   <div className="text-sm text-muted-foreground">Resposta</div>
                 </div>
                 <div>
-                  <div className="text-lg font-semibold md:text-xl">17.3%</div>
+                  <div className="text-lg font-bold md:text-2xl">17.3%</div>
                   <div className="text-sm text-muted-foreground">Visto</div>
                 </div>
                 <div>
-                  <div className="text-lg font-semibold md:text-xl">1.2%</div>
+                  <div className="text-lg font-bold md:text-2xl">1.2%</div>
                   <div className="text-sm text-muted-foreground">Clicado</div>
                 </div>
               </div>
             </Card>
           )) : (
-            <div className="flex justify-center items-center py-12">
-              <div className="w-full flex justify-center items-center">
+            <div className="flex flex-col items-center py-12">
+              <div className="w-full">
                 <ReportIsonIcon className="size-36" />
               </div>
 

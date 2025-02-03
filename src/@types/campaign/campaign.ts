@@ -9,11 +9,11 @@ export interface CampaignResponse {
 export interface CampaignResult {
   id: string
   name: string
-  customers: Customer[]
+  customers: CampaignCustomer[]
   creationDate: string
 }
 
-export interface Customer {
+export interface CampaignCustomer {
   id: string
   name: string
   emails: string[]
