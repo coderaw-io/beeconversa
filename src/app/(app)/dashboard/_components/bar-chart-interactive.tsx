@@ -150,8 +150,8 @@ export function DashboardBarChartInteractive() {
       <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
           <div className="flex items-center gap-4">
-            <div className="size-12 rounded-lg bg-yellow-100 flex items-center justify-center dark:bg-border">
-              <MessagesSquareIcon className="size-6 text-primary dark:text-foreground" />
+            <div className="size-12 rounded-lg bg-zinc-100 flex items-center justify-center dark:bg-border">
+              <MessagesSquareIcon className="size-6 text-foreground" />
             </div>
 
             <div className="flex flex-col space-y-1.5">

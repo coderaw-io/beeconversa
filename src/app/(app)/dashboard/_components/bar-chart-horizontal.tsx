@@ -41,8 +41,8 @@ export function DashboardBarChartHorizontal() {
     <Card className="h-auto p-0 xl:h-[438px]">
       <CardHeader className="p-6">
         <div className="flex items-center gap-4">
-          <div className="size-12 rounded-lg bg-yellow-100 flex items-center justify-center dark:bg-border">
-            <Share2Icon className="size-6 text-primary dark:text-foreground" />
+          <div className="size-12 rounded-lg bg-zinc-100 flex items-center justify-center dark:bg-border">
+            <Share2Icon className="size-6 text-foreground" />
           </div>
 
           <div className="flex flex-col space-y-1.5">
