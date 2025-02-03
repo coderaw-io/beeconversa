@@ -38,14 +38,14 @@ const chartConfig = {
 
 export function DashboardBarChartHorizontal() {
   return (
-    <Card className="h-auto p-0">
+    <Card className="h-auto p-0 xl:h-[438px]">
       <CardHeader className="p-6">
         <CardTitle>Métricas de envios por período</CardTitle>
         <CardDescription>Janeiro 2025 - Junho 2025</CardDescription>
       </CardHeader>
       <Separator />
       <CardContent className="p-6">
-        <ChartContainer config={chartConfig} className="h-52 w-full xl:size-full">
+        <ChartContainer config={chartConfig} className="h-52 w-full xl:h-56 xl:w-full">
           <BarChart
             accessibilityLayer
             data={chartData}
@@ -74,6 +74,9 @@ export function DashboardBarChartHorizontal() {
       <CardFooter className="flex-col items-start gap-2 text-sm pb-6">
         <div className="flex gap-2 font-medium leading-none">
           Tendência de alta de 5,2% neste semestre <TrendingUpIcon className="size-4" />
+        </div>
+        <div className="leading-none text-muted-foreground">
+          Métricas baseadas no período semestral do ano atual.
         </div>
       </CardFooter>
     </Card>
