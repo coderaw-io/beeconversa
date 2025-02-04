@@ -67,7 +67,7 @@ export function CampaignTabs() {
           </Button>
         ))}
 
-        <div className="relative flex-1 max-w-xs">
+        <div className="relative flex-1 w-full 2xl:max-w-xs">
           <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground size-4" />
           <Input className="pl-10 h-10 w-full" placeholder="Filtrar campanha" />
         </div>
@@ -76,7 +76,7 @@ export function CampaignTabs() {
       <Button
         type="button"
         size="lg"
-        className="bg-success ml-auto flex items-center gap-2 hover:bg-emerald-500 dark:bg-emerald-500 dark:hover:bg-success"
+        className="hidden 2xl:flex bg-success ml-auto items-center gap-2 hover:bg-emerald-500 dark:bg-emerald-500 dark:hover:bg-success"
       >
         <FileDownIcon />
         Exportar como CSV

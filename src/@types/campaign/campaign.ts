@@ -1,3 +1,13 @@
+export interface CreateCampaignFromCsvRequest {
+  name: string
+  fileIds: string[]
+}
+
+export interface CreateCampaignFromCustomerRequest {
+  name: string
+  customerIds: string[]
+}
+
 export interface CampaignResponse {
   pageNumber: number
   pageSize: number

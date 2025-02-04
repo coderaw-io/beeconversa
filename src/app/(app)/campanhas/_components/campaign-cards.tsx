@@ -11,11 +11,12 @@ import {
 import { ReportIsonIcon } from "@/components/shared/icons/report-ison-icon";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { CampaignService } from "@/services/campaign-service";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
-import { CampaignCustomers } from "./customers";
+import { CampaignCustomers } from "./campaign-customers";
 
 export function CampaignCards() {
   const { data: campaignData, status } = useQuery({
@@ -26,7 +27,7 @@ export function CampaignCards() {
   if (status === "pending") return <CampaignLoading />;
 
   return (
-    <>
+    <ScrollArea className="h-[680px] px-4 mt-2">
       {
         campaignData?.length ?
           campaignData?.map((item) => (
@@ -110,6 +111,6 @@ export function CampaignCards() {
             </div>
           )
       }
-    </>
+    </ScrollArea>
   )
 }

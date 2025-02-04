@@ -42,8 +42,8 @@ export function CampaignCustomers({ customers, campaign }: CampaignCustomersProp
         </Button>
       </DrawerTrigger>
 
-      <DrawerContent className="p-0 mx-4 h-[560px] rounded-t-[0.75rem]">
-        <div className="max-w-8xl mx-auto w-full">
+      <DrawerContent className="p-0 mx-4 h-[600px] rounded-t-[0.75rem]">
+        <div className="max-w-5xl mx-auto w-full 2xl:max-w-8xl">
           <DrawerHeader className="p-6">
             <DrawerTitle className="flex items-center gap-2">
               <MegaphoneIcon className="size-4" />

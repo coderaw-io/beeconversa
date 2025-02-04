@@ -1,7 +1,6 @@
 import { PageHeader } from "@/components/shared/page-header";
-import { Button } from "@/components/ui/button";
-import { PlusIcon } from "lucide-react";
-import { CampaignCards } from "./_components/cards";
+import { AddCampaign } from "./_components/add-campaign";
+import { CampaignCards } from "./_components/campaign-cards";
 import { CampaignTabs } from "./_components/tabs";
 
 export default function CampaignPage() {
@@ -13,14 +12,7 @@ export default function CampaignPage() {
           description="Crie campanhas de marketing para prospectar via seus envios diários."
         />
 
-        <Button
-          type="button"
-          size="lg"
-          className="flex items-center gap-2"
-        >
-          <PlusIcon className="size-4" />
-          Cadastrar uma nova campanha
-        </Button>
+        <AddCampaign />
       </div>
 
       <div className="py-8">
