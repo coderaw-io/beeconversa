@@ -42,7 +42,7 @@ export function CampaignCustomers({ customers, campaign }: CampaignCustomersProp
         </Button>
       </DrawerTrigger>
 
-      <DrawerContent className="p-0 mx-4 h-[500px] rounded-t-[0.75rem]">
+      <DrawerContent className="p-0 mx-4 h-[560px] rounded-t-[0.75rem]">
         <div className="max-w-8xl mx-auto w-full">
           <DrawerHeader className="p-6">
             <DrawerTitle className="flex items-center gap-2">
