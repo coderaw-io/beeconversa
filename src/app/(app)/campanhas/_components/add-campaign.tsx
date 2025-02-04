@@ -57,11 +57,11 @@ export function AddCampaign() {
           </TabsList>
 
           <TabsContent value="campaign-from-csv">
-            <CampaignFromCsvsForm isOpen={isOpen} setIsOpen={setIsOpen} />
+            <CampaignFromCsvsForm setIsOpen={setIsOpen} />
           </TabsContent>
 
           <TabsContent value="campaign-from-customers">
-            <CampaignFromCustomersForm isOpen={isOpen} setIsOpen={setIsOpen} />
+            <CampaignFromCustomersForm setIsOpen={setIsOpen} />
           </TabsContent>
         </Tabs>
       </DialogContent>
