@@ -30,6 +30,7 @@ export function Logout() {
 
   async function handleLogout() {
     await axios.post("/api/auth/sign-out");
+    localStorage.clear();
     router.push("/login");
   }
 

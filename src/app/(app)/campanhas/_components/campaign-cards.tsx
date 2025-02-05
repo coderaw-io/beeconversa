@@ -27,7 +27,7 @@ export function CampaignCards() {
   if (status === "pending") return <CampaignLoading />;
 
   return (
-    <ScrollArea className="h-[680px] px-4 mt-2">
+    <ScrollArea className="h-[680px] pr-6 mt-2">
       {
         campaignData?.length ?
           campaignData?.map((item) => (

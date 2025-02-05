@@ -22,7 +22,7 @@ export default async function DashboardLayout({
 
   return (
     <AuthProvider>
-      <ProtectedLayout loggedUserData={loggedUser}>
+      <ProtectedLayout>
         <SidebarProvider>
           <AppSidebar />
           <SidebarInset>
