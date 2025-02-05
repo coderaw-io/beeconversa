@@ -1,3 +1,8 @@
+export interface GetAccessTokenResponse {
+  token: string
+  userDetails: DecodeTokenResponse
+}
+
 export interface DecodeTokenResponse {
   id: string
   enabled: boolean

@@ -1,3 +1,4 @@
+import { DecodeTokenResponse } from "@/@types/auth/decode-token";
 import { SignInResponse } from "@/@types/auth/sign-in";
 import { storageKeys } from "@/config/storage-keys";
 import { authApi } from "@/lib/axios";
@@ -8,7 +9,7 @@ export async function POST(request: NextRequest) {
   const body = await request.json();
 
   const { success, error, data: form } = loginSchema.safeParse(body);
-  
+
   const signIn = { username: form?.username, password: form?.password };
   const tenant = form?.tenant.toLowerCase();
 
@@ -24,6 +25,20 @@ export async function POST(request: NextRequest) {
       Tenant: `${tenant}`
     }
   });
+
+  const { data: userData } = await authApi.get<DecodeTokenResponse>("/users/decode-token", {
+    headers: {
+      Tenant: `${tenant}`,
+      Authorization: `Bearer ${data.accessToken}`,
+    }
+  });
+
+  if (!userData) {
+    return NextResponse.json(
+      { error: "Error to decode token." },
+      { status: 500 }
+    );
+  }
 
   const response = new NextResponse(null, { status: 204 });
 
@@ -46,6 +61,36 @@ export async function POST(request: NextRequest) {
       httpOnly: true,
       maxAge: data.refreshExpiresIn,
       path: '/',
+      sameSite: 'strict',
+      secure: true,
+    }
+  );
+
+  response.cookies.set(
+    storageKeys.userFirstName,
+    userData.firstName,
+    {
+      httpOnly: true,
+      sameSite: 'strict',
+      secure: true,
+    }
+  );
+
+  response.cookies.set(
+    storageKeys.userLastName,
+    userData.lastName,
+    {
+      httpOnly: true,
+      sameSite: 'strict',
+      secure: true,
+    }
+  );
+
+  response.cookies.set(
+    storageKeys.userEmail,
+    userData.email,
+    {
+      httpOnly: true,
       sameSite: 'strict',
       secure: true,
     }

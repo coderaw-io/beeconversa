@@ -1,6 +1,7 @@
 export const storageKeys = {
   accessToken: "beeconversa:access_token",
   refreshToken: "beeconversa:refresh_token",
-  loggedUserEmail: "beeconversa:logged_user_email",
-  loggedUserFullName: "beeconversa:logged_user_full_name",
+  userEmail: "beeconversa:user_email",
+  userFirstName: "beeconversa:user_first_name",
+  userLastName: "beeconversa:user_last_name",
 }

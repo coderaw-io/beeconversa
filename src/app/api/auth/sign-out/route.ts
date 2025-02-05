@@ -6,6 +6,9 @@ export async function POST() {
 
   response.cookies.delete(storageKeys.accessToken);
   response.cookies.delete(storageKeys.refreshToken);
+  response.cookies.delete(storageKeys.userFirstName);
+  response.cookies.delete(storageKeys.userLastName);
+  response.cookies.delete(storageKeys.userEmail);
 
   return response;
 }

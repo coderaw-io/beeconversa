@@ -1,6 +1,8 @@
 import axios from "axios";
 
+import { GetAccessTokenResponse } from "@/@types/auth/decode-token";
 import { SignInRequest, SignInResponse } from "@/@types/auth/sign-in";
+import { storageKeys } from "@/config/storage-keys";
 import { authApi } from "@/lib/axios";
 
 export class AuthService {
@@ -16,9 +18,6 @@ export class AuthService {
 
       const { data } = await authApi.post<SignInResponse>("/users/login", formData);
 
-      localStorage.setItem("beeconversa:access_token", data.accessToken);
-      localStorage.setItem("beeconversa:refresh_token", data.refreshToken);
-
       return data;
     } catch (error) {
       console.log("Auth error:", error);
@@ -28,7 +27,12 @@ export class AuthService {
 
   static async getAccessToken() {
     try {
-      const { data } = await axios.get("/api/auth/get-token");
+      const { data } = await axios.get<GetAccessTokenResponse>("/api/auth/get-token");
+
+      localStorage.setItem(storageKeys.userFirstName, data.userDetails.firstName);
+      localStorage.setItem(storageKeys.userLastName, data.userDetails.lastName);
+      localStorage.setItem(storageKeys.userEmail, data.userDetails.email);
+      
       return data.token;
     } catch (error) {
       console.error("Failed to fetch token:", error);
