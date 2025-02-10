@@ -70,7 +70,7 @@ export default function CampaignTemplatePage() {
         description="Todos os templates de mensagens criados no sistema."
       />
 
-      <div className="container px-4 py-4">
+      <div className="container py-4">
         <CampaignTemplateFilters />
         <CampaignTemplateTable templates={templates} />
       </div>
