@@ -44,7 +44,7 @@ export default function AddTemplateCampaignPage() {
   }
 
   return (
-    <div className="size-full flex flex-col space-y-6 md:flex-row md:justify-between md:items-start md:space-y-0">
+    <div className="size-full flex flex-col space-y-6 pl-1 md:flex-row md:justify-between md:items-start md:space-y-0">
       <main className="w-full">
         <AddTemplateHeader />
 

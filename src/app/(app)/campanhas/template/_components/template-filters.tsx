@@ -8,15 +8,25 @@ import {
   SelectValue
 } from "@/components/ui/select";
 
+import {
+  Globe2Icon,
+  PlusIcon,
+  SearchIcon,
+  Settings2Icon,
+  TagIcon
+} from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Globe2Icon, Settings2Icon, TagIcon } from "lucide-react";
 
 export function CampaignTemplateFilters() {
   return (
     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
       <div className="flex flex-col gap-4 md:flex-row md:items-center">
-        <Input placeholder="Pesquisar template" className="w-full md:w-[300px]" />
+        <div className="relative font-medium">
+          <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground size-4" />
+          <Input placeholder="Pesquisar template" className="pl-10 w-full md:w-[300px]" />
+        </div>
 
         <Select>
           <SelectTrigger className="w-full md:w-[200px]">
@@ -54,7 +64,9 @@ export function CampaignTemplateFilters() {
         <Button
           type="button"
           size="lg"
+          className="flex items-center gap-2"
         >
+          <PlusIcon className="size-4" />
           Criar um novo template
         </Button>
       </Link>

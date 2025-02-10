@@ -64,7 +64,7 @@ const templates: Template[] = [
 
 export default function CampaignTemplatePage() {
   return (
-    <div>
+    <div className="pl-1">
       <PageHeader
         title="Meus templates de mensagens"
         description="Todos os templates de mensagens criados no sistema."
