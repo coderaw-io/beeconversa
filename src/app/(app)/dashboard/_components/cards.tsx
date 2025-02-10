@@ -9,7 +9,7 @@ import {
 
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
-import { CalendarCheck2Icon, TrendingDownIcon, TrendingUpIcon } from "lucide-react"
+import { TrendingDownIcon, TrendingUpIcon } from "lucide-react"
 
 const metrics = [
   {
@@ -78,7 +78,6 @@ export function DashboardCards() {
             </div>
 
             <CardFooter className="flex items-center gap-2 text-muted-foreground text-xs font-medium border-t py-4 2xl:text-[13px] 2xl:leading-5 2xl:truncate">
-              <CalendarCheck2Icon className="hidden 2xl:flex 2xl:size-4" />
               {item.period}
             </CardFooter>
           </CardContent>
