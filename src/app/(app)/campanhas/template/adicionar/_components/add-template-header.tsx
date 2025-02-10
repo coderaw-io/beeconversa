@@ -5,7 +5,7 @@ import { ArrowLeftIcon } from "lucide-react";
 
 export function AddTemplateHeader() {
   return (
-    <header className="h-15 flex justify-between items-center gap-4 p-4">
+    <header className="h-15 flex justify-between items-center gap-4 px-4 pb-4">
       <Link href="/campanhas/template" className="flex items-center gap-2 text-muted-foreground hover:underline">
         <ArrowLeftIcon className="size-4" />
         Ver todos os templates

@@ -57,7 +57,7 @@ export default function AddTemplateCampaignPage() {
               description="Crie templates customizados de mensagens para seus envios no whatsapp."
             />
 
-            <div className="flex flex-col space-y-8 py-6 px-3">
+            <div className="flex flex-col space-y-8 py-6 pr-3">
               <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-2">
                 <div className="space-y-3">
                   <Label htmlFor="template-name" className="flex items-center gap-1.5">
