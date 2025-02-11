@@ -7,15 +7,17 @@ import { UploadsContent } from "./_components/upload-content";
 export default function UploadsPage() {
   return (
     <UploadProvider>
-      <PageHeader
-        title="Importações de arquivos"
-        description="Faça upload de arquivos para adicionar a sua base de dados no sistema."
-      />
+      <div className="px-8">
+        <PageHeader
+          title="Importações de arquivos"
+          description="Faça upload de arquivos para adicionar a sua base de dados no sistema."
+        />
 
-      <div className="w-full px-4 py-8 pl-1 space-y-6 xl:px-0">
-        <UploadArea />
-        <StorageUsage />
-        <UploadsContent />
+        <div className="w-full px-4 py-8 pl-1 space-y-6 xl:px-0">
+          <UploadArea />
+          <StorageUsage />
+          <UploadsContent />
+        </div>
       </div>
     </UploadProvider>
   )

@@ -2,7 +2,7 @@ import { PageHeader } from "@/components/shared/page-header";
 
 export default function SupportPage() {
   return (
-    <>
+    <div className="px-8">
       <PageHeader
         title="Suporte online"
         description="Problemas com a nossa plataforma? Fale com o nosso time de suporte."
@@ -13,6 +13,6 @@ export default function SupportPage() {
           <div key={i} className="aspect-square rounded-xl bg-accent" />
         ))}
       </div>
-    </>
+    </div>
   )
 }

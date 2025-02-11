@@ -1,15 +1,7 @@
+import { Template } from "@/@types/campaign/template";
 import { PageHeader } from "@/components/shared/page-header";
 import { CampaignTemplateFilters } from "./_components/template-filters";
 import { CampaignTemplateTable } from "./_components/template-table";
-
-export interface Template {
-  name: string
-  category: string
-  language: string
-  content: string
-  status: "in_review" | "rejected" | "active_pending"
-  lastUpdated: string
-}
 
 const templates: Template[] = [
   {
@@ -64,15 +56,17 @@ const templates: Template[] = [
 
 export default function CampaignTemplatePage() {
   return (
-    <div className="pl-1">
-      <PageHeader
-        title="Meus templates de mensagens"
-        description="Todos os templates de mensagens criados no sistema."
-      />
+    <div className="px-8">
+      <div className="pl-1">
+        <PageHeader
+          title="Meus templates de mensagens"
+          description="Todos os templates de mensagens criados no sistema."
+        />
 
-      <div className="container py-4">
-        <CampaignTemplateFilters />
-        <CampaignTemplateTable templates={templates} />
+        <div className="container py-4">
+          <CampaignTemplateFilters />
+          <CampaignTemplateTable templates={templates} />
+        </div>
       </div>
     </div>
   )

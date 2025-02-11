@@ -31,8 +31,8 @@ export default function WhatsappPage() {
   const capitalizedDate = currentDate.charAt(0).toUpperCase() + currentDate.slice(1);
 
   return (
-    <div className="flex h-screen overflow-hidden bg-background">
-      <div className="max-w-md w-full flex flex-col border-x">
+    <div className="flex min-h-screen overflow-hidden bg-background">
+      <div className="max-w-md w-full flex flex-col border-r">
         <div className="w-full border-b">
           <h3 className="text-2xl font-semibold pl-4 mb-3">
             Conversas
@@ -86,7 +86,7 @@ export default function WhatsappPage() {
               <h2 className="font-semibold">
                 John Doe
               </h2>
-              
+
               <p className="text-sm text-emerald-500">
                 • Online
               </p>
@@ -129,7 +129,7 @@ export default function WhatsappPage() {
                   <span className="text-sm font-medium">
                     John Doe
                   </span>
-                  
+
                   <span className="text-xs text-muted-foreground">
                     09:07 AM
                   </span>

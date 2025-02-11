@@ -2,7 +2,7 @@ import { PageHeader } from "@/components/shared/page-header";
 
 export default function MessagesPage() {
   return (
-    <>
+    <div className="px-8">
       <PageHeader
         title="Mensagens SMS e interações"
         description="Visualize e filtre todos os disparos enviados dentro da nossa plataforma."
@@ -13,6 +13,6 @@ export default function MessagesPage() {
           <div key={i} className="aspect-square rounded-xl bg-accent" />
         ))}
       </div>
-    </>
+    </div>
   )
 }

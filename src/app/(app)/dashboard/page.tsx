@@ -5,13 +5,13 @@ import { DashboardFilters } from "./_components/filters";
 
 export default function DashboardPage() {
   return (
-    <>
+    <div className="px-8">
       <div className="w-full flex justify-between items-center">
         <PageHeader
           title="Dashboard"
           description="Gerencie todos os dados da sua operação de forma eficiente."
         />
-        
+
         <DashboardFilters />
       </div>
 
@@ -19,6 +19,6 @@ export default function DashboardPage() {
         <DashboardCards />
         <DashboardChartsContent />
       </div>
-    </>
+    </div>
   )
 }

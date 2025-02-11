@@ -5,7 +5,7 @@ import { HomeGetStartedSection } from "./get-started-section";
 
 export default function HomePage() {
   return (
-    <>
+    <div className="px-8">
       <PageHeader
         title="Bem vindo de volta"
         description="Utilize nossa plataforma completa para prospectar novos leads na sua operação."
@@ -32,6 +32,6 @@ export default function HomePage() {
           </section>
         </main>
       </div>
-    </>
+    </div>
   )
 }

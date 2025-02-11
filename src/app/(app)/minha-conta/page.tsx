@@ -2,7 +2,7 @@ import { PageHeader } from "@/components/shared/page-header";
 
 export default function AccountPage() {
   return (
-    <>
+    <div className="px-8">
       <PageHeader
         title="Minha conta"
         description="Por aqui você visualiza e gerencia todos os seus dados dentro da plataforma."
@@ -13,6 +13,6 @@ export default function AccountPage() {
           <div key={i} className="aspect-square rounded-xl bg-accent" />
         ))}
       </div>
-    </>
+    </div>
   )
 }

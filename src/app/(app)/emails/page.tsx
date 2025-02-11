@@ -2,7 +2,7 @@ import { PageHeader } from "@/components/shared/page-header";
 
 export default function EmailsPage() {
   return (
-    <>
+    <div className="px-8">
       <PageHeader
         title="Minhas operações por e-mail"
         description="Controle, gerencie e domine suas campanhas via e-mail."
@@ -13,6 +13,6 @@ export default function EmailsPage() {
           <div key={i} className="aspect-square rounded-xl bg-accent" />
         ))}
       </div>
-    </>
+    </div>
   )
 }

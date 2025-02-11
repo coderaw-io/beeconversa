@@ -2,7 +2,7 @@ import { PageHeader } from "@/components/shared/page-header";
 
 export default function MetricsPage() {
   return (
-    <>
+    <div className="px-8">
       <PageHeader
         title="Métricas e histórico"
         description="Gerencie o histórico, status e métricas referente a todos os seus envios no app."
@@ -13,6 +13,6 @@ export default function MetricsPage() {
           <div key={i} className="aspect-square rounded-xl bg-accent" />
         ))}
       </div>
-    </>
+    </div>
   )
 }
