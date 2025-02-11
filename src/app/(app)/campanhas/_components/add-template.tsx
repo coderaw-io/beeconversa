@@ -9,7 +9,7 @@ export function AddTemplate() {
       <Button
         type="button"
         variant="secondary"
-        size="lg"
+        className="h-9"
       >
         <LayoutPanelTopIcon />
         Adicionar template

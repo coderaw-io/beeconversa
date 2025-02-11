@@ -47,35 +47,29 @@ export function AddTemplatePreview({ templateData }: AddTemplatePreviewProps) {
             )}
 
             {templateData.footer ? (
-              <div className="p-3">
+              <div className="p-3 mb-4">
                 <p className="text-lg text-muted-foreground font-medium">
                   {templateData.footer}
                 </p>
               </div>
             ) : (
-              <div className="p-3">
+              <div className="p-3 mb-4">
                 <p className="text-lg text-muted-foreground font-medium">
-                  Informe o rodapé da mensagem do seu template.
+                  Informe o rodapé do seu template. (opcional)
                 </p>
               </div>
             )}
 
-            {templateData.buttons.some((button) => button) && (
-              <div className="grid gap-2 border-t">
-                {templateData.buttons.map(
-                  (button, index) =>
-                    button && (
-                      <Button
-                        key={index}
-                        type="button"
-                        variant="ghost"
-                        size="lg"
-                        className="w-full h-12 text-base text-center text-[#26B893] font-semibold rounded-none rounded-b-sm hover:bg-secondary hover:text-success dark:hover:bg-zinc-600 dark:hover:text-success"
-                      >
-                        {button}
-                      </Button>
-                    ),
-                )}
+            {templateData.buttons?.length && (
+              <div className="border-t">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="lg"
+                  className="w-full h-12 text-base text-center text-[#26B893] font-semibold rounded-none rounded-b-sm hover:bg-secondary hover:text-success dark:hover:bg-zinc-600 dark:hover:text-success"
+                >
+                  {templateData.buttons[0].trim() || "Informe o texto do botão de ação"}
+                </Button>
               </div>
             )}
 
@@ -92,7 +86,7 @@ export function AddTemplatePreview({ templateData }: AddTemplatePreviewProps) {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 

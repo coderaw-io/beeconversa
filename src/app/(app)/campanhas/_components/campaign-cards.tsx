@@ -16,6 +16,7 @@ import { Separator } from "@/components/ui/separator";
 import { CampaignService } from "@/services/campaign-service";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
+import { AddTemplate } from "./add-template";
 import { CampaignCustomers } from "./campaign-customers";
 
 export function CampaignCards() {
@@ -62,9 +63,11 @@ export function CampaignCards() {
                     Ativa
                   </Button>
 
-                  <CampaignCustomers 
+                  <AddTemplate />
+
+                  <CampaignCustomers
                     campaign={item.name}
-                    customers={item.customers} 
+                    customers={item.customers}
                   />
 
                   <Button
@@ -102,11 +105,10 @@ export function CampaignCards() {
               </div>
             </Card>
           )) : (
-            <div className="flex flex-col items-center py-12">
-              <div className="w-full">
+            <div className="w-full flex flex-col items-center py-12">
+              <div className="flex justify-center items-center">
                 <ReportIsonIcon className="size-36" />
               </div>
-
               Nenhum resultado encontrado.
             </div>
           )

@@ -7,10 +7,10 @@ import {
   TableRow
 } from "@/components/ui/table";
 
+import { Template } from "@/@types/campaign/template";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowUpDownIcon, EllipsisIcon } from "lucide-react";
-import { Template } from "../page";
 
 interface CampaignTemplateTableProps {
   templates: Template[]
