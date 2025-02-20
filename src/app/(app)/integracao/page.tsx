@@ -4,7 +4,7 @@ import { OnboardingContent } from "./_components/onboarding-content";
 
 export default function OnboardingPage() {
   return (
-    <div>
+    <div className="border-r">
       <div className="px-8 pb-4">
         <PageHeader
           title="Olá, vamos configurar sua conta?"

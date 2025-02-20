@@ -1,5 +1,7 @@
 "use client"
 
+import { onboardingSchema, OnboardingSchema } from "@/schemas/onboarding";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Stepper } from "./onboarding-stepper";
@@ -9,7 +11,9 @@ import { OnboardingSendSMS } from "./steps/onboarding-send-sms";
 export function OnboardingContent() {
   const [currentStep, setCurrentStep] = useState(0);
 
-  const form = useForm();
+  const form = useForm<OnboardingSchema>({
+    resolver: zodResolver(onboardingSchema),
+  });
 
   return (
     <FormProvider {...form}>

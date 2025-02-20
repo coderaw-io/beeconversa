@@ -13,7 +13,7 @@ export function OnboardingSendSMS() {
           type="button"
           size="lg"
           variant="ghost"
-          className="w-full flex items-center gap-2"
+          className="w-full flex items-center gap-2 hover:bg-transparent dark:hover:text-yellow-400"
           onClick={() => previousStep()}
         >
           <ArrowLeftIcon className="size-4" />
