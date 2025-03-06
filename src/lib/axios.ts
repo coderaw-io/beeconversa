@@ -26,3 +26,11 @@ export const customerApi = axios.create({
     Tenant: `${tenant}`,
   },
 });
+
+export const metaApi = axios.create({
+  baseURL: env.NEXT_PUBLIC_META_API,
+  headers: {
+    "Content-Type": "application/json;",
+    Tenant: `${tenant}`,
+  },
+});

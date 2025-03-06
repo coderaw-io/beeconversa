@@ -13,18 +13,21 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useStepper } from "@/hooks/use-stepper";
+import { useOnboardingContext } from "@/hooks/useOnboarding";
 import { OnboardingSchema } from "@/schemas/onboarding";
 import { maskPhoneNumber } from "@/utils/masks/mask-phone-number";
 import { CheckCheckIcon, PhoneCallIcon, VerifiedIcon } from "lucide-react";
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
-import { directDistanceDialing } from "../direct-distance-dialing";
+import { directDistanceDialing } from "../data/direct-distance-dialing";
 
 export function OnboardingNumberRegister() {
   const { nextStep } = useStepper();
+  const { setPhoneNumber, setVerifiedName } = useOnboardingContext();
 
   const form = useFormContext<OnboardingSchema>();
   const phone = form.watch("phoneNumber");
+  const name = form.watch("verifiedName");
 
   useEffect(() => {
     if (phone !== undefined) {
@@ -53,7 +56,12 @@ export function OnboardingNumberRegister() {
       "phoneNumber",
       "verifiedName",
     ]);
-    if (isValid) nextStep();
+
+    if (isValid) {
+      setPhoneNumber(phone);
+      setVerifiedName(name);
+      nextStep();
+    }
   }
 
   return (

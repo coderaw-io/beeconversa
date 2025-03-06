@@ -8,6 +8,7 @@ export const onboardingSchema = z.object({
     .refine(
       (value) => {
         const words = value.trim().split(/\s+/);
+
         if (words.length < 2 || !value.includes(" ")) return false;
 
         const pascalCaseRegex = /^[A-Z][a-z]*$/;
@@ -20,6 +21,7 @@ export const onboardingSchema = z.object({
       }
     ),
   code: z.number(),
+  pin: z.number(),
 });
 
 export type OnboardingSchema = z.infer<typeof onboardingSchema>;
