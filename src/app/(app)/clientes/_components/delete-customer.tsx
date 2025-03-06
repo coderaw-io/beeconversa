@@ -38,7 +38,7 @@ export function DeleteCustomer({ customerId, customerName }: DeleteCustomerProps
       queryClient.invalidateQueries({
         queryKey: ["get-all-customers", currentPage, pageSize],
         exact: true,
-        refetchType: "all",  
+        refetchType: "all",
       })
     } catch {
       toast.error("OCORREU UM ERRO AO DELETAR CLIENTE! TENTE NOVAMENTE.");
@@ -60,7 +60,7 @@ export function DeleteCustomer({ customerId, customerName }: DeleteCustomerProps
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            Tem certeza que deseja deletar o cliente <strong className="italic">{customerName}</strong> ?
+            Deseja deletar permanentemente o seu cliente <strong className="italic">{customerName}</strong> ?
           </AlertDialogTitle>
           <AlertDialogDescription>
             Esta ação não pode ser desfeita. Isso excluirá permanentemente o cliente {""}
@@ -69,7 +69,7 @@ export function DeleteCustomer({ customerId, customerName }: DeleteCustomerProps
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancelar</AlertDialogCancel>
-          <AlertDialogAction 
+          <AlertDialogAction
             className="bg-destructive hover:bg-red-600 dark:bg-destructive dark:text-foreground dark:hover:bg-red-500"
             onClick={handleDeleteCustomer}
           >
